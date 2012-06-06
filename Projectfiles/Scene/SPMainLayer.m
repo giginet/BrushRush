@@ -42,6 +42,7 @@
         [player addChild:drawing];
         [player.drawings addObject:drawing];
         drawing.position = [player convertToNodeSpace:point];
+        drawing.color = player.color;
         [drawing addPoint:[drawing convertToNodeSpace:point]];
       }
     }

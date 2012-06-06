@@ -13,6 +13,7 @@
 }
 
 @property(readonly) NSUInteger identifier;
+@property(readonly) ccColor3B color;
 @property(readonly, strong) NSMutableArray* drawings;
 @property(readwrite, strong) UITouch* lastTouch;
 

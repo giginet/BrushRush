@@ -10,6 +10,7 @@
 
 @implementation SPPlayer
 @synthesize identifier;
+@dynamic color;
 @synthesize drawings;
 @synthesize lastTouch;
 
@@ -37,6 +38,10 @@ static NSMutableDictionary* players_;
     self.position = ccp(0, director.screenSize.height / 2 * n);
   }
   return self;
+}
+
+- (ccColor3B)color {
+  return ccc3(255 * self.identifier, 0, 255 * (1 - self.identifier));
 }
 
 @end
