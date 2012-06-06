@@ -11,6 +11,7 @@
 @implementation SPPlayer
 @synthesize identifier;
 @synthesize drawings;
+@synthesize lastTouch;
 
 static NSMutableDictionary* players_;
 

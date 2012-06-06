@@ -11,14 +11,12 @@
 #import "CCDrawingPrimitives.h"
 
 @implementation SPMainLayer
-@synthesize drawings;
+@dynamic drawings;
 @synthesize players;
 
 - (id)init {
-  self.backgroundColor = ccc4(255, 255, 255, 255);
   self = [super init];
   if (self) {
-    drawings = [NSMutableArray array];
     players = [NSMutableArray array];
     self.isTouchEnabled = YES;
     for (int i = 0; i < 2; ++i) {
@@ -34,33 +32,50 @@
   [super onEnter];
 }
 
-- (BOOL)ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event {
-  SPDrawing* drawing = [[SPDrawing alloc] init];
-  [self.drawings addObject:drawing];
-  CGPoint point = [self convertTouchToNodeSpace:touch];
-  drawing.position = point;
-  for (int i = 0; i < 2; ++i) {
-    SPPlayer* player = [self.players objectAtIndex:i];
-    if ([player containsPoint:point]) {
-      [drawing setPlayer:player];
-      [player addChild:drawing];
-      break;
+- (void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+  for (UITouch* touch in touches) {
+    CGPoint point = [self convertTouchToNodeSpace:touch];
+    for (SPPlayer* player in self.players) {
+      if (!player.lastTouch && [player containsPoint:point]) {
+        player.lastTouch = touch;
+        SPDrawing* drawing = [[SPDrawing alloc] init];
+        [player addChild:drawing];
+        [player.drawings addObject:drawing];
+        drawing.position = [player convertToNodeSpace:point];
+        [drawing addPoint:[drawing convertToNodeSpace:point]];
+      }
     }
   }
-  return YES;
 }
 
-- (void)ccTouchMoved:(UITouch *)touch withEvent:(UIEvent *)event {
-  SPDrawing* drawing = [self.drawings lastObject];
-  CGPoint point = [self convertTouchToNodeSpace:touch];
-  [drawing.points addObject:[NSValue valueWithCGPoint:[drawing convertToNodeSpace:point]]];
+- (void)ccTouchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
+  for (UITouch* touch in touches) {
+    CGPoint point = [self convertTouchToNodeSpace:touch];
+    for (SPPlayer* player in self.players) {
+      if ([player.lastTouch isEqual:touch]) {
+        SPDrawing* drawing = [player.drawings lastObject];
+        [drawing addPoint:[drawing convertToNodeSpace:point]];
+      }
+    }
+  }
 }
 
-- (void)ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event {
+- (void)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
+  for (UITouch* touch in touches) {
+    for (SPPlayer* player in self.players) {
+      if ([player.lastTouch isEqual:touch]) {
+        player.lastTouch = nil;
+      }
+    }
+  }
 }
 
-- (void)draw {
-  [super draw];
+- (NSArray*)drawings {
+  NSMutableArray* array = [NSMutableArray array];
+  for (SPPlayer* player in self.players) {
+    [array addObjectsFromArray:player.drawings];
+  }
+  return array;
 }
 
 @end

@@ -37,5 +37,6 @@ typedef enum {
 - (float)area;
 
 - (void)setPlayer:(SPPlayer *)player;
+- (void)addPoint:(CGPoint)point;
 
 @end

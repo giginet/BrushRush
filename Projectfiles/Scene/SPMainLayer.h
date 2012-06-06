@@ -9,10 +9,10 @@
 #import "KWLayer.h"
 #import "heqet.h"
 
-@interface SPMainLayer : KWLayer {
+@interface SPMainLayer : CCLayer {
 }
 
-@property(readonly, strong) NSMutableArray* drawings;
+@property(readonly, strong) NSArray* drawings;
 @property(readonly, strong) NSMutableArray* players;
 
 @end

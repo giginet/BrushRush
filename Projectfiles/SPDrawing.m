@@ -52,4 +52,8 @@
   [p.drawings addObject:self];
 }
 
+- (void)addPoint:(CGPoint)point {
+  [self.points addObject:[NSValue valueWithCGPoint:point]];
+}
+
 @end
