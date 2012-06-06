@@ -32,6 +32,8 @@
 		074DD6A0157F76A000C4DCA7 /* graphic_converter.py in Resources */ = {isa = PBXBuildFile; fileRef = 074DD688157F76A000C4DCA7 /* graphic_converter.py */; };
 		074DD6A1157F76A000C4DCA7 /* sound_converter.py in Resources */ = {isa = PBXBuildFile; fileRef = 074DD689157F76A000C4DCA7 /* sound_converter.py */; };
 		074DD6A5157F7D1300C4DCA7 /* SPMainLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 074DD6A4157F7D1300C4DCA7 /* SPMainLayer.m */; };
+		074DD6B8157FA46800C4DCA7 /* SPDrawing.m in Sources */ = {isa = PBXBuildFile; fileRef = 074DD6B7157FA46800C4DCA7 /* SPDrawing.m */; };
+		074DD6BB157FA4F000C4DCA7 /* SPPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 074DD6BA157FA4F000C4DCA7 /* SPPlayer.m */; };
 		DC1BE6A014F417CC00F49D25 /* Ubuntu-B.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DC1BE68C14F417CC00F49D25 /* Ubuntu-B.ttf */; };
 		DC1BE6A114F417CC00F49D25 /* Ubuntu-BI.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DC1BE68D14F417CC00F49D25 /* Ubuntu-BI.ttf */; };
 		DC1BE6A214F417CC00F49D25 /* Ubuntu-C.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DC1BE68E14F417CC00F49D25 /* Ubuntu-C.ttf */; };
@@ -138,8 +140,12 @@
 		074DD686157F76A000C4DCA7 /* README.rst */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.rst; sourceTree = "<group>"; };
 		074DD688157F76A000C4DCA7 /* graphic_converter.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = graphic_converter.py; sourceTree = "<group>"; };
 		074DD689157F76A000C4DCA7 /* sound_converter.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = sound_converter.py; sourceTree = "<group>"; };
-		074DD6A3157F7D1300C4DCA7 /* SPMainLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; name = SPMainLayer.h; path = Scene/SPMainLayer.h; sourceTree = "<group>"; };
+		074DD6A3157F7D1300C4DCA7 /* SPMainLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SPMainLayer.h; path = Scene/SPMainLayer.h; sourceTree = "<group>"; };
 		074DD6A4157F7D1300C4DCA7 /* SPMainLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SPMainLayer.m; path = Scene/SPMainLayer.m; sourceTree = "<group>"; };
+		074DD6B6157FA46800C4DCA7 /* SPDrawing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPDrawing.h; sourceTree = "<group>"; };
+		074DD6B7157FA46800C4DCA7 /* SPDrawing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPDrawing.m; sourceTree = "<group>"; };
+		074DD6B9157FA4F000C4DCA7 /* SPPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPPlayer.h; sourceTree = "<group>"; };
+		074DD6BA157FA4F000C4DCA7 /* SPPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPPlayer.m; sourceTree = "<group>"; };
 		DC1BE68614F417CC00F49D25 /* copyright.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = copyright.txt; sourceTree = "<group>"; };
 		DC1BE68914F417CC00F49D25 /* LICENCE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENCE.txt; sourceTree = "<group>"; };
 		DC1BE68C14F417CC00F49D25 /* Ubuntu-B.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Ubuntu-B.ttf"; sourceTree = "<group>"; };
@@ -361,6 +367,17 @@
 			name = Scene;
 			sourceTree = "<group>";
 		};
+		074DD6B4157FA43300C4DCA7 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				074DD6B6157FA46800C4DCA7 /* SPDrawing.h */,
+				074DD6B7157FA46800C4DCA7 /* SPDrawing.m */,
+				074DD6B9157FA4F000C4DCA7 /* SPPlayer.h */,
+				074DD6BA157FA4F000C4DCA7 /* SPPlayer.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		DC1BE68414F417CC00F49D25 /* ubuntu-font-family-0.80 */ = {
 			isa = PBXGroup;
 			children = (
@@ -475,6 +492,7 @@
 				DCC1A38E13A94F1A005BD75D /* AppDelegate.m */,
 				DCC1A39413A94F1A005BD75D /* Resources */,
 				DCC1A3CF13A94F2C005BD75D /* Supporting Files */,
+				074DD6B4157FA43300C4DCA7 /* Model */,
 				074DD6A6157F7D1B00C4DCA7 /* Scene */,
 			);
 			path = Projectfiles;
@@ -662,6 +680,8 @@
 				074DD69D157F76A000C4DCA7 /* KWVector.m in Sources */,
 				074DD69E157F76A000C4DCA7 /* NSArrayExtension.m in Sources */,
 				074DD6A5157F7D1300C4DCA7 /* SPMainLayer.m in Sources */,
+				074DD6B8157FA46800C4DCA7 /* SPDrawing.m in Sources */,
+				074DD6BB157FA4F000C4DCA7 /* SPPlayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

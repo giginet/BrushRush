@@ -10,7 +10,7 @@
 #import "heqet.h"
 
 @interface SPMainLayer : KWLayer {
-  NSMutableArray* points_;
+  NSMutableArray* drawings_;
 }
 
 @end
