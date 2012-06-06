@@ -7,6 +7,7 @@
 //
 
 #import "KWLayer.h"
+#import "SPPlayer.h"
 
 /**
  This is a class which manages drawn shape.
@@ -27,7 +28,8 @@ typedef enum {
 
 @property(readwrite) ccColor3B color;
 @property(readwrite) SPDrawingType type;
-@property(readwrite, strong) NSMutableArray* points;
+@property(readonly, strong) NSMutableArray* points;
+@property(readonly, weak) SPPlayer* player;
 
 - (id)initWithPoints:(NSArray*)points;
 

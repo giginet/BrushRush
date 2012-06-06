@@ -13,13 +13,14 @@
 @synthesize color;
 @synthesize type;
 @synthesize points;
+@synthesize player;
 
 - (id)init {
   self = [super init];
   if (self) {
     type = SPDrawingTypeWriting;
     points = [NSMutableArray array];
-    color = ccc3(0, 0, 0);
+    color = ccc3(1, 0, 0);
   }
   return self;
 }
@@ -41,9 +42,14 @@
   for (int i = 1; i < count; ++i) {
     CGPoint prev = [[points objectAtIndex:i - 1] CGPointValue];
     CGPoint point = [[points objectAtIndex:i] CGPointValue];
-    glColor4f(1, 0, 0, 1);
+    glColor4f(self.color.r, self.color.g, self.color.b, 1);
     ccDrawLine(prev, point);
   }
+}
+
+- (void)setPlayer:(SPPlayer *)p {
+  player = p;
+  [p.drawings addObject:self];
 }
 
 @end

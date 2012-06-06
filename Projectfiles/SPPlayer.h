@@ -8,6 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
-@interface SPPlayer : NSObject
+@interface SPPlayer : NSObject {
+}
+
+@property(readonly) NSUInteger identifier;
+@property(readonly, strong) NSMutableArray* drawings;
+
++ (id)playerById:(NSUInteger)n;
+- (id)initWithId:(NSUInteger)n;
 
 @end
