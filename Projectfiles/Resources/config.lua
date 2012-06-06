@@ -17,7 +17,7 @@ local config =
 	KKStartupConfig = 
 	{
 		-- load first scene from a class with this name, or from a Lua script with this name with .lua appended
-		FirstSceneClassName = "HelloWorldLayer",
+		FirstSceneClassName = "SPMainLayer",
 
 		-- set the director type, and the fallback in case the first isn't available
 		DirectorType = DirectorType.DisplayLink,
@@ -49,7 +49,7 @@ local config =
 		AllowAutorotateOnFirstAndSecondGenerationDevices = NO,
 	
 		-- iAd setup
-		EnableAdBanner = YES,
+		EnableAdBanner = NO,
 		PlaceBannerOnBottom = NO,
 		LoadOnlyPortraitBanners = NO,
 		LoadOnlyLandscapeBanners = NO,
