@@ -11,13 +11,21 @@
 #import "CCDrawingPrimitives.h"
 
 @implementation SPMainLayer
+@synthesize drawings;
+@synthesize players;
 
 - (id)init {
   self.backgroundColor = ccc4(255, 255, 255, 255);
   self = [super init];
   if (self) {
-    drawings_ = [NSMutableArray array];
+    drawings = [NSMutableArray array];
+    players = [NSMutableArray array];
     self.isTouchEnabled = YES;
+    for (int i = 0; i < 2; ++i) {
+      SPPlayer* player = [[SPPlayer alloc] initWithId:i];
+      [self.players addObject:player];
+      [self addChild:player];
+    }
   }
   return self;
 }
@@ -28,15 +36,22 @@
 
 - (BOOL)ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event {
   SPDrawing* drawing = [[SPDrawing alloc] init];
-  [drawings_ addObject:drawing];
+  [self.drawings addObject:drawing];
   CGPoint point = [self convertTouchToNodeSpace:touch];
   drawing.position = point;
-  [self addChild:drawing];
+  for (int i = 0; i < 2; ++i) {
+    SPPlayer* player = [self.players objectAtIndex:i];
+    if ([player containsPoint:point]) {
+      [drawing setPlayer:player];
+      [player addChild:drawing];
+      break;
+    }
+  }
   return YES;
 }
 
 - (void)ccTouchMoved:(UITouch *)touch withEvent:(UIEvent *)event {
-  SPDrawing* drawing = [drawings_ lastObject];
+  SPDrawing* drawing = [self.drawings lastObject];
   CGPoint point = [self convertTouchToNodeSpace:touch];
   [drawing.points addObject:[NSValue valueWithCGPoint:[drawing convertToNodeSpace:point]]];
 }

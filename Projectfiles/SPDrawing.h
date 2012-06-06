@@ -36,4 +36,6 @@ typedef enum {
 /** calculate polyagon's area by containing points */
 - (float)area;
 
+- (void)setPlayer:(SPPlayer *)player;
+
 @end

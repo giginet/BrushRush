@@ -7,8 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "heqet.h"
 
-@interface SPPlayer : NSObject {
+@interface SPPlayer : CCLayerColor {
 }
 
 @property(readonly) NSUInteger identifier;
