@@ -1,0 +1,3 @@
+[submodule "Heqet"]
+	path = Heqet
+	url = git@github.com:giginet/Heqet.git
