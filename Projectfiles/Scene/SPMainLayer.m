@@ -67,7 +67,8 @@
       if ([player.lastTouch isEqual:touch]) {
         SPDrawing* lastDrawing = player.lastDrawing;
         if([lastDrawing isClose]) {
-          lastDrawing.type = SPDrawingTypeArea;
+          lastDrawing.type = SPDrawingTypeCount;
+          [lastDrawing fire];
         } else {
           [[SPDrawingManager sharedManager] removeDrawing:lastDrawing];
         }

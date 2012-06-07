@@ -40,6 +40,7 @@ typedef enum {
 
 - (void)setPlayer:(SPPlayer *)player;
 - (void)addPoint:(CGPoint)point;
+- (void)fire;
 - (SPDrawingType)isClose;
 
 @end

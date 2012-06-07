@@ -10,6 +10,10 @@
 #import "CCDrawingPrimitives.h"
 #import "KWDrawingPrimitives.h"
 
+@interface SPDrawing()
+- (void)onEndCharge;
+@end
+
 @implementation SPDrawing
 @synthesize color;
 @synthesize type;
@@ -68,6 +72,19 @@
   }
 }
 
+- (void)fire {
+  [[CCScheduler sharedScheduler] scheduleSelector:@selector(onEndCharge) 
+                                        forTarget:self 
+                                         interval:self.length / 1000 * 2 
+                                           paused:NO 
+                                           repeat:0 
+                                            delay:0];
+}
+
+- (SPPlayer*)player {
+  return player;
+}
+
 - (void)setPlayer:(SPPlayer *)p {
   player = p;
   [p.drawings addObject:self];
@@ -86,6 +103,10 @@
     return YES;
   }
   return NO;
+}
+
+- (void)onEndCharge {
+  self.type = SPDrawingTypeArea;
 }
 
 @end
