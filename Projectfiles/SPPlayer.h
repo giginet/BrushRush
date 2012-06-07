@@ -16,6 +16,7 @@
 @property(readonly) NSUInteger identifier;
 @property(readonly, strong) NSMutableArray* drawings;
 @property(readwrite, strong) UITouch* lastTouch;
+@property(readonly, strong) SPDrawing* lastDrawing;
 
 + (id)playerById:(NSUInteger)n;
 - (id)initWithId:(NSUInteger)n;

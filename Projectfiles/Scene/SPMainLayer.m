@@ -65,6 +65,8 @@
   for (UITouch* touch in touches) {
     for (SPPlayer* player in self.players) {
       if ([player.lastTouch isEqual:touch]) {
+        SPDrawing* lastDrawing = player.lastDrawing;
+        NSLog(@"%d", [lastDrawing checkType]);
         player.lastTouch = nil;
       }
     }

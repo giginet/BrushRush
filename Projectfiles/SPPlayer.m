@@ -14,6 +14,7 @@
 @dynamic color;
 @synthesize drawings;
 @synthesize lastTouch;
+@dynamic lastDrawing;
 
 static NSMutableDictionary* players_;
 
@@ -52,6 +53,10 @@ static NSMutableDictionary* players_;
   for (SPDrawing* drawing in manager.drawings) {
     [drawing draw];
   }
+}
+
+- (SPDrawing*)lastDrawing {
+  return [self.drawings lastObject];
 }
 
 @end
