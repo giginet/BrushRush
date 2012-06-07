@@ -34,6 +34,7 @@
 		074DD6A5157F7D1300C4DCA7 /* SPMainLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 074DD6A4157F7D1300C4DCA7 /* SPMainLayer.m */; };
 		074DD6B8157FA46800C4DCA7 /* SPDrawing.m in Sources */ = {isa = PBXBuildFile; fileRef = 074DD6B7157FA46800C4DCA7 /* SPDrawing.m */; };
 		074DD6BB157FA4F000C4DCA7 /* SPPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 074DD6BA157FA4F000C4DCA7 /* SPPlayer.m */; };
+		074DD6BE1580BAA400C4DCA7 /* SPDrawingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 074DD6BD1580BAA400C4DCA7 /* SPDrawingManager.m */; };
 		DC1BE6A014F417CC00F49D25 /* Ubuntu-B.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DC1BE68C14F417CC00F49D25 /* Ubuntu-B.ttf */; };
 		DC1BE6A114F417CC00F49D25 /* Ubuntu-BI.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DC1BE68D14F417CC00F49D25 /* Ubuntu-BI.ttf */; };
 		DC1BE6A214F417CC00F49D25 /* Ubuntu-C.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DC1BE68E14F417CC00F49D25 /* Ubuntu-C.ttf */; };
@@ -146,6 +147,8 @@
 		074DD6B7157FA46800C4DCA7 /* SPDrawing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPDrawing.m; sourceTree = "<group>"; };
 		074DD6B9157FA4F000C4DCA7 /* SPPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPPlayer.h; sourceTree = "<group>"; };
 		074DD6BA157FA4F000C4DCA7 /* SPPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPPlayer.m; sourceTree = "<group>"; };
+		074DD6BC1580BAA400C4DCA7 /* SPDrawingManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPDrawingManager.h; sourceTree = "<group>"; };
+		074DD6BD1580BAA400C4DCA7 /* SPDrawingManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPDrawingManager.m; sourceTree = "<group>"; };
 		DC1BE68614F417CC00F49D25 /* copyright.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = copyright.txt; sourceTree = "<group>"; };
 		DC1BE68914F417CC00F49D25 /* LICENCE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENCE.txt; sourceTree = "<group>"; };
 		DC1BE68C14F417CC00F49D25 /* Ubuntu-B.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Ubuntu-B.ttf"; sourceTree = "<group>"; };
@@ -374,6 +377,8 @@
 				074DD6B7157FA46800C4DCA7 /* SPDrawing.m */,
 				074DD6B9157FA4F000C4DCA7 /* SPPlayer.h */,
 				074DD6BA157FA4F000C4DCA7 /* SPPlayer.m */,
+				074DD6BC1580BAA400C4DCA7 /* SPDrawingManager.h */,
+				074DD6BD1580BAA400C4DCA7 /* SPDrawingManager.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -682,6 +687,7 @@
 				074DD6A5157F7D1300C4DCA7 /* SPMainLayer.m in Sources */,
 				074DD6B8157FA46800C4DCA7 /* SPDrawing.m in Sources */,
 				074DD6BB157FA4F000C4DCA7 /* SPPlayer.m in Sources */,
+				074DD6BE1580BAA400C4DCA7 /* SPDrawingManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -721,7 +727,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer: Kohki Miki (3YM67K3AKM)";
-				PROVISIONING_PROFILE = "0A720F02-452E-44A6-959A-25FB5EA95177";
+				PROVISIONING_PROFILE = "F3D1DBF0-84D0-4BA8-B156-A2A323049552";
 			};
 			name = Debug;
 		};
@@ -729,7 +735,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer: Kohki Miki (3YM67K3AKM)";
-				PROVISIONING_PROFILE = "0A720F02-452E-44A6-959A-25FB5EA95177";
+				PROVISIONING_PROFILE = "F3D1DBF0-84D0-4BA8-B156-A2A323049552";
 			};
 			name = Release;
 		};

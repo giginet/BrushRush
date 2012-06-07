@@ -7,6 +7,7 @@
 //
 
 #import "SPPlayer.h"
+#import "SPDrawingManager.h"
 
 @implementation SPPlayer
 @synthesize identifier;
@@ -32,6 +33,7 @@ static NSMutableDictionary* players_;
     if (!players_) {
       players_ = [NSMutableDictionary dictionaryWithCapacity:2];
     }
+    self.rotation = 180 * n;
     identifier = n;
     drawings = [NSMutableArray array];
     [players_ setObject:self forKey:[NSNumber numberWithInt:n]];
@@ -42,6 +44,14 @@ static NSMutableDictionary* players_;
 
 - (ccColor3B)color {
   return ccc3(255 * self.identifier, 0, 255 * (1 - self.identifier));
+}
+
+- (void)draw {
+  [super draw];
+  SPDrawingManager* manager = [SPDrawingManager sharedManager];
+  for (SPDrawing* drawing in manager.drawings) {
+    [drawing draw];
+  }
 }
 
 @end

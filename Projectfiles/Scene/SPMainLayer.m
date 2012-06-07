@@ -9,6 +9,7 @@
 #import "SPDrawing.h"
 #import "SPMainLayer.h"
 #import "CCDrawingPrimitives.h"
+#import "SPDrawingManager.h"
 
 @implementation SPMainLayer
 @dynamic drawings;
@@ -39,11 +40,10 @@
       if (!player.lastTouch && [player containsPoint:point]) {
         player.lastTouch = touch;
         SPDrawing* drawing = [[SPDrawing alloc] init];
-        [player addChild:drawing];
-        [player.drawings addObject:drawing];
-        drawing.position = [player convertToNodeSpace:point];
+        [[SPDrawingManager sharedManager] addDrawing:drawing];
         drawing.color = player.color;
-        [drawing addPoint:[drawing convertToNodeSpace:point]];
+        drawing.player = player;
+        [drawing addPoint:[player convertToNodeSpace:point]];
       }
     }
   }
@@ -55,7 +55,7 @@
     for (SPPlayer* player in self.players) {
       if ([player.lastTouch isEqual:touch]) {
         SPDrawing* drawing = [player.drawings lastObject];
-        [drawing addPoint:[drawing convertToNodeSpace:point]];
+        [drawing addPoint:[player convertToNodeSpace:point]];
       }
     }
   }
@@ -77,6 +77,10 @@
     [array addObjectsFromArray:player.drawings];
   }
   return array;
+}
+
+- (void)draw {
+  [super draw];
 }
 
 @end
