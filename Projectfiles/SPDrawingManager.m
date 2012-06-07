@@ -34,6 +34,7 @@
 
 - (void)removeDrawing:(SPDrawing *)drawing {
   [drawings_ removeObject:drawing];
+  [drawing.player.drawings removeObject:self];
 }
 
 @end

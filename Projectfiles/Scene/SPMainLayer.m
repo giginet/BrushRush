@@ -66,7 +66,11 @@
     for (SPPlayer* player in self.players) {
       if ([player.lastTouch isEqual:touch]) {
         SPDrawing* lastDrawing = player.lastDrawing;
-        NSLog(@"%d", [lastDrawing checkType]);
+        if([lastDrawing isClose]) {
+          lastDrawing.type = SPDrawingTypeArea;
+        } else {
+          [[SPDrawingManager sharedManager] removeDrawing:lastDrawing];
+        }
         player.lastTouch = nil;
       }
     }

@@ -17,6 +17,7 @@
 typedef enum {
   SPDrawingTypeWriting,
   SPDrawingTypeSlash,
+  SPDrawingTypeCount,
   SPDrawingTypeArea
 } SPDrawingType;
 
@@ -39,6 +40,6 @@ typedef enum {
 
 - (void)setPlayer:(SPPlayer *)player;
 - (void)addPoint:(CGPoint)point;
-- (SPDrawingType)checkType;
+- (SPDrawingType)isClose;
 
 @end

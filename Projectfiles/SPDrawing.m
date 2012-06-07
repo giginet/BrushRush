@@ -8,6 +8,7 @@
 
 #import "SPDrawing.h"
 #import "CCDrawingPrimitives.h"
+#import "KWDrawingPrimitives.h"
 
 @implementation SPDrawing
 @synthesize color;
@@ -51,11 +52,19 @@
 - (void)draw {
   int count = [points count];
   if (count <= 1) return;
-  for (int i = 1; i < count; ++i) {
-    CGPoint prev = [[points objectAtIndex:i - 1] CGPointValue];
-    CGPoint point = [[points objectAtIndex:i] CGPointValue];
-    glColor4f(self.color.r, self.color.g, self.color.b, 1);
-    ccDrawLine(prev, point);
+  glColor4f(self.color.r, self.color.g, self.color.b, 1);
+  if (self.type == SPDrawingTypeArea) {
+    CGPoint vertices[count];
+    for (int i = 0; i < count; ++i) {
+      vertices[i] = [[self.points objectAtIndex:i] CGPointValue];
+    }
+    ccFillPoly(vertices, count, YES);
+  } else {
+    for (int i = 1; i < count; ++i) {
+      CGPoint prev = [[points objectAtIndex:i - 1] CGPointValue];
+      CGPoint point = [[points objectAtIndex:i] CGPointValue];
+      ccDrawLine(prev, point);
+    }
   }
 }
 
@@ -68,15 +77,15 @@
   [self.points addObject:[NSValue valueWithCGPoint:point]];
 }
 
-- (SPDrawingType)checkType {
+- (SPDrawingType)isClose {
   CGPoint begin = [[self.points objectAtIndex:0] CGPointValue];
   CGPoint end = [[self.points lastObject] CGPointValue];
   float distance = hypotf(begin.x - end.x, begin.y - end.y);
   float length = [self length];
   if (distance <= length * 0.15) {
-    return SPDrawingTypeArea;
+    return YES;
   }
-  return SPDrawingTypeSlash;
+  return NO;
 }
 
 @end
