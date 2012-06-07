@@ -16,6 +16,8 @@
 #else
 	CCLOG(@"ARC is either not available or not enabled");
 #endif
+  [self.window setMultipleTouchEnabled:YES];
+  [[CCDirector sharedDirector].openGLView setMultipleTouchEnabled:YES];
 }
 
 -(id) alternateRootViewController

@@ -720,12 +720,16 @@
 		DCC1A0DD13A94EC0005BD75D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer: Kohki Miki (3YM67K3AKM)";
+				PROVISIONING_PROFILE = "0A720F02-452E-44A6-959A-25FB5EA95177";
 			};
 			name = Debug;
 		};
 		DCC1A0DE13A94EC0005BD75D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer: Kohki Miki (3YM67K3AKM)";
+				PROVISIONING_PROFILE = "0A720F02-452E-44A6-959A-25FB5EA95177";
 			};
 			name = Release;
 		};

@@ -9,11 +9,11 @@
 #import <Foundation/Foundation.h>
 #import "heqet.h"
 
+@class SPDrawing;
 @interface SPPlayer : CCLayerColor {
 }
 
 @property(readonly) NSUInteger identifier;
-@property(readonly) ccColor3B color;
 @property(readonly, strong) NSMutableArray* drawings;
 @property(readwrite, strong) UITouch* lastTouch;
 
