@@ -38,7 +38,16 @@
 }
 
 - (float)area {
-  return 0;
+  // http://advpro.co.jp/Devlop/?p=530
+  int count = [self.points count];
+  float area = 0;
+  for (int i = 0; i < count; ++i) {
+    CGPoint point = [[self.points objectAtIndex:i] CGPointValue];
+    CGPoint next = [[self.points objectAtIndex:(i + 1) % count] CGPointValue];
+    area += 1.0/2.0 * (point.x - next.x) * (point.y + next.y);
+  }
+  if (area < 0) area *= -1;
+  return area;
 }
 
 - (float)length {

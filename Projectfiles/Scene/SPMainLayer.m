@@ -66,6 +66,7 @@
     for (SPPlayer* player in self.players) {
       if ([player.lastTouch isEqual:touch]) {
         SPDrawing* lastDrawing = player.lastDrawing;
+        NSLog(@"%f", lastDrawing.area);
         if([lastDrawing isClose]) {
           lastDrawing.type = SPDrawingTypeCount;
           [lastDrawing fire];
