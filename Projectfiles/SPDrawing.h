@@ -28,6 +28,7 @@ typedef enum {
   NSMutableArray* points_;
 }
 
+@property(readonly) CGRect boundingBox;
 @property(readwrite) ccColor3B color;
 @property(readwrite) SPDrawingType type;
 @property(readonly, strong) NSArray* points;

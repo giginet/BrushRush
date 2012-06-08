@@ -580,7 +580,7 @@
 		DCC1A0D813A94EC0005BD75D /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0420;
+				LastUpgradeCheck = 0430;
 			};
 			buildConfigurationList = DCC1A0DB13A94EC0005BD75D /* Build configuration list for PBXProject "Spring" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -743,11 +743,16 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = DCFA90EF13B4F6F7009DD35A /* BuildSettings-Debug-iOS.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer: Kohki Miki (3YM67K3AKM)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Kohki Miki (3YM67K3AKM)";
+				GCC_THUMB_SUPPORT = NO;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../__Kobold2D__/libs/GoogleAdMobAdsSDK\"",
 				);
+				PROVISIONING_PROFILE = "AD3CB5CA-EF64-4AEE-B093-E28B0C236AB5";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "AD3CB5CA-EF64-4AEE-B093-E28B0C236AB5";
 				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Debug;
@@ -756,11 +761,16 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = DCFA90F013B4F811009DD35A /* BuildSettings-Release-iOS.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer: Kohki Miki (3YM67K3AKM)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Kohki Miki (3YM67K3AKM)";
+				GCC_THUMB_SUPPORT = NO;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../__Kobold2D__/libs/GoogleAdMobAdsSDK\"",
 				);
+				PROVISIONING_PROFILE = "AD3CB5CA-EF64-4AEE-B093-E28B0C236AB5";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "AD3CB5CA-EF64-4AEE-B093-E28B0C236AB5";
 				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Release;

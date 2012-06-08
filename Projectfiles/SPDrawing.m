@@ -15,6 +15,7 @@
 @end
 
 @implementation SPDrawing
+@synthesize boundingBox;
 @synthesize color;
 @synthesize type;
 @synthesize points = points_;
@@ -26,6 +27,7 @@
     type = SPDrawingTypeWriting;
     points_ = [NSMutableArray array];
     color = ccc3(1, 0, 0);
+    boundingBox = CGRectMake(0, 0, 0, 0);
   }
   return self;
 }
@@ -101,6 +103,20 @@
 
 - (void)addPoint:(CGPoint)point {
   [points_ addObject:[NSValue valueWithCGPoint:point]];
+  if ([points_ count] == 0) {
+    boundingBox.origin = point;
+  } else {
+    if (point.x < self.boundingBox.origin.x) {
+      boundingBox.origin.x = point.x; 
+    } else if(point.x > self.boundingBox.origin.x + self.boundingBox.size.width) {
+      boundingBox.size.width = point.x - self.boundingBox.origin.x;
+    }
+    if (point.y < self.boundingBox.origin.y) {
+      boundingBox.origin.y = point.y;
+    } else if(point.y > self.boundingBox.origin.y + self.boundingBox.size.height) {
+      boundingBox.size.height = point.y - self.boundingBox.origin.y;
+    }
+  }
 }
 
 - (SPDrawingType)isClose {
