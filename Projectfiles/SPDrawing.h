@@ -25,11 +25,12 @@ typedef enum {
 @interface SPDrawing : CCNode {
   int size_;
   float area_;
+  NSMutableArray* points_;
 }
 
 @property(readwrite) ccColor3B color;
 @property(readwrite) SPDrawingType type;
-@property(readonly, strong) NSMutableArray* points;
+@property(readonly, strong) NSArray* points;
 @property(readwrite, weak) SPPlayer* player;
 
 - (id)initWithPoints:(NSArray*)points;

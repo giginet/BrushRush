@@ -66,7 +66,6 @@
     for (SPPlayer* player in self.players) {
       if ([player.lastTouch isEqual:touch]) {
         SPDrawing* lastDrawing = player.lastDrawing;
-        NSLog(@"%f", lastDrawing.area);
         if([lastDrawing isClose]) {
           lastDrawing.type = SPDrawingTypeCount;
           [lastDrawing fire];
@@ -74,6 +73,17 @@
           [[SPDrawingManager sharedManager] removeDrawing:lastDrawing];
         }
         player.lastTouch = nil;
+      }
+    }
+  }
+}
+
+- (void)ccTouchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event {
+  for (UITouch* touch in touches) {
+    for (SPPlayer* player in self.players) {
+      if ([player.lastTouch isEqual:touch]) {
+        player.lastTouch = nil;
+        [[SPDrawingManager sharedManager] removeDrawing:player.lastDrawing];
       }
     }
   }

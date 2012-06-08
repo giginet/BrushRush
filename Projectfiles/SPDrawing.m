@@ -17,14 +17,14 @@
 @implementation SPDrawing
 @synthesize color;
 @synthesize type;
-@synthesize points;
+@synthesize points = points_;
 @synthesize player;
 
 - (id)init {
   self = [super init];
   if (self) {
     type = SPDrawingTypeWriting;
-    points = [NSMutableArray array];
+    points_ = [NSMutableArray array];
     color = ccc3(1, 0, 0);
   }
   return self;
@@ -52,18 +52,18 @@
 
 - (float)length {
   float length = 0;
-  int count = [points count];
+  int count = [self.points count];
   if (count <= 1) return 0;
   for (int i = 1; i < count; ++i) {
-    CGPoint prev = [[points objectAtIndex:i - 1] CGPointValue];
-    CGPoint point = [[points objectAtIndex:i] CGPointValue];
+    CGPoint prev = [[self.points objectAtIndex:i - 1] CGPointValue];
+    CGPoint point = [[self.points objectAtIndex:i] CGPointValue];
     length += hypotf(point.x - prev.x, point.y - prev.y);
   }
   return length;
 }
 
 - (void)draw {
-  int count = [points count];
+  int count = [self.points count];
   if (count <= 1) return;
   glColor4f(self.color.r, self.color.g, self.color.b, 1);
   if (self.type == SPDrawingTypeArea) {
@@ -74,8 +74,8 @@
     ccFillPoly(vertices, count, YES);
   } else {
     for (int i = 1; i < count; ++i) {
-      CGPoint prev = [[points objectAtIndex:i - 1] CGPointValue];
-      CGPoint point = [[points objectAtIndex:i] CGPointValue];
+      CGPoint prev = [[self.points objectAtIndex:i - 1] CGPointValue];
+      CGPoint point = [[self.points objectAtIndex:i] CGPointValue];
       ccDrawLine(prev, point);
     }
   }
@@ -100,7 +100,7 @@
 }
 
 - (void)addPoint:(CGPoint)point {
-  [self.points addObject:[NSValue valueWithCGPoint:point]];
+  [points_ addObject:[NSValue valueWithCGPoint:point]];
 }
 
 - (SPDrawingType)isClose {
