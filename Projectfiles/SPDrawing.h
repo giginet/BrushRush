@@ -29,6 +29,7 @@ typedef enum {
 }
 
 @property(readonly) CGRect boundingBox;
+@property(readonly) CGPoint gravityPoint;
 @property(readwrite) ccColor3B color;
 @property(readwrite) SPDrawingType type;
 @property(readonly, strong) NSArray* points;

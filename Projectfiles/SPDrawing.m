@@ -10,8 +10,16 @@
 #import "CCDrawingPrimitives.h"
 #import "KWDrawingPrimitives.h"
 
+typedef enum {
+  SPRotationStraight,
+  SPRotationClockwise,
+  SPRotationAntiClockwise
+} SPRotation;
+
 @interface SPDrawing()
 - (void)onEndCharge;
+- (SPRotation)rotationDirectionByPoint:(CGPoint)p0 point1:(CGPoint)p1 point2:(CGPoint)p2;
+- (BOOL)intersectsLines:(CGPoint)p0b endPoint:(CGPoint)p0e beginPoint:(CGPoint)p1b endPoint:(CGPoint)p1e;
 @end
 
 @implementation SPDrawing
@@ -20,6 +28,7 @@
 @synthesize type;
 @synthesize points = points_;
 @synthesize player;
+@dynamic gravityPoint;
 
 - (id)init {
   self = [super init];
@@ -132,6 +141,49 @@
 
 - (void)onEndCharge {
   self.type = SPDrawingTypeArea;
+}
+
+- (CGPoint)gravityPoint {
+  __block float sumx = 0;
+  __block float sumy = 0;
+  [self.points mapUsingBlock:^(id value, NSUInteger idx){
+    CGPoint p = [value CGPointValue];
+    sumx += p.x;
+    sumy += p.y;
+    return value;
+  }];
+  int count = [self.points count];
+  return ccp(sumx / count, sumy / count);
+}
+
+- (BOOL)containsPoint:(CGPoint)point {
+  int count = [self.points count];
+  int intersects = 0;
+  const CGPoint pe = CGPointMake(-1000, -1000);
+  for (int i = 0; i < count; ++i) {
+    CGPoint p = [[self.points objectAtIndex:i] CGPointValue];
+    CGPoint n = [[self.points objectAtIndex:(i + 1) % count] CGPointValue];
+    if ([self intersectsLines:p endPoint:n beginPoint:point endPoint:pe]) {
+      intersects += 1;
+    }
+  }
+  return intersects % 2 == 1;
+}
+
+- (SPRotation)rotationDirectionByPoint:(CGPoint)p0 point1:(CGPoint)p1 point2:(CGPoint)p2 {
+  float a = (p1.x - p0.x) * (p2.y - p0.y);
+  float b = (p2.x - p0.x) * (p1.y - p0.y);
+  if(a < b) {
+    return SPRotationClockwise;
+  } else if(a > b) {
+    return SPRotationAntiClockwise;
+  }
+  return SPRotationStraight;
+}
+
+- (BOOL)intersectsLines:(CGPoint)p0b endPoint:(CGPoint)p0e beginPoint:(CGPoint)p1b endPoint:(CGPoint)p1e {
+  return ([self rotationDirectionByPoint:p0b point1:p0e point2:p1b] != [self rotationDirectionByPoint:p0b point1:p0e point2:p1e]
+          && [self rotationDirectionByPoint:p1b point1:p1e point2:p0b] != [self rotationDirectionByPoint:p1b point1:p1e point2:p0e]);
 }
 
 @end
