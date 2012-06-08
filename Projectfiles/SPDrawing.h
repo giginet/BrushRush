@@ -45,5 +45,6 @@ typedef enum {
 - (void)addPoint:(CGPoint)point;
 - (void)fire;
 - (SPDrawingType)isClose;
+- (BOOL)canCuttingBy:(SPDrawing*)other;
 
 @end

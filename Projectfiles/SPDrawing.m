@@ -186,4 +186,16 @@ typedef enum {
           && [self rotationDirectionByPoint:p1b point1:p1e point2:p0b] != [self rotationDirectionByPoint:p1b point1:p1e point2:p0e]);
 }
 
+- (BOOL)canCuttingBy:(SPDrawing *)other {
+  if (![self.player isEqual:other.player] && 
+      self.type == SPDrawingTypeCount && 
+      other.type == SPDrawingTypeSlash && 
+      CGRectIntersectsRect(self.boundingBox, other.boundingBox)) {
+    if ([self containsPoint:other.gravityPoint]) {
+      return YES;
+    }
+  }
+  return NO;
+}
+
 @end

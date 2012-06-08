@@ -70,6 +70,13 @@
           lastDrawing.type = SPDrawingTypeCount;
           [lastDrawing fire];
         } else {
+          lastDrawing.type = SPDrawingTypeSlash;
+          for (SPDrawing* other in [NSArray arrayWithArray:self.drawings]) {
+            if ([other canCuttingBy:lastDrawing]) {
+              NSLog(@"cut");
+              [[SPDrawingManager sharedManager] removeDrawing:other];
+            }
+          }
           [[SPDrawingManager sharedManager] removeDrawing:lastDrawing];
         }
         player.lastTouch = nil;
@@ -90,11 +97,8 @@
 }
 
 - (NSArray*)drawings {
-  NSMutableArray* array = [NSMutableArray array];
-  for (SPPlayer* player in self.players) {
-    [array addObjectsFromArray:player.drawings];
-  }
-  return array;
+  SPDrawingManager* manager = [SPDrawingManager sharedManager];
+  return manager.drawings;
 }
 
 - (void)draw {
