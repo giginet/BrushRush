@@ -84,10 +84,19 @@ typedef enum {
     }
     ccFillPoly(vertices, count, YES);
   } else {
+    const CCSprite* brush = [CCSprite spriteWithFile:@"brush.png"];
+    brush.color = self.color;
     for (int i = 1; i < count; ++i) {
       CGPoint prev = [[self.points objectAtIndex:i - 1] CGPointValue];
       CGPoint point = [[self.points objectAtIndex:i] CGPointValue];
-      ccDrawLine(prev, point);
+      const int radius = 4.5;
+      KWVector* vector = [KWVector vectorWithPoint:ccpSub(point, prev)];
+      int count = ceil(vector.length / radius);
+      for (int i = 0; i < count; ++i) {
+        CGPoint p = ccpAdd(prev, [[vector resize:radius] scale:i].point);
+        [brush.texture drawAtPoint:p];
+      }
+      //ccDrawLine(prev, point);
     }
   }
 }
