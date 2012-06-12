@@ -10,6 +10,7 @@
 #import "CCDrawingPrimitives.h"
 #import "KWDrawingPrimitives.h"
 #import "CCTexture2D+DrawInPoly.h"
+#define DRAW_TEXTURE NO
 
 typedef enum {
   SPRotationStraight,
@@ -78,14 +79,18 @@ typedef enum {
   int count = [self.points count];
   if (count <= 1) return;
   if (self.type == SPDrawingTypeArea) {
-    glColor4f(1, 1, 1, 1);
-    const CCSprite* area = [CCSprite spriteWithFile:@"icon.png"];
     CGPoint vertices[count];
     for (int i = 0; i < count; ++i) {
       vertices[i] = [[self.points objectAtIndex:i] CGPointValue];
     }
-    [area.texture drawInPoly:vertices numberOfPoints:count boundingBox:self.boundingBox];
-    
+    if (DRAW_TEXTURE) {
+      glColor4f(1, 1, 1, 1);
+      const CCSprite* area = [CCSprite spriteWithFile:@"icon.png"];
+      [area.texture drawInPoly:vertices numberOfPoints:count boundingBox:self.boundingBox];
+    } else {
+      glColor4f(self.color.r, self.color.g, self.color.b, 1);
+      ccFillPoly(vertices, count, YES);
+    }
   } else {
     glColor4f(self.color.r, self.color.g, self.color.b, 1);
     const CCSprite* brush = [CCSprite spriteWithFile:@"brush.png"];

@@ -763,8 +763,8 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/../__Kobold2D__/libs/GoogleAdMobAdsSDK\"",
 				);
-				PROVISIONING_PROFILE = "F3D1DBF0-84D0-4BA8-B156-A2A323049552";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "AD3CB5CA-EF64-4AEE-B093-E28B0C236AB5";
+				PROVISIONING_PROFILE = "8DE5F19A-2913-4810-A997-A3734A95AC1F";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8DE5F19A-2913-4810-A997-A3734A95AC1F";
 				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Debug;
@@ -774,15 +774,14 @@
 			baseConfigurationReference = DCFA90F013B4F811009DD35A /* BuildSettings-Release-iOS.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer: Kohki Miki (3YM67K3AKM)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Kohki Miki (3YM67K3AKM)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				GCC_THUMB_SUPPORT = NO;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../__Kobold2D__/libs/GoogleAdMobAdsSDK\"",
 				);
-				PROVISIONING_PROFILE = "F3D1DBF0-84D0-4BA8-B156-A2A323049552";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "AD3CB5CA-EF64-4AEE-B093-E28B0C236AB5";
+				PROVISIONING_PROFILE = "8DE5F19A-2913-4810-A997-A3734A95AC1F";
 				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Release;

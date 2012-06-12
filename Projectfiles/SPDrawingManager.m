@@ -37,4 +37,12 @@
   [drawing.player.drawings removeObject:self];
 }
 
+- (float)areaWithPlayer:(SPPlayer *)player {
+  float area = 0;
+  for (SPDrawing* drawing in player.drawings) {
+    area += drawing.area;
+  }
+  return area;
+}
+
 @end

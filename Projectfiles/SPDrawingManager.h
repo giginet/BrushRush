@@ -19,5 +19,6 @@
 
 - (void)addDrawing:(SPDrawing*)drawing;
 - (void)removeDrawing:(SPDrawing*)drawing;
+- (float)areaWithPlayer:(SPPlayer*)player;
 
 @end

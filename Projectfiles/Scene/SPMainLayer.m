@@ -62,6 +62,7 @@
 }
 
 - (void)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
+  SPDrawingManager* manager = [SPDrawingManager sharedManager];
   for (UITouch* touch in touches) {
     for (SPPlayer* player in self.players) {
       if ([player.lastTouch isEqual:touch]) {
@@ -74,12 +75,15 @@
           for (SPDrawing* other in [NSArray arrayWithArray:self.drawings]) {
             if ([other canCuttingBy:lastDrawing]) {
               NSLog(@"cut");
-              [[SPDrawingManager sharedManager] removeDrawing:other];
+              [manager removeDrawing:other];
             }
           }
-          [[SPDrawingManager sharedManager] removeDrawing:lastDrawing];
+          [manager removeDrawing:lastDrawing];
         }
         player.lastTouch = nil;
+        float a = [manager areaWithPlayer:[self.players objectAtIndex:0]];
+        float b = [manager areaWithPlayer:[self.players objectAtIndex:1]];
+        NSLog(@"blue = %f, red = %f", a, b);
       }
     }
   }
