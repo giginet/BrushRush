@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		070E10221585BC5A0094C4DD /* icon-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 070E10201585BC5A0094C4DD /* icon-ipad.png */; };
 		070E10231585BC5A0094C4DD /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 070E10211585BC5A0094C4DD /* icon.png */; };
+		07426590158AACD400EF6FFE /* ipadimage-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 0742658E158AACD400EF6FFE /* ipadimage-ipad.png */; };
+		07426591158AACD400EF6FFE /* ipadimage.png in Resources */ = {isa = PBXBuildFile; fileRef = 0742658F158AACD400EF6FFE /* ipadimage.png */; };
 		074DD68A157F76A000C4DCA7 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 074DD655157F76A000C4DCA7 /* .gitignore */; };
 		074DD68B157F76A000C4DCA7 /* KWMusicManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 074DD659157F76A000C4DCA7 /* KWMusicManager.m */; };
 		074DD68C157F76A000C4DCA7 /* tinymt32.c in Sources */ = {isa = PBXBuildFile; fileRef = 074DD65C157F76A000C4DCA7 /* tinymt32.c */; };
@@ -96,6 +98,8 @@
 /* Begin PBXFileReference section */
 		070E10201585BC5A0094C4DD /* icon-ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-ipad.png"; path = "Image/icon-ipad.png"; sourceTree = "<group>"; };
 		070E10211585BC5A0094C4DD /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon.png; path = Image/icon.png; sourceTree = "<group>"; };
+		0742658E158AACD400EF6FFE /* ipadimage-ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ipadimage-ipad.png"; path = "Image/ipadimage-ipad.png"; sourceTree = "<group>"; };
+		0742658F158AACD400EF6FFE /* ipadimage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ipadimage.png; path = Image/ipadimage.png; sourceTree = "<group>"; };
 		074DD655157F76A000C4DCA7 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		074DD658157F76A000C4DCA7 /* KWMusicManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KWMusicManager.h; sourceTree = "<group>"; };
 		074DD659157F76A000C4DCA7 /* KWMusicManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWMusicManager.m; sourceTree = "<group>"; };
@@ -523,6 +527,8 @@
 				DCC1A39513A94F1A005BD75D /* config.lua */,
 				07D7C2C5158246220072D45A /* brush.png */,
 				07D7C2C7158247E40072D45A /* brush-ipad.png */,
+				0742658E158AACD400EF6FFE /* ipadimage-ipad.png */,
+				0742658F158AACD400EF6FFE /* ipadimage.png */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -650,6 +656,8 @@
 				07D7C2C8158247E40072D45A /* brush-ipad.png in Resources */,
 				070E10221585BC5A0094C4DD /* icon-ipad.png in Resources */,
 				070E10231585BC5A0094C4DD /* icon.png in Resources */,
+				07426590158AACD400EF6FFE /* ipadimage-ipad.png in Resources */,
+				07426591158AACD400EF6FFE /* ipadimage.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

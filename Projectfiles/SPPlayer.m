@@ -8,6 +8,7 @@
 
 #import "SPPlayer.h"
 #import "SPDrawingManager.h"
+#define STATUSBAR_SIZE 100
 
 @implementation SPPlayer
 @synthesize identifier;
@@ -17,6 +18,7 @@
 @dynamic lastDrawing;
 
 static NSMutableDictionary* players_;
+
 
 + (id)playerById:(NSUInteger)n {
   if (!players_ || [players_ objectForKey:[NSNumber numberWithInt:n]]) {
@@ -29,7 +31,7 @@ static NSMutableDictionary* players_;
   CCDirector* director = [CCDirector sharedDirector];
   self = [super initWithColor:ccc4(239 + 16 * n, 229 + 16 * (1 - n), 255, 255) 
                         width:director.screenSize.width 
-                       height:director.screenSize.height / 2];
+                       height:(director.screenSize.height - STATUSBAR_SIZE) / 2];
   if (self) {
     if (!players_) {
       players_ = [NSMutableDictionary dictionaryWithCapacity:2];
@@ -38,7 +40,7 @@ static NSMutableDictionary* players_;
     identifier = n;
     drawings = [NSMutableArray array];
     [players_ setObject:self forKey:[NSNumber numberWithInt:n]];
-    self.position = ccp(0, director.screenSize.height / 2 * n);
+    self.position = ccp(0, ((director.screenSize.height - STATUSBAR_SIZE) / 2 + STATUSBAR_SIZE) * n);
   }
   return self;
 }

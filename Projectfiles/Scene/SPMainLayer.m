@@ -20,6 +20,10 @@
   if (self) {
     players = [NSMutableArray array];
     self.isTouchEnabled = YES;
+    CCDirector* director = [CCDirector sharedDirector];
+    CCSprite* background = [CCSprite spriteWithFile:@"ipadimage.png"];
+    background.position = director.screenCenter;
+    [self addChild:background];
     for (int i = 0; i < 2; ++i) {
       SPPlayer* player = [[SPPlayer alloc] initWithId:i];
       [self.players addObject:player];
