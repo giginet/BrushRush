@@ -10,6 +10,7 @@
 #import "CCDrawingPrimitives.h"
 #import "KWDrawingPrimitives.h"
 #import "CCTexture2D+DrawInPoly.h"
+#import "SPDrawingManager.h"
 #define DRAW_TEXTURE NO
 
 typedef enum {
@@ -129,7 +130,7 @@ typedef enum {
 
 - (void)addPoint:(CGPoint)point {
   [points_ addObject:[NSValue valueWithCGPoint:point]];
-  if ([points_ count] == 0) {
+  if ([points_ count] == 1) {
     boundingBox.origin = point;
   } else {
     if (point.x < self.boundingBox.origin.x) {
@@ -158,6 +159,8 @@ typedef enum {
 
 - (void)onEndCharge {
   self.type = SPDrawingTypeArea;
+  SPDrawingManager* manager = [SPDrawingManager sharedManager];
+  [manager mergeWithIntersectsDrawing:player.lastDrawing];
 }
 
 - (CGPoint)gravityPoint {

@@ -45,4 +45,21 @@
   return area;
 }
 
+- (void)mergeWithIntersectsDrawing:(SPDrawing *)drawing {
+  BOOL intersected = NO;
+  do {
+    intersected = NO;
+    for (SPDrawing* other in [NSArray arrayWithArray:self.drawings]) {
+      if (![drawing isEqual:other] && [drawing.player isEqual:other.player] && CGRectIntersectsRect(drawing.boundingBox, other.boundingBox)) {
+        for (NSValue* value in other.points) {
+          [drawing addPoint:[value CGPointValue]];
+        }
+        [self removeDrawing:other];
+        intersected = YES;
+      }
+      return;
+    }
+  } while (intersected);
+}
+
 @end

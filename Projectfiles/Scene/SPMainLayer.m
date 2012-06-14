@@ -84,6 +84,7 @@
         float a = [manager areaWithPlayer:[self.players objectAtIndex:0]];
         float b = [manager areaWithPlayer:[self.players objectAtIndex:1]];
         NSLog(@"blue = %f, red = %f", a, b);
+        //NSLog(@"%f x %f, %f, %f", player.lastDrawing.boundingBox.size.width, player.lastDrawing.boundingBox.size.height, player.lastDrawing.boundingBox.origin.x, player.lastDrawing.boundingBox.origin.y);
       }
     }
   }
