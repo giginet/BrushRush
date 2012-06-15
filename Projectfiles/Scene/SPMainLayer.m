@@ -11,6 +11,10 @@
 #import "CCDrawingPrimitives.h"
 #import "SPDrawingManager.h"
 
+@interface SPMainLayer()
+- (SPPlayer*)checkWinner;
+@end
+
 @implementation SPMainLayer
 @dynamic drawings;
 @synthesize players;
@@ -29,6 +33,19 @@
       [self.players addObject:player];
       [self addChild:player];
     }
+    __block SPMainLayer* layer = self;
+    CCMenuItem* button = [CCMenuItemLabel itemWithLabel:[CCLabelTTF labelWithString:@"Check" fontName:@"Helvetica" fontSize:24] 
+                                                  block:^(id sender){
+                                                    SPPlayer* player = [layer checkWinner];
+                                                    if (player) {
+                                                      NSLog(@"%d Win", player.identifier);
+                                                    } else {
+                                                      NSLog(@"Draw");
+                                                    }
+                                                  }];
+    CCMenu* menu = [CCMenu menuWithItems:button, nil];
+    menu.position = director.screenCenter;
+    [self addChild:menu];
   }
   return self;
 }
@@ -112,6 +129,43 @@
 
 - (void)draw {
   [super draw];
+}
+
+- (SPPlayer*)checkWinner {
+  // ref http://iphone.moo.jp/app/?p=707
+  int player0 = 0;
+  int player1 = 0;
+  SPDrawingManager* manager = [SPDrawingManager sharedManager];
+  CCRenderTexture* texture = [manager renderTextureWithDrawings];
+  NSData* raw = [texture getUIImageAsDataFromBuffer:kCCTexture2DPixelFormat_RGBA8888];
+  UIImage* img = [UIImage imageWithData:raw];
+  CGImageRef cgImage = [img CGImage];
+  size_t bytesPerRow = CGImageGetBytesPerRow(cgImage);
+  NSLog(@"%lu", bytesPerRow);
+  CGDataProviderRef dataProvider = CGImageGetDataProvider(cgImage);
+  CFDataRef data = CGDataProviderCopyData(dataProvider);
+  UInt8* pixels = (UInt8*)CFDataGetBytePtr(data);
+  for (int y = 0 ; y < img.size.height; y++){
+    for (int x = 0; x < img.size.width; x++){
+      UInt8* buf = pixels + y * bytesPerRow + x * 4;
+      UInt8 r, g, b;
+      r = *(buf + 0);
+      g = *(buf + 1);
+      b = *(buf + 2);
+      if (r == 255) {
+        player0 += 1;
+      } else if (b == 255) {
+        player1 += 1;
+      }
+      if (r != 0 || b != 0) NSLog(@"%d, %d", r, b);
+    }
+  }
+  if (player0 > player1) {
+    return [self.players objectAtIndex:0];
+  } else if(player0 < player1) {
+    return [self.players objectAtIndex:1];
+  }
+  return nil;
 }
 
 @end
