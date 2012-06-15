@@ -21,5 +21,6 @@
 - (void)removeDrawing:(SPDrawing*)drawing;
 - (float)areaWithPlayer:(SPPlayer*)player;
 - (void)mergeWithIntersectsDrawing:(SPDrawing*)drawing;
+- (CCRenderTexture*)renderTextureWithDrawings;
 
 @end

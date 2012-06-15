@@ -7,6 +7,7 @@
 //
 
 #import "SPDrawingManager.h"
+#import "KWDrawingPrimitives.h"
 
 @implementation SPDrawingManager
 @synthesize drawings = drawings_;
@@ -60,6 +61,21 @@
       return;
     }
   } while (intersected);
+}
+
+- (CCRenderTexture*)renderTextureWithDrawings {
+  CCRenderTexture* texture = [CCRenderTexture renderTextureWithWidth:768 height:462];
+  for (SPDrawing* drawing in self.drawings) {
+    if (drawing.type != SPDrawingTypeArea) continue;
+    int count = [drawing.points count];
+    CGPoint vertices[count];
+    for (int i = 0; i < count; ++i) {
+      vertices[i] = [[drawing.points objectAtIndex:i] CGPointValue];
+    }
+    glColor4f(drawing.color.r, drawing.color.g, drawing.color.b, 1);
+    ccFillPoly(vertices, count, YES);
+  }
+  return texture;
 }
 
 @end

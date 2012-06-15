@@ -68,12 +68,10 @@ local config =
 	
 	-- you can create your own config sections using the same mechanism and use KKConfig to access the parameters
 	-- or use the KKConfig injectPropertiesFromKeyPath method
-	HelloWorldSettings =
-	{
-		HelloWorldString = "Hello Kobold2D!",
-		HelloWorldFontName = "Marker Felt",
-		HelloWorldFontSize = 50,
-	},
+        settings = {
+                StatusHeight = 100,
+                CanvasHeight = (1024 - 100) / 2
+        }
 }
 
 return config
