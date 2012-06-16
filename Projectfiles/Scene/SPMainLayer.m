@@ -102,9 +102,6 @@
           [manager removeDrawing:lastDrawing];
         }
         player.lastTouch = nil;
-        float a = [manager areaWithPlayer:[self.players objectAtIndex:0]];
-        float b = [manager areaWithPlayer:[self.players objectAtIndex:1]];
-        NSLog(@"blue = %f, red = %f", a, b);
         //NSLog(@"%f x %f, %f, %f", player.lastDrawing.boundingBox.size.width, player.lastDrawing.boundingBox.size.height, player.lastDrawing.boundingBox.origin.x, player.lastDrawing.boundingBox.origin.y);
       }
     }
@@ -141,7 +138,6 @@
   UIImage* img = [UIImage imageWithData:raw];
   CGImageRef cgImage = [img CGImage];
   size_t bytesPerRow = CGImageGetBytesPerRow(cgImage);
-  NSLog(@"%lu", bytesPerRow);
   CGDataProviderRef dataProvider = CGImageGetDataProvider(cgImage);
   CFDataRef data = CGDataProviderCopyData(dataProvider);
   UInt8* pixels = (UInt8*)CFDataGetBytePtr(data);
@@ -152,14 +148,14 @@
       r = *(buf + 0);
       g = *(buf + 1);
       b = *(buf + 2);
-      if (r == 255) {
+      if (b == 255) {
         player0 += 1;
-      } else if (b == 255) {
+      } else if (r == 255) {
         player1 += 1;
       }
-      if (r != 0 || b != 0) NSLog(@"%d, %d", r, b);
     }
   }
+  NSLog(@"blue = %d, red = %d", player0, player1);
   if (player0 > player1) {
     return [self.players objectAtIndex:0];
   } else if(player0 < player1) {

@@ -64,7 +64,8 @@
 }
 
 - (CCRenderTexture*)renderTextureWithDrawings {
-  CCRenderTexture* texture = [CCRenderTexture renderTextureWithWidth:768 height:462];
+  CCRenderTexture* texture = [[CCRenderTexture alloc] initWithWidth:768 height:462 pixelFormat:kCCTexture2DPixelFormat_RGBA8888];
+  [texture begin];
   for (SPDrawing* drawing in self.drawings) {
     if (drawing.type != SPDrawingTypeArea) continue;
     int count = [drawing.points count];
@@ -74,7 +75,9 @@
     }
     glColor4f(drawing.color.r, drawing.color.g, drawing.color.b, 1);
     ccFillPoly(vertices, count, YES);
+    
   }
+  [texture end];
   return texture;
 }
 
