@@ -10,6 +10,7 @@
 #import "SPMainLayer.h"
 #import "CCDrawingPrimitives.h"
 #import "SPDrawingManager.h"
+#import "SPStatusBar.h"
 #import "define.h"
 
 @interface SPMainLayer()
@@ -31,8 +32,7 @@
       sprite.position = ccp(director.screenCenter.x, (FRAME_SIZE + PLAYER_HEIGHT + STATUSBAR_HEIGHT) * i + (FRAME_SIZE + PLAYER_HEIGHT) / 2);
       [self addChild:sprite];
     }
-    CCSprite* statusbar = [CCSprite spriteWithFile:@"status.png"];
-    statusbar.position = director.screenCenter;
+    SPStatusBar* statusbar = [SPStatusBar spriteWithFile:@"status.png"];
     [self addChild:statusbar];
     for (int i = 0; i < 2; ++i) {
       SPPlayer* player = [[SPPlayer alloc] initWithId:i];
