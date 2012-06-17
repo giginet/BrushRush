@@ -20,6 +20,7 @@
     self.position = director.screenCenter;
     timeGauges_ = [NSMutableArray array];
     crystals_ = [NSMutableArray array];
+    badges_ = [NSMutableArray array];
     for (int i = 0; i < 2; ++i) {
       KWGauge* gauge = [KWGauge gaugeWithFile:@"gauge.png"];
       [gauge alignHolizontally];
@@ -36,6 +37,16 @@
       [self addChild:crystal];
       [crystals_ addObject:crystal];
     }
+    
+    for (int i = 0; i < 4; ++i) {
+      int player = i / 2;
+      CCToggleSprite* badge = [[CCToggleSprite alloc] initWithFormat:[NSString stringWithFormat:@"win%d_%@.png", player, @"%@"]];
+      int xs[] = {-240, -210, 240, 210};
+      int ys[] = {-36, -36, 36, 36};
+      badge.position = ccpAdd(ccp(self.contentSize.width / 2, self.contentSize.height / 2), ccp(xs[i], ys[i]));
+      [self addChild:badge];
+      [badges_ addObject:badge];
+    }
   }
   return self;
 }
@@ -49,7 +60,33 @@
 
 - (void)setEnableCrystal:(NSUInteger)number enable:(BOOL)enable {
   CCToggleSprite* crystal = [crystals_ objectAtIndex:number];
+  /*[crystal runAction:[CCRepeatForever actionWithAction:[CCSequence actions:
+                                                        [CCFadeTo actionWithDuration:0.1 opacity:127],
+                                                        [CCFadeTo actionWithDuration:0.1 opacity:255],
+                                                        nil]]];*/
   crystal.toggle = enable;
+}
+
+- (void)setBadge:(NSUInteger)player0 player1:(NSUInteger)player1 {
+  for (CCToggleSprite* sprite in badges_) {
+    sprite.toggle = NO;
+  }
+  CCToggleSprite* b00 = [badges_ objectAtIndex:0];
+  CCToggleSprite* b01 = [badges_ objectAtIndex:1];
+  CCToggleSprite* b10 = [badges_ objectAtIndex:2];
+  CCToggleSprite* b11 = [badges_ objectAtIndex:3];
+  if (player0 >= 2) {
+    b01.toggle = YES;
+  }
+  if (player0 >= 1) {
+    b00.toggle = YES;
+  }
+  if (player1 >= 2) {
+    b11.toggle = YES;
+  }
+  if (player1 >= 1) {
+    b10.toggle = YES;
+  }
 }
 
 @end

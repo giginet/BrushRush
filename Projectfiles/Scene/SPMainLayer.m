@@ -199,6 +199,9 @@
     CCSprite* label = [CCSprite spriteWithFile:[NSString stringWithFormat:@"%@.png", filename]];
     label.position = ccp(player.center.x, player.center.y + 60);
     [player addChild:label];
+    SPPlayer* player0 = [self.players objectAtIndex:0];
+    SPPlayer* player1 = [self.players objectAtIndex:1];
+    [self.statusbar setBadge:player0.win player1:player1.win];
   }
 }
 
