@@ -8,6 +8,7 @@
 
 #import "KWGauge.h"
 #import "SPStatusBar.h"
+#import "CCToggleSprite.h"
 #define OFFSET 64
 
 @implementation SPStatusBar
@@ -29,7 +30,7 @@
       [self addChild:gauge];
       [timeGauges_ addObject:gauge];
       
-      CCSprite* crystal = [CCSprite spriteWithFile:[NSString stringWithFormat:@"crystal%d_disable.png", i]];
+      CCToggleSprite* crystal = [[CCToggleSprite alloc] initWithFormat:[NSString stringWithFormat:@"crystal%d_%@.png", i, @"%@"]]; 
       int x = i == 0 ? OFFSET : director.screenSize.width - OFFSET;
       crystal.position = ccp(x, self.contentSize.height / 2);
       [self addChild:crystal];
@@ -47,10 +48,8 @@
 }
 
 - (void)setEnableCrystal:(NSUInteger)number enable:(BOOL)enable {
-  CCSprite* crystal = [crystals_ objectAtIndex:number];
-  [crystal setTexture:[[CCTextureCache sharedTextureCache] 
-                       addImage:[NSString stringWithFormat:
-                                 @"crystal%d_%@.png", number, enable ? @"enable" : @"disable"]]];
+  CCToggleSprite* crystal = [crystals_ objectAtIndex:number];
+  crystal.toggle = enable;
 }
 
 @end

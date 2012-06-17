@@ -44,7 +44,7 @@
       [self addChild:player];
     }
    
-    gameTimer = [KWTimer timerWithMax:GAME_TIME];
+    gameTimer = [KWTimer timerWithMax:5];
     [gameTimer setOnUpdateListener:self selector:@selector(onGameTimerUpdate:)];
     [gameTimer setOnCompleteListener:self selector:@selector(onGameTimerOver:)];
     [gameTimer play];
@@ -194,6 +194,7 @@
     NSString* filename = @"lose";
     if (player.identifier == winner.identifier) {
       filename = @"win";
+      player.win += 1;
     }
     CCSprite* label = [CCSprite spriteWithFile:[NSString stringWithFormat:@"%@.png", filename]];
     label.position = ccp(player.center.x, player.center.y + 60);

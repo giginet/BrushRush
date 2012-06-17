@@ -11,6 +11,7 @@
 #import "define.h"
 
 @implementation SPPlayer
+@synthesize win;
 @synthesize identifier;
 @dynamic color;
 @synthesize drawings;
@@ -36,6 +37,7 @@ static NSMutableDictionary* players_;
       players_ = [NSMutableDictionary dictionaryWithCapacity:2];
     }
     self.rotation = 180 * n;
+    win = 0;
     identifier = n;
     drawings = [NSMutableArray array];
     [players_ setObject:self forKey:[NSNumber numberWithInt:n]];

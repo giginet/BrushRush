@@ -13,6 +13,7 @@
 @interface SPPlayer : CCLayerColor {
 }
 
+@property(readwrite) NSUInteger win;
 @property(readonly) NSUInteger identifier;
 @property(readonly, strong) NSMutableArray* drawings;
 @property(readwrite, strong) UITouch* lastTouch;

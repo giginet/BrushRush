@@ -52,6 +52,7 @@
 		070FCCD6158E6BDC00F6DC00 /* SPStatusBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 070FCCD5158E6BDC00F6DC00 /* SPStatusBar.m */; };
 		070FCCD9158E6EA800F6DC00 /* gauge-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 070FCCD7158E6EA800F6DC00 /* gauge-ipad.png */; };
 		070FCCDA158E6EA800F6DC00 /* gauge.png in Resources */ = {isa = PBXBuildFile; fileRef = 070FCCD8158E6EA800F6DC00 /* gauge.png */; };
+		070FCCDD158E836600F6DC00 /* CCToggleSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 070FCCDC158E836600F6DC00 /* CCToggleSprite.m */; };
 		074DD68A157F76A000C4DCA7 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 074DD655157F76A000C4DCA7 /* .gitignore */; };
 		074DD68B157F76A000C4DCA7 /* KWMusicManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 074DD659157F76A000C4DCA7 /* KWMusicManager.m */; };
 		074DD68C157F76A000C4DCA7 /* tinymt32.c in Sources */ = {isa = PBXBuildFile; fileRef = 074DD65C157F76A000C4DCA7 /* tinymt32.c */; };
@@ -182,6 +183,8 @@
 		070FCCD5158E6BDC00F6DC00 /* SPStatusBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SPStatusBar.m; path = Model/SPStatusBar.m; sourceTree = "<group>"; };
 		070FCCD7158E6EA800F6DC00 /* gauge-ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gauge-ipad.png"; sourceTree = "<group>"; };
 		070FCCD8158E6EA800F6DC00 /* gauge.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gauge.png; sourceTree = "<group>"; };
+		070FCCDB158E836600F6DC00 /* CCToggleSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCToggleSprite.h; path = Util/CCToggleSprite.h; sourceTree = "<group>"; };
+		070FCCDC158E836600F6DC00 /* CCToggleSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CCToggleSprite.m; path = Util/CCToggleSprite.m; sourceTree = "<group>"; };
 		074DD655157F76A000C4DCA7 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		074DD658157F76A000C4DCA7 /* KWMusicManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KWMusicManager.h; sourceTree = "<group>"; };
 		074DD659157F76A000C4DCA7 /* KWMusicManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWMusicManager.m; sourceTree = "<group>"; };
@@ -551,6 +554,8 @@
 			children = (
 				07980DF71585B0E8004B230C /* CCTexture2D+DrawInPoly.h */,
 				07980DF81585B0E8004B230C /* CCTexture2D+DrawInPoly.m */,
+				070FCCDB158E836600F6DC00 /* CCToggleSprite.h */,
+				070FCCDC158E836600F6DC00 /* CCToggleSprite.m */,
 			);
 			name = Util;
 			sourceTree = "<group>";
@@ -900,6 +905,7 @@
 				074DD6BE1580BAA400C4DCA7 /* SPDrawingManager.m in Sources */,
 				07980DF91585B0E8004B230C /* CCTexture2D+DrawInPoly.m in Sources */,
 				070FCCD6158E6BDC00F6DC00 /* SPStatusBar.m in Sources */,
+				070FCCDD158E836600F6DC00 /* CCToggleSprite.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
