@@ -39,6 +39,12 @@
   [drawing.player.drawings removeObject:self];
 }
 
+- (void)removeAllDrawings {
+  for (SPDrawing* drawing in [NSArray arrayWithArray:self.drawings]) {
+    [self removeDrawing:drawing];
+  }
+}
+
 - (float)areaWithPlayer:(SPPlayer *)player {
   float area = 0;
   for (SPDrawing* drawing in player.drawings) {

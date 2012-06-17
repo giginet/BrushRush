@@ -89,4 +89,9 @@
   }
 }
 
+- (void)reset {
+  for (int i = 0; i < 2; ++i) [self setEnableCrystal:i enable:NO];
+  [self setBadge:0 player1:0];
+}
+
 @end

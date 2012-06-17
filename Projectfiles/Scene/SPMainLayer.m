@@ -17,9 +17,11 @@
 - (void)onGameTimerUpdate:(KWTimer*)timer;
 - (void)onGameTimerOver:(KWTimer*)timer;
 - (void)onResult;
+- (void)nextMatch;
 @end
 
 @implementation SPMainLayer
+@synthesize state;
 @dynamic drawings;
 @synthesize players;
 @synthesize statusbar;
@@ -48,6 +50,7 @@
     [gameTimer setOnUpdateListener:self selector:@selector(onGameTimerUpdate:)];
     [gameTimer setOnCompleteListener:self selector:@selector(onGameTimerOver:)];
     [gameTimer play];
+    self.state = SPGameStateMatch;
   }
   return self;
 }
@@ -57,6 +60,7 @@
 }
 
 - (void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+  if (self.state != SPGameStateMatch) return;
   for (UITouch* touch in touches) {
     CGPoint point = [self convertTouchToNodeSpace:touch];
     for (SPPlayer* player in self.players) {
@@ -73,6 +77,7 @@
 }
 
 - (void)ccTouchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
+  if (self.state != SPGameStateMatch) return;
   for (UITouch* touch in touches) {
     CGPoint point = [self convertTouchToNodeSpace:touch];
     for (SPPlayer* player in self.players) {
@@ -85,28 +90,32 @@
 }
 
 - (void)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
-  SPDrawingManager* manager = [SPDrawingManager sharedManager];
-  for (UITouch* touch in touches) {
-    for (SPPlayer* player in self.players) {
-      if ([player.lastTouch isEqual:touch]) {
-        SPDrawing* lastDrawing = player.lastDrawing;
-        if([lastDrawing isClose]) {
-          lastDrawing.type = SPDrawingTypeCharge;
-          [lastDrawing fire];
-        } else {
-          lastDrawing.type = SPDrawingTypeSlash;
-          for (SPDrawing* other in [NSArray arrayWithArray:self.drawings]) {
-            if ([other canCuttingBy:lastDrawing]) {
-              NSLog(@"cut");
-              [manager removeDrawing:other];
+  if (self.state == SPGameStateMatch) {
+    SPDrawingManager* manager = [SPDrawingManager sharedManager];
+    for (UITouch* touch in touches) {
+      for (SPPlayer* player in self.players) {
+        if ([player.lastTouch isEqual:touch]) {
+          SPDrawing* lastDrawing = player.lastDrawing;
+          if([lastDrawing isClose]) {
+            lastDrawing.type = SPDrawingTypeCharge;
+            [lastDrawing fire];
+          } else {
+            lastDrawing.type = SPDrawingTypeSlash;
+            for (SPDrawing* other in [NSArray arrayWithArray:self.drawings]) {
+              if ([other canCuttingBy:lastDrawing]) {
+                NSLog(@"cut");
+                [manager removeDrawing:other];
+              }
             }
+            [manager removeDrawing:lastDrawing];
           }
-          [manager removeDrawing:lastDrawing];
+          player.lastTouch = nil;
+          //NSLog(@"%f x %f, %f, %f", player.lastDrawing.boundingBox.size.width, player.lastDrawing.boundingBox.size.height, player.lastDrawing.boundingBox.origin.x, player.lastDrawing.boundingBox.origin.y);
         }
-        player.lastTouch = nil;
-        //NSLog(@"%f x %f, %f, %f", player.lastDrawing.boundingBox.size.width, player.lastDrawing.boundingBox.size.height, player.lastDrawing.boundingBox.origin.x, player.lastDrawing.boundingBox.origin.y);
       }
     }
+  } else if (self.state == SPGameStateResult) {
+    [self nextMatch];
   }
 }
 
@@ -171,6 +180,7 @@
 }
 
 - (void)onGameTimerOver:(KWTimer *)timer {
+  self.state = SPGameStateSet;
   for (SPPlayer* player in self.players) { 
     CCLabelTTF* label = [CCLabelTTF labelWithString:@"Game Set" fontName:@"Helvetica" fontSize:96];
     label.position = ccp(player.center.x, player.center.y + 60);
@@ -199,10 +209,26 @@
     CCSprite* label = [CCSprite spriteWithFile:[NSString stringWithFormat:@"%@.png", filename]];
     label.position = ccp(player.center.x, player.center.y + 60);
     [player addChild:label];
-    SPPlayer* player0 = [self.players objectAtIndex:0];
-    SPPlayer* player1 = [self.players objectAtIndex:1];
-    [self.statusbar setBadge:player0.win player1:player1.win];
   }
+  SPPlayer* player0 = [self.players objectAtIndex:0];
+  SPPlayer* player1 = [self.players objectAtIndex:1];
+  [self.statusbar setBadge:player0.win player1:player1.win];
+  if (player0.win == 2 || player1.win == 2) {
+    self.state = SPGameStateEnd;
+  } else {
+    self.state = SPGameStateResult;
+  }
+}
+
+- (void)nextMatch {
+  for (SPPlayer* player in self.players) {
+    [player removeAllChildrenWithCleanup:YES];
+  }
+  for (int i = 0; i < 2; ++i) [self.statusbar setEnableCrystal:i enable:NO];
+  [self.gameTimer reset];
+  [self.gameTimer play];
+  self.state = SPGameStateMatch;
+  [[SPDrawingManager sharedManager] removeAllDrawings];
 }
 
 @end

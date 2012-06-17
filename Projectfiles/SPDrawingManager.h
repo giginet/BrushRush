@@ -19,6 +19,7 @@
 
 - (void)addDrawing:(SPDrawing*)drawing;
 - (void)removeDrawing:(SPDrawing*)drawing;
+- (void)removeAllDrawings;
 - (float)areaWithPlayer:(SPPlayer*)player;
 - (void)mergeWithIntersectsDrawing:(SPDrawing*)drawing;
 - (CCRenderTexture*)renderTextureWithDrawings;

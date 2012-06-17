@@ -10,12 +10,21 @@
 #import "heqet.h"
 #import "SPStatusBar.h"
 
+typedef enum {
+  SPGameStateReady,
+  SPGameStateMatch,
+  SPGameStateSet,
+  SPGameStateResult,
+  SPGameStateEnd
+} SPGameState;
+
 @interface SPMainLayer : CCLayer {
 }
 
+@property(readwrite) SPGameState state;
 @property(readonly, strong) NSArray* drawings;
 @property(readonly, strong) NSMutableArray* players;
-@property(readonly) SPStatusBar* statusbar;
-@property(readonly) KWTimer* gameTimer;
+@property(readonly, strong) SPStatusBar* statusbar;
+@property(readonly, strong) KWTimer* gameTimer;
 
 @end

@@ -17,5 +17,6 @@
 - (void)setGaugeRate:(float)rate;
 - (void)setEnableCrystal:(NSUInteger)number enable:(BOOL)enable;
 - (void)setBadge:(NSUInteger)player0 player1:(NSUInteger)player1;
+- (void)reset;
 
 @end
