@@ -26,6 +26,8 @@ typedef enum {
 @interface SPDrawing : CCNode {
   int size_;
   float area_;
+  float lengthCache_;
+  BOOL dirty_;
   NSMutableArray* points_;
 }
 

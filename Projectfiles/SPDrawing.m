@@ -42,6 +42,8 @@ typedef enum {
     points_ = [NSMutableArray array];
     color = ccc3(1, 0, 0);
     boundingBox = CGRectMake(0, 0, 0, 0);
+    lengthCache_ = 0;
+    dirty_ = NO;
   }
   return self;
 }
@@ -67,6 +69,7 @@ typedef enum {
 }
 
 - (float)length {
+  if (!dirty_) return lengthCache_;
   float length = 0;
   int count = [self.points count];
   if (count <= 1) return 0;
@@ -75,6 +78,8 @@ typedef enum {
     CGPoint point = [[self.points objectAtIndex:i] CGPointValue];
     length += hypotf(point.x - prev.x, point.y - prev.y);
   }
+  lengthCache_ = length;
+  dirty_ = NO;
   return length;
 }
 
@@ -95,11 +100,20 @@ typedef enum {
       ccFillPoly(vertices, count, YES);
     }
   } else {
-    glColor4f(self.color.r, self.color.g, self.color.b, 1);
     const CCSprite* brush = [CCSprite spriteWithFile:@"brush.png"];
+    float length = self.length;
+    float rate = self.chargeTimer.now / self.chargeTimer.max;
+    float charged = length * rate;
+    float dis = 0;
     for (int i = 1; i < count; ++i) {
       CGPoint prev = [[self.points objectAtIndex:i - 1] CGPointValue];
       CGPoint point = [[self.points objectAtIndex:i] CGPointValue];
+      dis += ccpDistance(prev, point);
+      if (dis > charged) {
+        glColor4f(self.color.r, self.color.g, self.color.b, 1);
+      } else {
+        glColor4f(self.color.r, 0.4, self.color.b, 1);
+      }
       const int radius = 4.5;
       KWVector* vector = [KWVector vectorWithPoint:ccpSub(point, prev)];
       int count = ceil(vector.length / radius);
@@ -143,6 +157,7 @@ typedef enum {
       boundingBox.size.height = point.y - self.boundingBox.origin.y;
     }
   }
+  dirty_ = YES;
 }
 
 - (BOOL)isClose {
