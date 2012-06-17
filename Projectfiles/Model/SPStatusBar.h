@@ -13,4 +13,6 @@
   NSMutableArray* crystals_;
 }
 
+- (void)setGaugeRate:(float)rate;
+
 @end

@@ -8,11 +8,14 @@
 
 #import "KWLayer.h"
 #import "heqet.h"
+#import "SPStatusBar.h"
 
 @interface SPMainLayer : CCLayer {
 }
 
 @property(readonly, strong) NSArray* drawings;
 @property(readonly, strong) NSMutableArray* players;
+@property(readonly) SPStatusBar* statusbar;
+@property(readonly) KWTimer* gameTimer;
 
 @end

@@ -13,5 +13,6 @@
 #define PLAYER_HEIGHT 442
 #define STATUSBAR_HEIGHT 100
 #define FRAME_SIZE 20
+#define GAME_TIME 30
 
 #endif

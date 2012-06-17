@@ -23,7 +23,7 @@
       [gauge alignHolizontally];
       float width = 295;
       float k = i == 0 ? 1.0 : -1.0;
-      gauge.scaleX = k * -1;
+      gauge.scaleX = k;
       gauge.position = ccp(director.screenCenter.x + (float)k * width / 2.0, self.contentSize.height / 2);
       [self addChild:gauge];
       [timeGauges_ addObject:gauge];
@@ -36,6 +36,13 @@
     }
   }
   return self;
+}
+
+- (void)setGaugeRate:(float)rate {
+  if (rate < 0 || rate > 1.0) return;
+  for (KWGauge* gauge in timeGauges_) {
+    gauge.rate = rate;
+  }
 }
 
 @end

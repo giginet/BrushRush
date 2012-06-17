@@ -10,16 +10,18 @@
 #import "SPMainLayer.h"
 #import "CCDrawingPrimitives.h"
 #import "SPDrawingManager.h"
-#import "SPStatusBar.h"
 #import "define.h"
 
 @interface SPMainLayer()
 - (SPPlayer*)checkWinner;
+- (void)onGameTimerUpdate:(KWTimer*)timer;
 @end
 
 @implementation SPMainLayer
 @dynamic drawings;
 @synthesize players;
+@synthesize statusbar;
+@synthesize gameTimer;
 
 - (id)init {
   self = [super init];
@@ -32,7 +34,7 @@
       sprite.position = ccp(director.screenCenter.x, (FRAME_SIZE + PLAYER_HEIGHT + STATUSBAR_HEIGHT) * i + (FRAME_SIZE + PLAYER_HEIGHT) / 2);
       [self addChild:sprite];
     }
-    SPStatusBar* statusbar = [SPStatusBar spriteWithFile:@"status.png"];
+    statusbar = [SPStatusBar spriteWithFile:@"status.png"];
     [self addChild:statusbar];
     for (int i = 0; i < 2; ++i) {
       SPPlayer* player = [[SPPlayer alloc] initWithId:i];
@@ -52,6 +54,10 @@
     CCMenu* menu = [CCMenu menuWithItems:button, nil];
     menu.position = director.screenCenter;
     [self addChild:menu];
+    
+    gameTimer = [KWTimer timerWithMax:GAME_TIME];
+    [gameTimer setOnUpdateListener:self selector:@selector(onGameTimerUpdate:)];
+    [gameTimer play];
   }
   return self;
 }
@@ -168,6 +174,10 @@
     return [self.players objectAtIndex:1];
   }
   return nil;
+}
+
+- (void)onGameTimerUpdate:(KWTimer*)timer {
+  [self.statusbar setGaugeRate:timer.now / timer.max];
 }
 
 @end
