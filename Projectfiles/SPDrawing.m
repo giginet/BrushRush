@@ -26,10 +26,12 @@ typedef enum {
 @end
 
 @implementation SPDrawing
+@dynamic isCharging;
 @synthesize boundingBox;
 @synthesize color;
 @synthesize type;
 @synthesize points = points_;
+@synthesize chargeTimer;
 @synthesize player;
 @dynamic gravityPoint;
 
@@ -105,18 +107,15 @@ typedef enum {
         CGPoint p = ccpAdd(prev, [[vector resize:radius] scale:i].point);
         [brush.texture drawAtPoint:p];
       }
-      //ccDrawLine(prev, point);
+     //ccDrawLine(prev, point);
     }
   }
 }
 
 - (void)fire {
-  [[CCScheduler sharedScheduler] scheduleSelector:@selector(onEndCharge) 
-                                        forTarget:self 
-                                         interval:self.length / 1000 * 2 
-                                           paused:NO 
-                                           repeat:0 
-                                            delay:0];
+  chargeTimer = [KWTimer timerWithMax:[self chargeTime]];
+  [self.chargeTimer setOnCompleteListener:self selector:@selector(onEndCharge)];
+  [self.chargeTimer play];
 }
 
 - (SPPlayer*)player {
@@ -146,7 +145,7 @@ typedef enum {
   }
 }
 
-- (SPDrawingType)isClose {
+- (BOOL)isClose {
   CGPoint begin = [[self.points objectAtIndex:0] CGPointValue];
   CGPoint end = [[self.points lastObject] CGPointValue];
   float distance = hypotf(begin.x - end.x, begin.y - end.y);
@@ -208,7 +207,7 @@ typedef enum {
 
 - (BOOL)canCuttingBy:(SPDrawing *)other {
   if (![self.player isEqual:other.player] && 
-      self.type == SPDrawingTypeCount && 
+      self.type == SPDrawingTypeCharge && 
       other.type == SPDrawingTypeSlash && 
       CGRectIntersectsRect(self.boundingBox, other.boundingBox)) {
     if ([self containsPoint:other.gravityPoint]) {
@@ -216,6 +215,14 @@ typedef enum {
     }
   }
   return NO;
+}
+
+- (BOOL)isCharging {
+  return self.type == SPDrawingTypeCharge;
+}
+
+- (ccTime)chargeTime {
+  return self.length / 1000 * 2;
 }
 
 @end

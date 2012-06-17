@@ -89,7 +89,7 @@
       if ([player.lastTouch isEqual:touch]) {
         SPDrawing* lastDrawing = player.lastDrawing;
         if([lastDrawing isClose]) {
-          lastDrawing.type = SPDrawingTypeCount;
+          lastDrawing.type = SPDrawingTypeCharge;
           [lastDrawing fire];
         } else {
           lastDrawing.type = SPDrawingTypeSlash;
@@ -148,14 +148,14 @@
       r = *(buf + 0);
       g = *(buf + 1);
       b = *(buf + 2);
-      if (b == 255) {
+      if (r == 255) {
         player0 += 1;
-      } else if (r == 255) {
+      } else if (b == 255) {
         player1 += 1;
       }
     }
   }
-  NSLog(@"blue = %d, red = %d", player0, player1);
+  NSLog(@"red = %d, blue = %d", player0, player1);
   if (player0 > player1) {
     return [self.players objectAtIndex:0];
   } else if(player0 < player1) {
