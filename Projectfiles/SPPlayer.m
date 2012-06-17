@@ -61,4 +61,8 @@ static NSMutableDictionary* players_;
   return [self.drawings lastObject];
 }
 
+- (CGPoint)center {
+  return ccp(self.contentSize.width / 2, self.contentSize.height / 2);
+}
+
 @end

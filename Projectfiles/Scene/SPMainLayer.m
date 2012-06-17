@@ -15,6 +15,8 @@
 @interface SPMainLayer()
 - (SPPlayer*)checkWinner;
 - (void)onGameTimerUpdate:(KWTimer*)timer;
+- (void)onGameTimerOver:(KWTimer*)timer;
+- (void)onResult;
 @end
 
 @implementation SPMainLayer
@@ -41,22 +43,10 @@
       [self.players addObject:player];
       [self addChild:player];
     }
-    __block SPMainLayer* layer = self;
-    CCMenuItem* button = [CCMenuItemLabel itemWithLabel:[CCLabelTTF labelWithString:@"Check" fontName:@"Helvetica" fontSize:24] 
-                                                  block:^(id sender){
-                                                    SPPlayer* player = [layer checkWinner];
-                                                    if (player) {
-                                                      NSLog(@"%d Win", player.identifier);
-                                                    } else {
-                                                      NSLog(@"Draw");
-                                                    }
-                                                  }];
-    CCMenu* menu = [CCMenu menuWithItems:button, nil];
-    menu.position = director.screenCenter;
-    [self addChild:menu];
-    
+   
     gameTimer = [KWTimer timerWithMax:GAME_TIME];
     [gameTimer setOnUpdateListener:self selector:@selector(onGameTimerUpdate:)];
+    [gameTimer setOnCompleteListener:self selector:@selector(onGameTimerOver:)];
     [gameTimer play];
   }
   return self;
@@ -178,6 +168,18 @@
 
 - (void)onGameTimerUpdate:(KWTimer*)timer {
   [self.statusbar setGaugeRate:timer.now / timer.max];
+}
+
+- (void)onGameTimerOver:(KWTimer *)timer {
+  for (int i = 0; i < 2; ++i) { 
+    SPPlayer* player = [self.players objectAtIndex:i];
+    CCLabelTTF* label = [CCLabelTTF labelWithString:@"Game Set" fontName:@"Helvetica" fontSize:96];
+    label.position = ccp(player.center.x, player.center.y + 60);
+    [player addChild:label];
+  }
+}
+
+- (void)onResult {
 }
 
 @end

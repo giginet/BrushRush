@@ -20,5 +20,6 @@
 
 + (id)playerById:(NSUInteger)n;
 - (id)initWithId:(NSUInteger)n;
+- (CGPoint)center;
 
 @end

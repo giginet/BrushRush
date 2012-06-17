@@ -14,5 +14,6 @@
 }
 
 - (void)setGaugeRate:(float)rate;
+- (void)setEnableCrystal:(NSUInteger)number enable:(BOOL)enable;
 
 @end

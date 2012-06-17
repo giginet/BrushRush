@@ -45,4 +45,11 @@
   }
 }
 
+- (void)setEnableCrystal:(NSUInteger)number enable:(BOOL)enable {
+  CCSprite* crystal = [crystals_ objectAtIndex:number];
+  [crystal setTexture:[[CCTextureCache sharedTextureCache] 
+                       addImage:[NSString stringWithFormat:
+                                 @"crystal%d_%@.png",number, enable ? @"enable" : @"disable"]]];
+}
+
 @end
