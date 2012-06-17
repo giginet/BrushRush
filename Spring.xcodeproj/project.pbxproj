@@ -98,6 +98,7 @@
 /* Begin PBXFileReference section */
 		070E10201585BC5A0094C4DD /* icon-ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-ipad.png"; path = "Image/icon-ipad.png"; sourceTree = "<group>"; };
 		070E10211585BC5A0094C4DD /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon.png; path = Image/icon.png; sourceTree = "<group>"; };
+		070FCC1C158E08AD00F6DC00 /* define.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = define.h; sourceTree = "<group>"; };
 		0742658E158AACD400EF6FFE /* ipadimage-ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ipadimage-ipad.png"; path = "Image/ipadimage-ipad.png"; sourceTree = "<group>"; };
 		0742658F158AACD400EF6FFE /* ipadimage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ipadimage.png; path = Image/ipadimage.png; sourceTree = "<group>"; };
 		074DD655157F76A000C4DCA7 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
@@ -515,6 +516,7 @@
 				DCC1A3CF13A94F2C005BD75D /* Supporting Files */,
 				074DD6B4157FA43300C4DCA7 /* Model */,
 				074DD6A6157F7D1B00C4DCA7 /* Scene */,
+				070FCC1C158E08AD00F6DC00 /* define.h */,
 			);
 			path = Projectfiles;
 			sourceTree = "<group>";

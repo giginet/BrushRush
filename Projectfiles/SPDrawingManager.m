@@ -8,6 +8,7 @@
 
 #import "SPDrawingManager.h"
 #import "KWDrawingPrimitives.h"
+#import "define.h"
 
 @implementation SPDrawingManager
 @synthesize drawings = drawings_;
@@ -64,7 +65,9 @@
 }
 
 - (CCRenderTexture*)renderTextureWithDrawings {
-  CCRenderTexture* texture = [[CCRenderTexture alloc] initWithWidth:768 height:462 pixelFormat:kCCTexture2DPixelFormat_RGBA8888];
+  CCRenderTexture* texture = [[CCRenderTexture alloc] initWithWidth:PLAYER_WIDTH 
+                                                             height:PLAYER_HEIGHT 
+                                                        pixelFormat:kCCTexture2DPixelFormat_RGBA8888];
   [texture begin];
   for (SPDrawing* drawing in self.drawings) {
     if (drawing.type != SPDrawingTypeArea) continue;
