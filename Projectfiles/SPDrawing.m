@@ -11,7 +11,7 @@
 #import "KWDrawingPrimitives.h"
 #import "CCTexture2D+DrawInPoly.h"
 #import "SPDrawingManager.h"
-#define DRAW_TEXTURE NO
+#define DRAW_TEXTURE YES
 
 typedef enum {
   SPRotationStraight,
@@ -93,7 +93,7 @@ typedef enum {
     }
     if (DRAW_TEXTURE) {
       glColor4f(1, 1, 1, 1);
-      const CCSprite* area = [CCSprite spriteWithFile:@"icon.png"];
+      const CCSprite* area = [CCSprite spriteWithFile:[NSString stringWithFormat:@"paint%d.png", self.player.identifier]];
       [area.texture drawInPoly:vertices numberOfPoints:count boundingBox:self.boundingBox];
     } else {
       glColor4f(self.color.r, self.color.g, self.color.b, 1);

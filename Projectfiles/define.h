@@ -9,8 +9,9 @@
 #ifndef Spring_define_h
 #define Spring_define_h
 
-#define PLAYER_WIDTH 768
-#define PLAYER_HEIGHT 462
+#define PLAYER_WIDTH 728
+#define PLAYER_HEIGHT 442
 #define STATUSBAR_HEIGHT 100
+#define FRAME_SIZE 20
 
 #endif

@@ -28,7 +28,6 @@ static NSMutableDictionary* players_;
 }
 
 - (id)initWithId:(NSUInteger)n {
-  CCDirector* director = [CCDirector sharedDirector];
   self = [super initWithColor:ccc4(0, 0, 0, 0) 
                         width:PLAYER_WIDTH 
                        height:PLAYER_HEIGHT];
@@ -40,7 +39,8 @@ static NSMutableDictionary* players_;
     identifier = n;
     drawings = [NSMutableArray array];
     [players_ setObject:self forKey:[NSNumber numberWithInt:n]];
-    self.position = ccp(0, ((director.screenSize.height - STATUSBAR_HEIGHT) / 2 + STATUSBAR_HEIGHT) * n);
+    int y = self.identifier == 0 ? FRAME_SIZE : FRAME_SIZE + PLAYER_HEIGHT + STATUSBAR_HEIGHT;
+    self.position = ccp(FRAME_SIZE, y);
   }
   return self;
 }

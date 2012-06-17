@@ -10,6 +10,7 @@
 #import "SPMainLayer.h"
 #import "CCDrawingPrimitives.h"
 #import "SPDrawingManager.h"
+#import "define.h"
 
 @interface SPMainLayer()
 - (SPPlayer*)checkWinner;
@@ -25,9 +26,14 @@
     players = [NSMutableArray array];
     self.isTouchEnabled = YES;
     CCDirector* director = [CCDirector sharedDirector];
-    CCSprite* background = [CCSprite spriteWithFile:@"ipadimage.png"];
-    background.position = director.screenCenter;
-    [self addChild:background];
+    for (int i = 0; i < 2; ++i) {
+      CCSprite* sprite = [CCSprite spriteWithFile:[NSString stringWithFormat:@"player%d.png", i]];
+      sprite.position = ccp(director.screenCenter.x, (FRAME_SIZE + PLAYER_HEIGHT + STATUSBAR_HEIGHT) * i + (FRAME_SIZE + PLAYER_HEIGHT) / 2);
+      [self addChild:sprite];
+    }
+    CCSprite* statusbar = [CCSprite spriteWithFile:@"status.png"];
+    statusbar.position = director.screenCenter;
+    [self addChild:statusbar];
     for (int i = 0; i < 2; ++i) {
       SPPlayer* player = [[SPPlayer alloc] initWithId:i];
       [self.players addObject:player];
