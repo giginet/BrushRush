@@ -171,15 +171,34 @@
 }
 
 - (void)onGameTimerOver:(KWTimer *)timer {
-  for (int i = 0; i < 2; ++i) { 
-    SPPlayer* player = [self.players objectAtIndex:i];
+  for (SPPlayer* player in self.players) { 
     CCLabelTTF* label = [CCLabelTTF labelWithString:@"Game Set" fontName:@"Helvetica" fontSize:96];
     label.position = ccp(player.center.x, player.center.y + 60);
     [player addChild:label];
+    label.scale = 0.0;
+    [label runAction:[CCSequence actions:
+                      [CCScaleTo actionWithDuration:0.2 scale:1.0],
+                      [CCDelayTime actionWithDuration:2.8],
+                      [CCCallBlockN actionWithBlock:^(CCNode* node) {
+      [node.parent removeChild:node cleanup:YES];
+    }],
+                      nil]];
   }
+  [self scheduleOnce:@selector(onResult) delay:3];
 }
 
 - (void)onResult {
+  SPPlayer* winner = [self checkWinner];
+  [statusbar setEnableCrystal:winner.identifier enable:YES];
+  for (SPPlayer* player in self.players) { 
+    NSString* filename = @"lose";
+    if (player.identifier == winner.identifier) {
+      filename = @"win";
+    }
+    CCSprite* label = [CCSprite spriteWithFile:[NSString stringWithFormat:@"%@.png", filename]];
+    label.position = ccp(player.center.x, player.center.y + 60);
+    [player addChild:label];
+  }
 }
 
 @end

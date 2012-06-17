@@ -18,6 +18,7 @@
     CCDirector* director = [CCDirector sharedDirector];
     self.position = director.screenCenter;
     timeGauges_ = [NSMutableArray array];
+    crystals_ = [NSMutableArray array];
     for (int i = 0; i < 2; ++i) {
       KWGauge* gauge = [KWGauge gaugeWithFile:@"gauge.png"];
       [gauge alignHolizontally];
@@ -49,7 +50,7 @@
   CCSprite* crystal = [crystals_ objectAtIndex:number];
   [crystal setTexture:[[CCTextureCache sharedTextureCache] 
                        addImage:[NSString stringWithFormat:
-                                 @"crystal%d_%@.png",number, enable ? @"enable" : @"disable"]]];
+                                 @"crystal%d_%@.png", number, enable ? @"enable" : @"disable"]]];
 }
 
 @end
