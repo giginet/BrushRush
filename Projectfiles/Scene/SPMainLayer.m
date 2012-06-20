@@ -14,10 +14,12 @@
 
 @interface SPMainLayer()
 - (SPPlayer*)checkWinner;
+- (void)startGame;
 - (void)onGameTimerUpdate:(KWTimer*)timer;
 - (void)onGameTimerOver:(KWTimer*)timer;
+- (void)onReady;
 - (void)onResult;
-- (void)nextMatch;
+- (void)disableCurrentDrawing:(NSSet*)touches;
 @end
 
 @implementation SPMainLayer
@@ -49,8 +51,7 @@
     gameTimer = [KWTimer timerWithMax:5];
     [gameTimer setOnUpdateListener:self selector:@selector(onGameTimerUpdate:)];
     [gameTimer setOnCompleteListener:self selector:@selector(onGameTimerOver:)];
-    [gameTimer play];
-    self.state = SPGameStateMatch;
+    [self startGame];
   }
   return self;
 }
@@ -77,13 +78,23 @@
 }
 
 - (void)ccTouchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
-  if (self.state != SPGameStateMatch) return;
-  for (UITouch* touch in touches) {
-    CGPoint point = [self convertTouchToNodeSpace:touch];
-    for (SPPlayer* player in self.players) {
-      if ([player.lastTouch isEqual:touch]) {
-        SPDrawing* drawing = [player.drawings lastObject];
-        [drawing addPoint:[player convertToNodeSpace:point]];
+  if (self.state == SPGameStateMatch) {
+    for (UITouch* touch in touches) {
+      CGPoint point = [self convertTouchToNodeSpace:touch];
+      for (SPPlayer* player in self.players) {
+        if ([player.lastTouch isEqual:touch]) {
+          SPDrawing* drawing = [player.drawings lastObject];
+          [drawing addPoint:[player convertToNodeSpace:point]];
+        }
+      }
+    }
+  } else {
+    for (UITouch* touch in touches) {
+      for (SPPlayer* player in self.players) {
+        if ([player.lastTouch isEqual:touch]) {
+          player.lastTouch = nil;
+          [[SPDrawingManager sharedManager] removeDrawing:player.lastDrawing];
+        }
       }
     }
   }
@@ -115,7 +126,8 @@
       }
     }
   } else if (self.state == SPGameStateResult) {
-    [self nextMatch];
+    [self disableCurrentDrawing:touches];
+    [self startGame];
   }
 }
 
@@ -140,6 +152,7 @@
 }
 
 - (SPPlayer*)checkWinner {
+  // Count pixels on CCRenderTexture.
   // ref http://iphone.moo.jp/app/?p=707
   int player0 = 0;
   int player1 = 0;
@@ -173,6 +186,49 @@
     return [self.players objectAtIndex:1];
   }
   return nil;
+}
+
+- (void)startGame {
+  self.state = SPGameStateReady;
+  for (SPPlayer* player in self.players) {
+    [player removeAllChildrenWithCleanup:YES];
+  }
+  for (int i = 0; i < 2; ++i) [self.statusbar setEnableCrystal:i enable:NO];
+  [self.gameTimer stop];
+  self.state = SPGameStateMatch;
+  [[SPDrawingManager sharedManager] removeAllDrawings];
+  [self scheduleOnce:@selector(onReady) delay:1.0];
+}
+
+- (void)onReady {
+   for (SPPlayer* player in self.players) { 
+     CCLabelTTF* label = [CCLabelTTF labelWithString:@"Ready" fontName:@"Helvetica" fontSize:96];
+     label.position = ccp(player.center.x, player.center.y + 60);
+    [player addChild:label];
+     __block CCLabelTTF* go = [CCLabelTTF labelWithString:@"Go!" fontName:@"Helvetica" fontSize:96];
+     id scale = [CCScaleTo actionWithDuration:0.2 scale:1.0];
+     id delay = [CCDelayTime actionWithDuration:0.8];
+     id suicide = [CCCallBlockN actionWithBlock:^(CCNode* node) {
+      [node.parent removeChild:node cleanup:YES];
+     }];
+     label.scale = 0.0;
+     go.position = label.position;
+     go.scale = 0.0;
+     [go runAction:[CCSequence actions:
+                    scale, 
+                    delay, 
+                    suicide, 
+                    nil]];
+    [label runAction:[CCSequence actions:
+                      scale,
+                      delay,
+                      [CCCallBlockN actionWithBlock:^(CCNode* node){
+      [node.parent addChild:go];
+      [self.gameTimer play];
+    }],
+                      suicide,
+                      nil]];
+   } 
 }
 
 - (void)onGameTimerUpdate:(KWTimer*)timer {
@@ -220,15 +276,15 @@
   }
 }
 
-- (void)nextMatch {
-  for (SPPlayer* player in self.players) {
-    [player removeAllChildrenWithCleanup:YES];
+- (void)disableCurrentDrawing:(NSSet*)touches {
+  for (UITouch* touch in touches) {
+      for (SPPlayer* player in self.players) {
+        if ([player.lastTouch isEqual:touch]) {
+          player.lastTouch = nil;
+          [[SPDrawingManager sharedManager] removeDrawing:player.lastDrawing];
+        }
+      }
   }
-  for (int i = 0; i < 2; ++i) [self.statusbar setEnableCrystal:i enable:NO];
-  [self.gameTimer reset];
-  [self.gameTimer play];
-  self.state = SPGameStateMatch;
-  [[SPDrawingManager sharedManager] removeAllDrawings];
 }
 
 @end
