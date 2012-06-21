@@ -30,10 +30,12 @@
       gauge.position = ccp(director.screenCenter.x + (float)k * width / 2.0, self.contentSize.height / 2);
       [self addChild:gauge];
       [timeGauges_ addObject:gauge];
-      
+      CCSprite* frame = [CCSprite spriteWithFile:@"crystal_frame.png"];
       CCToggleSprite* crystal = [[CCToggleSprite alloc] initWithFormat:[NSString stringWithFormat:@"crystal%d_%@.png", i, @"%@"]]; 
       int x = i == 0 ? OFFSET : director.screenSize.width - OFFSET;
-      crystal.position = ccp(x, self.contentSize.height / 2);
+      frame.position = ccp(x, self.contentSize.height / 2);
+      crystal.position = frame.position;
+      [self addChild:frame];
       [self addChild:crystal];
       [crystals_ addObject:crystal];
     }
@@ -60,10 +62,14 @@
 
 - (void)setEnableCrystal:(NSUInteger)number enable:(BOOL)enable {
   CCToggleSprite* crystal = [crystals_ objectAtIndex:number];
-  /*[crystal runAction:[CCRepeatForever actionWithAction:[CCSequence actions:
+  if (enable) {
+    [crystal runAction:[CCRepeatForever actionWithAction:[CCSequence actions:
                                                         [CCFadeTo actionWithDuration:0.1 opacity:127],
                                                         [CCFadeTo actionWithDuration:0.1 opacity:255],
-                                                        nil]]];*/
+                                                        nil]]];
+  } else {
+    [crystal stopAllActions];
+  }
   crystal.toggle = enable;
 }
 
