@@ -36,8 +36,11 @@
     self.isTouchEnabled = YES;
     CCDirector* director = [CCDirector sharedDirector];
     for (int i = 0; i < 2; ++i) {
+      CCSprite* background = [CCSprite spriteWithFile:@"background.png"];
+      [self addChild:background];      
       CCSprite* sprite = [CCSprite spriteWithFile:[NSString stringWithFormat:@"player%d.png", i]];
       sprite.position = ccp(director.screenCenter.x, (FRAME_SIZE + PLAYER_HEIGHT + STATUSBAR_HEIGHT) * i + (FRAME_SIZE + PLAYER_HEIGHT) / 2);
+      background.position = sprite.position;
       [self addChild:sprite];
     }
     statusbar = [SPStatusBar spriteWithFile:@"status.png"];

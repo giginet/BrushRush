@@ -84,6 +84,8 @@
 		071594631592C0EC003BC47E /* crystal1_disable.png in Resources */ = {isa = PBXBuildFile; fileRef = 071594591592C0EC003BC47E /* crystal1_disable.png */; };
 		071594641592C0EC003BC47E /* crystal1_enable-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 0715945A1592C0EC003BC47E /* crystal1_enable-ipad.png */; };
 		071594651592C0EC003BC47E /* crystal1_enable.png in Resources */ = {isa = PBXBuildFile; fileRef = 0715945B1592C0EC003BC47E /* crystal1_enable.png */; };
+		071594681592C559003BC47E /* background-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 071594661592C559003BC47E /* background-ipad.png */; };
+		071594691592C559003BC47E /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 071594671592C559003BC47E /* background.png */; };
 		074DD68A157F76A000C4DCA7 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 074DD655157F76A000C4DCA7 /* .gitignore */; };
 		074DD68B157F76A000C4DCA7 /* KWMusicManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 074DD659157F76A000C4DCA7 /* KWMusicManager.m */; };
 		074DD68C157F76A000C4DCA7 /* tinymt32.c in Sources */ = {isa = PBXBuildFile; fileRef = 074DD65C157F76A000C4DCA7 /* tinymt32.c */; };
@@ -228,6 +230,8 @@
 		071594591592C0EC003BC47E /* crystal1_disable.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crystal1_disable.png; sourceTree = "<group>"; };
 		0715945A1592C0EC003BC47E /* crystal1_enable-ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "crystal1_enable-ipad.png"; sourceTree = "<group>"; };
 		0715945B1592C0EC003BC47E /* crystal1_enable.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crystal1_enable.png; sourceTree = "<group>"; };
+		071594661592C559003BC47E /* background-ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "background-ipad.png"; sourceTree = "<group>"; };
+		071594671592C559003BC47E /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
 		074DD655157F76A000C4DCA7 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		074DD658157F76A000C4DCA7 /* KWMusicManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KWMusicManager.h; sourceTree = "<group>"; };
 		074DD659157F76A000C4DCA7 /* KWMusicManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWMusicManager.m; sourceTree = "<group>"; };
@@ -439,6 +443,8 @@
 				070FCCD8158E6EA800F6DC00 /* gauge.png */,
 				070FCC96158E65EB00F6DC00 /* lose-ipad.png */,
 				070FCC97158E65EB00F6DC00 /* lose.png */,
+				071594661592C559003BC47E /* background-ipad.png */,
+				071594671592C559003BC47E /* background.png */,
 				070FCC98158E65EB00F6DC00 /* player0-ipad.png */,
 				070FCC99158E65EB00F6DC00 /* player0.png */,
 				070FCC9A158E65EB00F6DC00 /* player1-ipad.png */,
@@ -858,6 +864,8 @@
 				071594631592C0EC003BC47E /* crystal1_disable.png in Resources */,
 				071594641592C0EC003BC47E /* crystal1_enable-ipad.png in Resources */,
 				071594651592C0EC003BC47E /* crystal1_enable.png in Resources */,
+				071594681592C559003BC47E /* background-ipad.png in Resources */,
+				071594691592C559003BC47E /* background.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
