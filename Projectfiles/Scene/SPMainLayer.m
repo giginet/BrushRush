@@ -37,20 +37,21 @@
     CCDirector* director = [CCDirector sharedDirector];
     for (int i = 0; i < 2; ++i) {
       CCSprite* background = [CCSprite spriteWithFile:@"background.png"];
+      background.position = ccp(director.screenCenter.x, (FRAME_SIZE + PLAYER_HEIGHT + STATUSBAR_HEIGHT) * i + (FRAME_SIZE + PLAYER_HEIGHT) / 2);
       [self addChild:background];      
-      CCSprite* sprite = [CCSprite spriteWithFile:[NSString stringWithFormat:@"player%d.png", i]];
-      sprite.position = ccp(director.screenCenter.x, (FRAME_SIZE + PLAYER_HEIGHT + STATUSBAR_HEIGHT) * i + (FRAME_SIZE + PLAYER_HEIGHT) / 2);
-      background.position = sprite.position;
-      [self addChild:sprite];
     }
-    statusbar = [SPStatusBar spriteWithFile:@"status.png"];
-    [self addChild:statusbar];
     for (int i = 0; i < 2; ++i) {
       SPPlayer* player = [[SPPlayer alloc] initWithId:i];
       [self.players addObject:player];
       [self addChild:player];
     }
-   
+    for (int i = 0; i < 2; ++i) {
+      CCSprite* sprite = [CCSprite spriteWithFile:[NSString stringWithFormat:@"player%d.png", i]];
+      sprite.position = ccp(director.screenCenter.x, (FRAME_SIZE + PLAYER_HEIGHT + STATUSBAR_HEIGHT) * i + (FRAME_SIZE + PLAYER_HEIGHT) / 2);
+      [self addChild:sprite];
+    }
+    statusbar = [SPStatusBar spriteWithFile:@"status.png"];
+    [self addChild:statusbar];
     gameTimer = [KWTimer timerWithMax:GAME_TIME];
     [gameTimer setOnUpdateListener:self selector:@selector(onGameTimerUpdate:)];
     [gameTimer setOnCompleteListener:self selector:@selector(onGameTimerOver:)];

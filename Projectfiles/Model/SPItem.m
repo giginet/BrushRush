@@ -7,6 +7,7 @@
 //
 
 #import "SPItem.h"
+#import "define.h"
 
 @interface SPItem()
 - (void)onCompleteChangeTimer:(KWTimer*)timer;
@@ -32,6 +33,7 @@
                                    selector:@selector(onCompleteChangeTimer:)];
     self.changeTimer.looping = YES;
     velocity = [KWVector vectorAtRandom];
+    [velocity resize:3];
     [self scheduleUpdate];
   }
   return self;
@@ -58,6 +60,16 @@
 
 - (void)update:(ccTime)time {
   self.position = ccpAdd(self.position, self.velocity.point);
+  if (self.position.x > PLAYER_WIDTH) {
+    velocity = [self.velocity reflect:[KWVector vectorWithPoint:ccp(-1, 0)]];
+  } else if (self.position.x < 0) {
+    velocity = [self.velocity reflect:[KWVector vectorWithPoint:ccp(1, 0)]];
+  }
+  if (self.position.y > PLAYER_HEIGHT) {
+    velocity = [self.velocity reflect:[KWVector vectorWithPoint:ccp(0, -1)]];
+  } else if (self.position.y < 0) {
+    velocity = [self.velocity reflect:[KWVector vectorWithPoint:ccp(0, 1)]];
+  }
 }
 
 - (void)setKind:(SPItemKind)k {

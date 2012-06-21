@@ -28,5 +28,6 @@ typedef enum {
 + (SPItem*)item;
 - (id)initWithKind:(SPItemKind)k;
 - (SPItemKind)changeRandom;
+- (void)update:(ccTime)time;
 
 @end

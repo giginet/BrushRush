@@ -7,6 +7,7 @@
 //
 
 #import "SPPlayer.h"
+#import "SPItem.h"
 #import "SPDrawingManager.h"
 #import "define.h"
 
@@ -56,6 +57,9 @@ static NSMutableDictionary* players_;
   SPDrawingManager* manager = [SPDrawingManager sharedManager];
   for (SPDrawing* drawing in manager.drawings) {
     [drawing draw];
+  }
+  for (SPItem* item in manager.items) {
+    [item.texture drawAtPoint:item.position];
   }
 }
 

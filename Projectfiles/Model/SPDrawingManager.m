@@ -8,10 +8,12 @@
 
 #import "SPDrawingManager.h"
 #import "KWDrawingPrimitives.h"
+#import "SPItem.h"
 #import "define.h"
 
 @implementation SPDrawingManager
 @synthesize drawings = drawings_;
+@synthesize items = items_;
 
 + (id)sharedManager {
   static id sharedInstance = nil;
@@ -26,6 +28,11 @@
   self = [super init];
   if (self) {
     drawings_ = [NSMutableArray array];
+    items_ = [NSMutableArray array];
+    [[CCScheduler sharedScheduler] scheduleUpdateForTarget:self priority:0 paused:NO];
+    SPItem* test = [SPItem item];
+    test.position = ccp(PLAYER_WIDTH / 2, PLAYER_HEIGHT / 2);
+    [items_ addObject:test];
   }
   return self;
 }
@@ -88,6 +95,12 @@
   }
   [texture end];
   return texture;
+}
+
+- (void)update:(ccTime)dt {
+  for (SPItem* item in self.items) {
+    [item update:dt];
+  }
 }
 
 @end

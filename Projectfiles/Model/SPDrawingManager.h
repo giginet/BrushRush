@@ -11,9 +11,11 @@
 
 @interface SPDrawingManager : NSObject {
   NSMutableArray* drawings_;
+  NSMutableArray* items_;
 }
 
 @property(readonly, strong) NSArray* drawings;
+@property(readonly, strong) NSArray* items;
 
 + (id)sharedManager;
 
@@ -23,5 +25,6 @@
 - (float)areaWithPlayer:(SPPlayer*)player;
 - (void)mergeWithIntersectsDrawing:(SPDrawing*)drawing;
 - (CCRenderTexture*)renderTextureWithDrawings;
+- (void)update:(ccTime)dt;
 
 @end
