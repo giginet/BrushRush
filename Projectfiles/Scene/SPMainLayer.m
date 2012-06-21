@@ -48,7 +48,7 @@
       [self addChild:player];
     }
    
-    gameTimer = [KWTimer timerWithMax:5];
+    gameTimer = [KWTimer timerWithMax:GAME_TIME];
     [gameTimer setOnUpdateListener:self selector:@selector(onGameTimerUpdate:)];
     [gameTimer setOnCompleteListener:self selector:@selector(onGameTimerOver:)];
     [self startGame];
@@ -277,6 +277,22 @@
   [self.statusbar setBadge:player0.win player1:player1.win];
   if (player0.win == 2 || player1.win == 2) {
     self.state = SPGameStateEnd;
+    __block CCDirector* director = [CCDirector sharedDirector];
+    CCMenuItemImage* restart = [CCMenuItemImage itemFromNormalImage:@"restart.png" 
+                                                      selectedImage:@"restart_selected.png" 
+                                                      disabledImage:@"restart_selected.png" 
+                                                              block:^(id sender){
+                                                                [director replaceScene:[SPMainLayer nodeWithScene]];
+                                                              }];
+    CCMenuItemImage* title = [CCMenuItemImage itemFromNormalImage:@"title.png" 
+                                                    selectedImage:@"title_selected.png" 
+                                                    disabledImage:@"title_selected.png" 
+                                                            block:^(id sender){
+                                                            }];
+    CCMenu* menu = [CCMenu menuWithItems:restart, title, nil];
+    [menu alignItemsHorizontallyWithPadding:30];
+    menu.position = ccp(player0.center.x, player0.center.y - 60);
+    [self addChild:menu];
   } else {
     self.state = SPGameStateResult;
   }
