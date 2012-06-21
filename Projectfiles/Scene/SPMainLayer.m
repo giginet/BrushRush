@@ -87,6 +87,10 @@
       CGPoint point = [self convertTouchToNodeSpace:touch];
       for (SPPlayer* player in self.players) {
         if ([player.lastTouch isEqual:touch]) {
+          CGPoint local = [player convertToNodeSpace:point];
+          if (local.x < 0 || local.x > PLAYER_WIDTH || local.y < 0 || local.y > PLAYER_HEIGHT) {
+          [self disableCurrentDrawing:touches];
+          }
           SPDrawing* drawing = [player.drawings lastObject];
           [drawing addPoint:[player convertToNodeSpace:point]];
         }
@@ -200,7 +204,6 @@
   for (int i = 0; i < 2; ++i) [self.statusbar setEnableCrystal:i enable:NO];
   [self.statusbar setGaugeRate:1.0];
   [self.gameTimer stop];
-  self.state = SPGameStateMatch;
   [[SPDrawingManager sharedManager] removeAllDrawings];
   [self scheduleOnce:@selector(onReady) delay:0.5];
 }
@@ -231,6 +234,7 @@
                       [CCCallBlockN actionWithBlock:^(CCNode* node){
       [node.parent addChild:go];
       [self.gameTimer play];
+      self.state = SPGameStateMatch;
     }],
                       suicide,
                       nil]];
