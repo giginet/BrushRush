@@ -194,20 +194,21 @@
     [player removeAllChildrenWithCleanup:YES];
   }
   for (int i = 0; i < 2; ++i) [self.statusbar setEnableCrystal:i enable:NO];
+  [self.statusbar setGaugeRate:1.0];
   [self.gameTimer stop];
   self.state = SPGameStateMatch;
   [[SPDrawingManager sharedManager] removeAllDrawings];
-  [self scheduleOnce:@selector(onReady) delay:1.0];
+  [self scheduleOnce:@selector(onReady) delay:0.5];
 }
 
 - (void)onReady {
    for (SPPlayer* player in self.players) { 
-     CCLabelTTF* label = [CCLabelTTF labelWithString:@"Ready" fontName:@"Helvetica" fontSize:96];
+     CCSprite* label = [CCSprite spriteWithFile:@"ready.png"];
      label.position = ccp(player.center.x, player.center.y + 60);
     [player addChild:label];
-     __block CCLabelTTF* go = [CCLabelTTF labelWithString:@"Go!" fontName:@"Helvetica" fontSize:96];
+     __block CCSprite* go = [CCSprite spriteWithFile:@"go.png"];
      id scale = [CCScaleTo actionWithDuration:0.2 scale:1.0];
-     id delay = [CCDelayTime actionWithDuration:0.8];
+     id delay = [CCDelayTime actionWithDuration:1.8];
      id suicide = [CCCallBlockN actionWithBlock:^(CCNode* node) {
       [node.parent removeChild:node cleanup:YES];
      }];
@@ -216,7 +217,8 @@
      go.scale = 0.0;
      [go runAction:[CCSequence actions:
                     scale, 
-                    delay, 
+                    [CCDelayTime actionWithDuration:0.4], 
+                    [CCMoveTo actionWithDuration:1.0 position:ccp(2000, go.position.y)],
                     suicide, 
                     nil]];
     [label runAction:[CCSequence actions:
@@ -238,7 +240,7 @@
 - (void)onGameTimerOver:(KWTimer *)timer {
   self.state = SPGameStateSet;
   for (SPPlayer* player in self.players) { 
-    CCLabelTTF* label = [CCLabelTTF labelWithString:@"Game Set" fontName:@"Helvetica" fontSize:96];
+    CCSprite* label = [CCSprite spriteWithFile:@"gameset.png"];
     label.position = ccp(player.center.x, player.center.y + 60);
     [player addChild:label];
     label.scale = 0.0;
@@ -258,9 +260,13 @@
   [statusbar setEnableCrystal:winner.identifier enable:YES];
   for (SPPlayer* player in self.players) { 
     NSString* filename = @"lose";
-    if (player.identifier == winner.identifier) {
-      filename = @"win";
-      player.win += 1;
+    if (!winner) {
+      filename = @"draw";
+    } else {
+      if (player.identifier == winner.identifier) {
+        filename = @"win";
+        player.win += 1;
+      }
     }
     CCSprite* label = [CCSprite spriteWithFile:[NSString stringWithFormat:@"%@.png", filename]];
     label.position = ccp(player.center.x, player.center.y + 60);
