@@ -35,6 +35,7 @@
     velocity = [KWVector vectorAtRandom];
     [velocity resize:3];
     [self scheduleUpdate];
+    [self.changeTimer play];
   }
   return self;
 }

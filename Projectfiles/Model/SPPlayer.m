@@ -56,8 +56,11 @@ static NSMutableDictionary* players_;
   [super draw];
   SPDrawingManager* manager = [SPDrawingManager sharedManager];
   for (SPDrawing* drawing in manager.drawings) {
-    [drawing draw];
+    if (!(self.identifier != drawing.player.identifier && drawing.type == SPDrawingTypeWriting)) {
+      [drawing draw];
+    }
   }
+  glColor4f(1, 1, 1, 1);
   for (SPItem* item in manager.items) {
     [item.texture drawAtPoint:item.position];
   }

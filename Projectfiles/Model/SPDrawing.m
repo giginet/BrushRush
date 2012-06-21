@@ -173,8 +173,8 @@ typedef enum {
 
 - (void)onEndCharge {
   self.type = SPDrawingTypeArea;
-  SPDrawingManager* manager = [SPDrawingManager sharedManager];
-  [manager mergeWithIntersectsDrawing:player.lastDrawing];
+  //SPDrawingManager* manager = [SPDrawingManager sharedManager];
+  //[manager mergeWithIntersectsDrawing:player.lastDrawing];
 }
 
 - (CGPoint)gravityPoint {
