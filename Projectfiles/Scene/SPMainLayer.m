@@ -265,12 +265,12 @@
 
 - (void)onResult {
   SPPlayer* winner = [self checkWinner];
-  [statusbar setEnableCrystal:winner.identifier enable:YES];
   for (SPPlayer* player in self.players) { 
     NSString* filename = @"lose";
     if (!winner) {
       filename = @"draw";
     } else {
+      [statusbar setEnableCrystal:winner.identifier enable:YES];
       if (player.identifier == winner.identifier) {
         filename = @"win";
         player.win += 1;
