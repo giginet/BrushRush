@@ -87,6 +87,8 @@
 		071594681592C559003BC47E /* background-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 071594661592C559003BC47E /* background-ipad.png */; };
 		071594691592C559003BC47E /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 071594671592C559003BC47E /* background.png */; };
 		0715946C1592D1FD003BC47E /* SPItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 0715946B1592D1FD003BC47E /* SPItem.m */; };
+		0715947B159339C9003BC47E /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 0715947A159339C9003BC47E /* Icon-72.png */; };
+		0715947F15934095003BC47E /* complete.caf in Resources */ = {isa = PBXBuildFile; fileRef = 0715947E15934095003BC47E /* complete.caf */; };
 		074DD68A157F76A000C4DCA7 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 074DD655157F76A000C4DCA7 /* .gitignore */; };
 		074DD68B157F76A000C4DCA7 /* KWMusicManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 074DD659157F76A000C4DCA7 /* KWMusicManager.m */; };
 		074DD68C157F76A000C4DCA7 /* tinymt32.c in Sources */ = {isa = PBXBuildFile; fileRef = 074DD65C157F76A000C4DCA7 /* tinymt32.c */; };
@@ -235,6 +237,8 @@
 		071594671592C559003BC47E /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
 		0715946A1592D1FD003BC47E /* SPItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SPItem.h; path = Model/SPItem.h; sourceTree = "<group>"; };
 		0715946B1592D1FD003BC47E /* SPItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SPItem.m; path = Model/SPItem.m; sourceTree = "<group>"; };
+		0715947A159339C9003BC47E /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72.png"; sourceTree = "<group>"; };
+		0715947E15934095003BC47E /* complete.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = complete.caf; sourceTree = "<group>"; };
 		074DD655157F76A000C4DCA7 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		074DD658157F76A000C4DCA7 /* KWMusicManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KWMusicManager.h; sourceTree = "<group>"; };
 		074DD659157F76A000C4DCA7 /* KWMusicManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWMusicManager.m; sourceTree = "<group>"; };
@@ -468,6 +472,15 @@
 			path = UI;
 			sourceTree = "<group>";
 		};
+		0715947D15934095003BC47E /* SE */ = {
+			isa = PBXGroup;
+			children = (
+				0715947E15934095003BC47E /* complete.caf */,
+			);
+			name = SE;
+			path = Projectfiles/Resources/SE;
+			sourceTree = SOURCE_ROOT;
+		};
 		074DD654157F76A000C4DCA7 /* Heqet */ = {
 			isa = PBXGroup;
 			children = (
@@ -617,6 +630,7 @@
 		DCC1A0D613A94EC0005BD75D = {
 			isa = PBXGroup;
 			children = (
+				0715947A159339C9003BC47E /* Icon-72.png */,
 				DCC1A38C13A94F1A005BD75D /* Projectfiles */,
 				DCC1A0F713A94ED5005BD75D /* Projectfiles-iOS */,
 				DCFA90ED13B4F6A0009DD35A /* BuildSettings */,
@@ -685,6 +699,7 @@
 		DCC1A39413A94F1A005BD75D /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				0715947D15934095003BC47E /* SE */,
 				070FCC78158E65EB00F6DC00 /* Image */,
 				DCC1A39513A94F1A005BD75D /* config.lua */,
 			);
@@ -871,6 +886,8 @@
 				071594651592C0EC003BC47E /* crystal1_enable.png in Resources */,
 				071594681592C559003BC47E /* background-ipad.png in Resources */,
 				071594691592C559003BC47E /* background.png in Resources */,
+				0715947B159339C9003BC47E /* Icon-72.png in Resources */,
+				0715947F15934095003BC47E /* complete.caf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

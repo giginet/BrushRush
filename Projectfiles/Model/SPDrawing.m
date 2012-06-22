@@ -11,6 +11,7 @@
 #import "KWDrawingPrimitives.h"
 #import "CCTexture2D+DrawInPoly.h"
 #import "SPDrawingManager.h"
+#import "OALSimpleAudio.h"
 #define DRAW_TEXTURE YES
 
 typedef enum {
@@ -173,6 +174,7 @@ typedef enum {
 
 - (void)onEndCharge {
   self.type = SPDrawingTypeArea;
+  [[OALSimpleAudio sharedInstance] playEffect:@"complete.caf"];
   //SPDrawingManager* manager = [SPDrawingManager sharedManager];
   //[manager mergeWithIntersectsDrawing:player.lastDrawing];
 }
