@@ -10,6 +10,7 @@
 #import "heqet.h"
 
 @class SPDrawing;
+@class SPItem;
 @interface SPPlayer : CCLayerColor {
 }
 
@@ -22,5 +23,6 @@
 + (id)playerById:(NSUInteger)n;
 - (id)initWithId:(NSUInteger)n;
 - (CGPoint)center;
+- (void)getItem:(SPItem*)item;
 
 @end

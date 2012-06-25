@@ -66,16 +66,28 @@
 
 - (void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
   if (self.state != SPGameStateMatch) return;
+  SPDrawingManager* manager = [SPDrawingManager sharedManager];
   for (UITouch* touch in touches) {
     CGPoint point = [self convertTouchToNodeSpace:touch];
     for (SPPlayer* player in self.players) {
       if (!player.lastTouch && [player containsPoint:point]) {
-        player.lastTouch = touch;
-        SPDrawing* drawing = [[SPDrawing alloc] init];
-        [[SPDrawingManager sharedManager] addDrawing:drawing];
-        drawing.color = player.color;
-        drawing.player = player;
-        [drawing addPoint:[player convertToNodeSpace:point]];
+        BOOL used = NO;
+        for (SPItem* item in [NSArray arrayWithArray:manager.items]) {
+          CGRect box = CGRectMake(item.position.x, item.position.y, item.texture.contentSize.width, item.texture.contentSize.height);
+          if (CGRectContainsPoint(box, point)) {
+            [player getItem:item];
+            used = YES;
+            break;
+          }
+        }
+        if (!used) {
+          player.lastTouch = touch;
+          SPDrawing* drawing = [[SPDrawing alloc] init];
+          [manager addDrawing:drawing];
+          drawing.color = player.color;
+          drawing.player = player;
+          [drawing addPoint:[player convertToNodeSpace:point]];
+        }
       }
     }
   }

@@ -10,6 +10,7 @@
 #import "SPItem.h"
 #import "SPDrawingManager.h"
 #import "define.h"
+#import "ObjectAL.h"
 
 @implementation SPPlayer
 @synthesize win;
@@ -72,6 +73,14 @@ static NSMutableDictionary* players_;
 
 - (CGPoint)center {
   return ccp(self.contentSize.width / 2, self.contentSize.height / 2);
+}
+
+- (void)getItem:(SPItem *)item {
+  [[OALSimpleAudio sharedInstance] playEffect:@"item.caf"];
+  [item useBy:self];
+  item.owner = self;
+  SPDrawingManager* manager = [SPDrawingManager sharedManager];
+  [manager removeItem:item];
 }
 
 @end

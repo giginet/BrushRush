@@ -8,6 +8,7 @@
 
 #import "Heqet.h"
 #import "CCSprite.h"
+#import "SPPlayer.h"
 
 typedef enum {
   SPItemKindAccel,
@@ -24,10 +25,12 @@ typedef enum {
 @property(readonly, strong) NSString* name;
 @property(readonly, strong) KWTimer* changeTimer;
 @property(readonly, strong) KWVector* velocity;
+@property(readwrite, weak) SPPlayer* owner;
 
 + (SPItem*)item;
 - (id)initWithKind:(SPItemKind)k;
 - (SPItemKind)changeRandom;
 - (void)update:(ccTime)time;
+- (void)useBy:(SPPlayer*)player;
 
 @end

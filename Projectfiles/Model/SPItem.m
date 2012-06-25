@@ -18,10 +18,12 @@
 @dynamic name;
 @synthesize changeTimer;
 @synthesize velocity;
+@synthesize owner;
 
 + (SPItem*)item {
   KWRandom* rnd = [KWRandom random];
-  return [[SPItem alloc] initWithKind:[rnd nextInt] % SPItemKindNum];
+  int kind = [rnd nextInt] % SPItemKindNum;
+  return [[SPItem alloc] initWithKind:kind];
 }
 
 - (id)initWithKind:(SPItemKind)k {
@@ -80,7 +82,25 @@
 
 - (NSString*)name {
   NSString* names[] = {@"accel", @"blind", @"brake", @"paint", @"snatch"};
-  return names[(int)self.kind];
+  return names[(int)kind];
+}
+
+- (void)useBy:(SPPlayer *)player {
+  NSLog(@"use %@", self.name);
+  switch (self.kind) {
+    case SPItemKindAccel:
+      break;
+    case SPItemKindBrake:
+      break;
+    case SPItemKindBlind:
+      break;
+    case SPItemKindSnatch:
+      break;
+    case SPItemKindPaint:
+      break;
+    default:
+      break;
+  }
 }
 
 @end

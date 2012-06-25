@@ -8,7 +8,6 @@
 
 #import "SPDrawingManager.h"
 #import "KWDrawingPrimitives.h"
-#import "SPItem.h"
 #import "define.h"
 
 @implementation SPDrawingManager
@@ -30,6 +29,9 @@
     drawings_ = [NSMutableArray array];
     items_ = [NSMutableArray array];
     [[CCScheduler sharedScheduler] scheduleUpdateForTarget:self priority:0 paused:NO];
+    SPItem* item = [SPItem item];
+    item.position = ccp(PLAYER_WIDTH / 2, PLAYER_HEIGHT / 2);
+    [self addItem:item];
   }
   return self;
 }
@@ -88,7 +90,6 @@
     }
     glColor4f(drawing.color.r, drawing.color.g, drawing.color.b, 1);
     ccFillPoly(vertices, count, YES);
-    
   }
   [texture end];
   return texture;
@@ -98,6 +99,18 @@
   for (SPItem* item in self.items) {
     [item update:dt];
   }
+}
+
+- (void)addItem:(SPItem *)item {
+  [items_ addObject:item];
+}
+
+- (void)removeItem:(SPItem *)item {
+  [items_ removeObject:item];
+}
+
+- (void)removeAllItems {
+  [items_ removeAllObjects];
 }
 
 @end

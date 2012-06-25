@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "SPDrawing.h"
+#import "SPItem.h"
 
 @interface SPDrawingManager : NSObject {
   NSMutableArray* drawings_;
@@ -26,5 +27,8 @@
 - (void)mergeWithIntersectsDrawing:(SPDrawing*)drawing;
 - (CCRenderTexture*)renderTextureWithDrawings;
 - (void)update:(ccTime)dt;
+- (void)addItem:(SPItem*)item;
+- (void)removeItem:(SPItem*)item;
+- (void)removeAllItems;
 
 @end
