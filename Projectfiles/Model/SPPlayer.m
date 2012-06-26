@@ -26,10 +26,6 @@ static NSMutableDictionary* players_;
 
 
 + (id)playerById:(NSUInteger)n {
-  if (!players_ || [players_ objectForKey:[NSNumber numberWithInt:n]]) {
-    SPPlayer* p = [[[self class] alloc] initWithId:n];
-    [players_ setObject:p forKey:[NSNumber numberWithInt:n]];
-  }
   return [players_ objectForKey:[NSNumber numberWithInt:n]];
 }
 
@@ -70,7 +66,6 @@ static NSMutableDictionary* players_;
   }
   SPPlayer* enemy = [SPPlayer playerById:(self.identifier + 1) % 2];
   if (enemy.item && enemy.item.kind == SPItemKindBlind) {
-    NSLog(@"%@", enemy);
     CCTexture2D* blind = [[CCTextureCache sharedTextureCache] addImage:@"blind.png"];
     [blind drawAtPoint:ccpSub(self.center, ccp(blind.contentSize.width / 2, blind.contentSize.height / 2))];
   }
