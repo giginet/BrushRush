@@ -19,6 +19,7 @@
 @synthesize drawings;
 @synthesize lastTouch;
 @dynamic lastDrawing;
+@synthesize item;
 
 static NSMutableDictionary* players_;
 
@@ -62,8 +63,8 @@ static NSMutableDictionary* players_;
     }
   }
   glColor4f(1, 1, 1, 1);
-  for (SPItem* item in manager.items) {
-    [item.texture drawAtPoint:item.position];
+  for (SPItem* i in manager.items) {
+    [i.texture drawAtPoint:i.position];
   }
 }
 
@@ -75,12 +76,13 @@ static NSMutableDictionary* players_;
   return ccp(self.contentSize.width / 2, self.contentSize.height / 2);
 }
 
-- (void)getItem:(SPItem *)item {
+- (void)getItem:(SPItem *)i {
   [[OALSimpleAudio sharedInstance] playEffect:@"item.caf"];
-  [item useBy:self];
+  [i useBy:self];
+  self.item = i;
   item.owner = self;
   SPDrawingManager* manager = [SPDrawingManager sharedManager];
-  [manager removeItem:item];
+  [manager removeItem:i];
 }
 
 @end

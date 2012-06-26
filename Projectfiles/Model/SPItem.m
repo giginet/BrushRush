@@ -11,12 +11,14 @@
 
 @interface SPItem()
 - (void)onCompleteChangeTimer:(KWTimer*)timer;
+- (void)onCompleteUseTimer:(KWTimer *)timer;
 @end
 
 @implementation SPItem
 @synthesize kind;
 @dynamic name;
 @synthesize changeTimer;
+@synthesize useTimer;
 @synthesize velocity;
 @synthesize owner;
 
@@ -34,10 +36,12 @@
     [self.changeTimer setOnCompleteListener:self 
                                    selector:@selector(onCompleteChangeTimer:)];
     self.changeTimer.looping = YES;
+    useTimer = [KWTimer timer];
     velocity = [KWVector vectorAtRandom];
     [velocity resize:3];
     [self scheduleUpdate];
     [self.changeTimer play];
+    [self.useTimer setOnCompleteListener:self selector:@selector(onCompleteUseTimer:)];
   }
   return self;
 }
@@ -87,6 +91,7 @@
 
 - (void)useBy:(SPPlayer *)player {
   NSLog(@"use %@", self.name);
+  int times[] = {7, 7, 7, 2, 2};
   switch (self.kind) {
     case SPItemKindAccel:
       break;
@@ -94,13 +99,34 @@
       break;
     case SPItemKindBlind:
       break;
-    case SPItemKindSnatch:
-      break;
     case SPItemKindPaint:
+      break;
+    case SPItemKindSnatch:
       break;
     default:
       break;
   }
+  [self.useTimer set:times[(int)self.kind]];
+  [self.useTimer play];
+}
+
+- (void)onCompleteUseTimer:(KWTimer *)timer {
+  switch (self.kind) {
+    case SPItemKindAccel:
+      break;
+    case SPItemKindBrake:
+      break;
+    case SPItemKindBlind:
+      break;
+    case SPItemKindPaint:
+      break;
+    case SPItemKindSnatch:
+      break;
+    default:
+      break;
+  }
+  self.owner.item = nil;
+  self.owner = nil;
 }
 
 @end

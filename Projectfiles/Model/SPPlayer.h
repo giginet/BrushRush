@@ -11,6 +11,7 @@
 
 @class SPDrawing;
 @class SPItem;
+
 @interface SPPlayer : CCLayerColor {
 }
 
@@ -19,6 +20,7 @@
 @property(readonly, strong) NSMutableArray* drawings;
 @property(readwrite, strong) UITouch* lastTouch;
 @property(readonly, strong) SPDrawing* lastDrawing;
+@property(readwrite, strong) SPItem* item;
 
 + (id)playerById:(NSUInteger)n;
 - (id)initWithId:(NSUInteger)n;

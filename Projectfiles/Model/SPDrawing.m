@@ -241,7 +241,15 @@ typedef enum {
 }
 
 - (ccTime)chargeTime {
-  return self.length / 1000 * 2;
+  float time = self.length / 1000 * 2;
+  if (self.player.item) {
+    if (self.player.item.kind == SPItemKindAccel) {
+      time /= 1.5;
+    } else if (self.player.item.kind == SPItemKindBrake) {
+      time *= 2;
+    }
+  }
+  return time;
 }
 
 @end

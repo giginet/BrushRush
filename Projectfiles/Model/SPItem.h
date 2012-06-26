@@ -24,6 +24,7 @@ typedef enum {
 @property(readwrite) SPItemKind kind;
 @property(readonly, strong) NSString* name;
 @property(readonly, strong) KWTimer* changeTimer;
+@property(readonly, strong) KWTimer* useTimer;
 @property(readonly, strong) KWVector* velocity;
 @property(readwrite, weak) SPPlayer* owner;
 

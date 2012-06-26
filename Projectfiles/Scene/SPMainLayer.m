@@ -138,7 +138,7 @@
               if ([other canCuttingBy:lastDrawing]) {
                 NSLog(@"cut");
                 [manager removeDrawing:other];
-                [[OALSimpleAudio sharedInstance] playEffect:@"break.caf"];
+                [[OALSimpleAudio sharedInstance] playEffect:@"slash.caf"];
               }
             }
             [manager removeDrawing:lastDrawing];
