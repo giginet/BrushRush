@@ -74,7 +74,8 @@
         BOOL used = NO;
         for (SPItem* item in [NSArray arrayWithArray:manager.items]) {
           CGRect box = CGRectMake(item.position.x, item.position.y, item.texture.contentSize.width, item.texture.contentSize.height);
-          if (CGRectContainsPoint(box, point)) {
+          CGPoint local = [player convertToNodeSpace:point];
+          if (CGRectContainsPoint(box, local)) {
             [player getItem:item];
             used = YES;
             break;
