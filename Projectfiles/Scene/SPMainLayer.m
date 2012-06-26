@@ -56,6 +56,7 @@
     [gameTimer setOnUpdateListener:self selector:@selector(onGameTimerUpdate:)];
     [gameTimer setOnCompleteListener:self selector:@selector(onGameTimerOver:)];
     [self startGame];
+    [[OALSimpleAudio sharedInstance] playBg:@"main.caf"];
   }
   return self;
 }
@@ -218,6 +219,7 @@
   [self.gameTimer stop];
   [[SPDrawingManager sharedManager] removeAllDrawings];
   [self scheduleOnce:@selector(onReady) delay:0.5];
+  [[OALSimpleAudio sharedInstance] backgroundTrack].volume = 0.5;
 }
 
 - (void)onReady {
@@ -247,6 +249,7 @@
       [node.parent addChild:go];
       [self.gameTimer play];
       self.state = SPGameStateMatch;
+      [[OALSimpleAudio sharedInstance] backgroundTrack].volume = 1.0;
     }],
                       suicide,
                       nil]];
@@ -313,6 +316,7 @@
     [menu alignItemsHorizontallyWithPadding:30];
     menu.position = ccp(player0.center.x, player0.center.y - 60);
     [self addChild:menu];
+    [[OALSimpleAudio sharedInstance] backgroundTrack].volume = 0.5;
   } else {
     self.state = SPGameStateResult;
   }
