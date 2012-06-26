@@ -29,9 +29,6 @@
     drawings_ = [NSMutableArray array];
     items_ = [NSMutableArray array];
     [[CCScheduler sharedScheduler] scheduleUpdateForTarget:self priority:0 paused:NO];
-    SPItem* item = [SPItem item];
-    item.position = ccp(PLAYER_WIDTH / 2, PLAYER_HEIGHT / 2);
-    [self addItem:item];
   }
   return self;
 }

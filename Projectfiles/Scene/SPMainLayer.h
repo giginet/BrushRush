@@ -18,13 +18,13 @@ typedef enum {
   SPGameStateEnd
 } SPGameState;
 
-@interface SPMainLayer : CCLayer {
-}
+@interface SPMainLayer : CCLayer
 
 @property(readwrite) SPGameState state;
 @property(readonly, strong) NSArray* drawings;
 @property(readonly, strong) NSMutableArray* players;
 @property(readonly, strong) SPStatusBar* statusbar;
 @property(readonly, strong) KWTimer* gameTimer;
+@property(readonly, strong) KWTimer* itemTimer;
 
 @end

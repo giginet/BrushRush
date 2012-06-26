@@ -13,6 +13,7 @@
 #import "define.h"
 
 @interface SPMainLayer()
+- (void)update:(ccTime)dt;
 - (SPPlayer*)checkWinner;
 - (void)startGame;
 - (void)onGameTimerUpdate:(KWTimer*)timer;
@@ -28,6 +29,7 @@
 @synthesize players;
 @synthesize statusbar;
 @synthesize gameTimer;
+@synthesize itemTimer;
 
 - (id)init {
   self = [super init];
@@ -56,12 +58,27 @@
     [gameTimer setOnCompleteListener:self selector:@selector(onGameTimerOver:)];
     [self startGame];
     [[OALSimpleAudio sharedInstance] playBg:@"main.caf"];
+    itemTimer = [KWTimer timerWithMax:[[KWRandom random] nextIntFrom:5 to:15]];
+    [itemTimer setOnCompleteListenerWithBlock:^(id obj) {
+      SPItem* item = [SPItem item];
+      KWRandom* rnd = [KWRandom random];
+      item.position = ccp([rnd nextInt] % PLAYER_WIDTH, [rnd nextInt] % PLAYER_HEIGHT / 2);
+      [[SPDrawingManager sharedManager] addItem:item];
+      KWTimer* timer = (KWTimer*)obj;
+      timer.max = [rnd nextIntFrom:5 to:15];
+      [timer reset];
+      [timer play];
+    }];
+    [self scheduleUpdate];
   }
   return self;
 }
 
 - (void)onEnter {
   [super onEnter];
+}
+
+- (void)update:(ccTime)dt {
 }
 
 - (void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -217,10 +234,12 @@
   }
   for (int i = 0; i < 2; ++i) [self.statusbar setEnableCrystal:i enable:NO];
   [self.statusbar setGaugeRate:1.0];
-  [self.gameTimer stop];
   [[SPDrawingManager sharedManager] removeAllDrawings];
+  [[SPDrawingManager sharedManager] removeAllItems];
+  [self.itemTimer stop];
   [self scheduleOnce:@selector(onReady) delay:0.5];
   [[OALSimpleAudio sharedInstance] backgroundTrack].volume = 0.5;
+  [itemTimer play];
 }
 
 - (void)onReady {
@@ -321,6 +340,7 @@
   } else {
     self.state = SPGameStateResult;
   }
+  [self.gameTimer stop];
 }
 
 - (void)disableCurrentDrawing:(NSSet*)touches {
