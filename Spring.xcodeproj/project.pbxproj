@@ -123,6 +123,10 @@
 		07E177DA159A019200F66DD9 /* KWLoopAudioTrack.m in Sources */ = {isa = PBXBuildFile; fileRef = 07E177D9159A019200F66DD9 /* KWLoopAudioTrack.m */; };
 		07E177DB159A05D300F66DD9 /* main_intro.caf in Resources */ = {isa = PBXBuildFile; fileRef = 07E177D6159A010000F66DD9 /* main_intro.caf */; };
 		07E177DC159A05D300F66DD9 /* main_loop.caf in Resources */ = {isa = PBXBuildFile; fileRef = 07E177D7159A010000F66DD9 /* main_loop.caf */; };
+		07E177E1159A092500F66DD9 /* fanfare0.caf in Resources */ = {isa = PBXBuildFile; fileRef = 07E177DD159A091300F66DD9 /* fanfare0.caf */; };
+		07E177E2159A092500F66DD9 /* fanfare1.caf in Resources */ = {isa = PBXBuildFile; fileRef = 07E177DE159A091300F66DD9 /* fanfare1.caf */; };
+		07E177E3159A092500F66DD9 /* result_intro.caf in Resources */ = {isa = PBXBuildFile; fileRef = 07E177DF159A091300F66DD9 /* result_intro.caf */; };
+		07E177E4159A092500F66DD9 /* result_loop.caf in Resources */ = {isa = PBXBuildFile; fileRef = 07E177E0159A091300F66DD9 /* result_loop.caf */; };
 		DC485B1113AA0E5600F2BC70 /* libchipmunk-mac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DC485B0D13AA0E5600F2BC70 /* libchipmunk-mac.a */; };
 		DC485B1713AA0EBB00F2BC70 /* libbox2d-mac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DC485B1613AA0EBB00F2BC70 /* libbox2d-mac.a */; };
 		DC485B4613AA18A600F2BC70 /* libcocosdenshion-mac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DC485B4513AA18A600F2BC70 /* libcocosdenshion-mac.a */; };
@@ -306,6 +310,10 @@
 		07E177D7159A010000F66DD9 /* main_loop.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = main_loop.caf; sourceTree = "<group>"; };
 		07E177D8159A019200F66DD9 /* KWLoopAudioTrack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KWLoopAudioTrack.h; sourceTree = "<group>"; };
 		07E177D9159A019200F66DD9 /* KWLoopAudioTrack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWLoopAudioTrack.m; sourceTree = "<group>"; };
+		07E177DD159A091300F66DD9 /* fanfare0.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = fanfare0.caf; sourceTree = "<group>"; };
+		07E177DE159A091300F66DD9 /* fanfare1.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = fanfare1.caf; sourceTree = "<group>"; };
+		07E177DF159A091300F66DD9 /* result_intro.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = result_intro.caf; sourceTree = "<group>"; };
+		07E177E0159A091300F66DD9 /* result_loop.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = result_loop.caf; sourceTree = "<group>"; };
 		DC3BE97813B4FB71003739CC /* BuildSettings-iOS.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "BuildSettings-iOS.xcconfig"; sourceTree = "<group>"; };
 		DC485B0D13AA0E5600F2BC70 /* libchipmunk-mac.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libchipmunk-mac.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC485B1613AA0EBB00F2BC70 /* libbox2d-mac.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libbox2d-mac.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -389,6 +397,10 @@
 			children = (
 				07E177D6159A010000F66DD9 /* main_intro.caf */,
 				07E177D7159A010000F66DD9 /* main_loop.caf */,
+				07E177DD159A091300F66DD9 /* fanfare0.caf */,
+				07E177DE159A091300F66DD9 /* fanfare1.caf */,
+				07E177DF159A091300F66DD9 /* result_intro.caf */,
+				07E177E0159A091300F66DD9 /* result_loop.caf */,
 			);
 			path = Music;
 			sourceTree = "<group>";
@@ -832,6 +844,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				07E177E1159A092500F66DD9 /* fanfare0.caf in Resources */,
+				07E177E2159A092500F66DD9 /* fanfare1.caf in Resources */,
+				07E177E3159A092500F66DD9 /* result_intro.caf in Resources */,
+				07E177E4159A092500F66DD9 /* result_loop.caf in Resources */,
 				07E177DB159A05D300F66DD9 /* main_intro.caf in Resources */,
 				07E177DC159A05D300F66DD9 /* main_loop.caf in Resources */,
 				070C25201599367900F0F042 /* break.caf in Resources */,

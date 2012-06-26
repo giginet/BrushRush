@@ -49,7 +49,7 @@
 
 - (SPItemKind)changeRandom {
   KWRandom* rnd = [KWRandom random];
-  self.kind = [rnd nextIntFrom:0 to:SPItemKindNum - 1];
+  self.kind = ([rnd nextIntFrom:0 to:SPItemKindNum - 1] + self.kind) % SPItemKindNum;
   return self.kind;
   }
 
@@ -121,6 +121,7 @@
     case SPItemKindBlind:
       break;
     case SPItemKindPaint:
+      [manager paintAt:self.position player:self.player];
       break;
     case SPItemKindSnatch:
       for(SPDrawing* drawing in [manager.drawings reverseObjectEnumerator]) {

@@ -57,12 +57,12 @@
     gameTimer = [KWTimer timerWithMax:GAME_TIME];
     [gameTimer setOnUpdateListener:self selector:@selector(onGameTimerUpdate:)];
     [gameTimer setOnCompleteListener:self selector:@selector(onGameTimerOver:)];
-    [self startGame];
     itemTimer = [KWTimer timerWithMax:[[KWRandom random] nextIntFrom:5 to:15]];
     [itemTimer setOnCompleteListenerWithBlock:^(id obj) {
       SPItem* item = [SPItem item];
       KWRandom* rnd = [KWRandom random];
-      item.position = ccp([rnd nextInt] % PLAYER_WIDTH, [rnd nextInt] % PLAYER_HEIGHT / 2);
+      CGSize size = item.texture.contentSize;
+      item.position = ccp([rnd nextIntFrom:0 to:PLAYER_WIDTH - size.width], [rnd nextIntFrom:0 to:PLAYER_HEIGHT - size.height]);
       [[SPDrawingManager sharedManager] addItem:item];
       KWTimer* timer = (KWTimer*)obj;
       timer.max = [rnd nextIntFrom:5 to:15];
@@ -72,6 +72,7 @@
     [self scheduleUpdate];
     music = [KWLoopAudioTrack trackWithIntro:@"main_intro.caf" loop:@"main_loop.caf"];
     [self.music play];
+    [self startGame];
   }
   return self;
 }
@@ -238,10 +239,10 @@
   [self.statusbar setGaugeRate:1.0];
   [[SPDrawingManager sharedManager] removeAllDrawings];
   [[SPDrawingManager sharedManager] removeAllItems];
-  [self.itemTimer stop];
   [self scheduleOnce:@selector(onReady) delay:0.5];
   self.music.volume = 0.5;
-  [itemTimer play];
+  [self.itemTimer reset];
+  [self.itemTimer play];
 }
 
 - (void)onReady {
@@ -321,6 +322,7 @@
   SPPlayer* player1 = [self.players objectAtIndex:1];
   [self.statusbar setBadge:player0.win player1:player1.win];
   if (player0.win == 2 || player1.win == 2) {
+    music = [KWLoopAudioTrack trackWithIntro:@"result_intro.caf" loop:@"result_loop.caf"];
     self.state = SPGameStateEnd;
     __block CCDirector* director = [CCDirector sharedDirector];
     CCMenuItemImage* restart = [CCMenuItemImage itemFromNormalImage:@"restart.png" 
@@ -337,12 +339,16 @@
     CCMenu* menu = [CCMenu menuWithItems:restart, title, nil];
     [menu alignItemsHorizontallyWithPadding:30];
     menu.position = ccp(player0.center.x, player0.center.y - 60);
+    [[OALSimpleAudio sharedInstance] playEffect:@"fanfare1.caf"];
     [self addChild:menu];
-    self.music.volume = 0.5;
+    [self.music play];
   } else {
     self.state = SPGameStateResult;
+    [[OALSimpleAudio sharedInstance] playEffect:@"fanfare0.caf"];
+     self.music.volume = 0.5;
   }
   [self.gameTimer stop];
+  [self.itemTimer stop];
 }
 
 - (void)disableCurrentDrawing:(NSSet*)touches {
