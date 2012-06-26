@@ -9,6 +9,7 @@
 #import "KWLayer.h"
 #import "heqet.h"
 #import "SPStatusBar.h"
+#import "KWLoopAudioTrack.h"
 
 typedef enum {
   SPGameStateReady,
@@ -26,5 +27,6 @@ typedef enum {
 @property(readonly, strong) SPStatusBar* statusbar;
 @property(readonly, strong) KWTimer* gameTimer;
 @property(readonly, strong) KWTimer* itemTimer;
+@property(readonly, strong) KWLoopAudioTrack* music;
 
 @end

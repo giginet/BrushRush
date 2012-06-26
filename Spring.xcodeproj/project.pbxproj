@@ -33,7 +33,6 @@
 		070C250A1592A13C00F0F042 /* yes.png in Resources */ = {isa = PBXBuildFile; fileRef = 070C24F21592A13C00F0F042 /* yes.png */; };
 		070C250E1592A41500F0F042 /* draw-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 070C250C1592A41500F0F042 /* draw-ipad.png */; };
 		070C250F1592A41500F0F042 /* draw.png in Resources */ = {isa = PBXBuildFile; fileRef = 070C250D1592A41500F0F042 /* draw.png */; };
-		070C251D159932A800F0F042 /* main.caf in Resources */ = {isa = PBXBuildFile; fileRef = 070C251C159932A800F0F042 /* main.caf */; };
 		070C25201599367900F0F042 /* break.caf in Resources */ = {isa = PBXBuildFile; fileRef = 070C251E1599361300F0F042 /* break.caf */; };
 		070C25211599367900F0F042 /* slash.caf in Resources */ = {isa = PBXBuildFile; fileRef = 070C251F1599361300F0F042 /* slash.caf */; };
 		070FCCA8158E65EB00F6DC00 /* brush-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 070FCC7A158E65EB00F6DC00 /* brush-ipad.png */; };
@@ -121,6 +120,9 @@
 		07980DF91585B0E8004B230C /* CCTexture2D+DrawInPoly.m in Sources */ = {isa = PBXBuildFile; fileRef = 07980DF81585B0E8004B230C /* CCTexture2D+DrawInPoly.m */; };
 		07E177D21599F1D100F66DD9 /* blind.png in Resources */ = {isa = PBXBuildFile; fileRef = 07E177D11599F1D100F66DD9 /* blind.png */; };
 		07E177D51599F47800F66DD9 /* blind-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 07E177D41599F47700F66DD9 /* blind-ipad.png */; };
+		07E177DA159A019200F66DD9 /* KWLoopAudioTrack.m in Sources */ = {isa = PBXBuildFile; fileRef = 07E177D9159A019200F66DD9 /* KWLoopAudioTrack.m */; };
+		07E177DB159A05D300F66DD9 /* main_intro.caf in Resources */ = {isa = PBXBuildFile; fileRef = 07E177D6159A010000F66DD9 /* main_intro.caf */; };
+		07E177DC159A05D300F66DD9 /* main_loop.caf in Resources */ = {isa = PBXBuildFile; fileRef = 07E177D7159A010000F66DD9 /* main_loop.caf */; };
 		DC485B1113AA0E5600F2BC70 /* libchipmunk-mac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DC485B0D13AA0E5600F2BC70 /* libchipmunk-mac.a */; };
 		DC485B1713AA0EBB00F2BC70 /* libbox2d-mac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DC485B1613AA0EBB00F2BC70 /* libbox2d-mac.a */; };
 		DC485B4613AA18A600F2BC70 /* libcocosdenshion-mac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DC485B4513AA18A600F2BC70 /* libcocosdenshion-mac.a */; };
@@ -182,7 +184,6 @@
 		070C24F21592A13C00F0F042 /* yes.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = yes.png; sourceTree = "<group>"; };
 		070C250C1592A41500F0F042 /* draw-ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "draw-ipad.png"; sourceTree = "<group>"; };
 		070C250D1592A41500F0F042 /* draw.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = draw.png; sourceTree = "<group>"; };
-		070C251C159932A800F0F042 /* main.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = main.caf; sourceTree = "<group>"; };
 		070C251E1599361300F0F042 /* break.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = break.caf; sourceTree = "<group>"; };
 		070C251F1599361300F0F042 /* slash.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = slash.caf; sourceTree = "<group>"; };
 		070FCC1C158E08AD00F6DC00 /* define.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = define.h; sourceTree = "<group>"; };
@@ -301,6 +302,10 @@
 		07980DF81585B0E8004B230C /* CCTexture2D+DrawInPoly.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "CCTexture2D+DrawInPoly.m"; path = "Util/CCTexture2D+DrawInPoly.m"; sourceTree = "<group>"; };
 		07E177D11599F1D100F66DD9 /* blind.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blind.png; sourceTree = "<group>"; };
 		07E177D41599F47700F66DD9 /* blind-ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blind-ipad.png"; sourceTree = "<group>"; };
+		07E177D6159A010000F66DD9 /* main_intro.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = main_intro.caf; sourceTree = "<group>"; };
+		07E177D7159A010000F66DD9 /* main_loop.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = main_loop.caf; sourceTree = "<group>"; };
+		07E177D8159A019200F66DD9 /* KWLoopAudioTrack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KWLoopAudioTrack.h; sourceTree = "<group>"; };
+		07E177D9159A019200F66DD9 /* KWLoopAudioTrack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWLoopAudioTrack.m; sourceTree = "<group>"; };
 		DC3BE97813B4FB71003739CC /* BuildSettings-iOS.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "BuildSettings-iOS.xcconfig"; sourceTree = "<group>"; };
 		DC485B0D13AA0E5600F2BC70 /* libchipmunk-mac.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libchipmunk-mac.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC485B1613AA0EBB00F2BC70 /* libbox2d-mac.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libbox2d-mac.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -382,7 +387,8 @@
 		070C251B159932A800F0F042 /* Music */ = {
 			isa = PBXGroup;
 			children = (
-				070C251C159932A800F0F042 /* main.caf */,
+				07E177D6159A010000F66DD9 /* main_intro.caf */,
+				07E177D7159A010000F66DD9 /* main_loop.caf */,
 			);
 			path = Music;
 			sourceTree = "<group>";
@@ -535,6 +541,8 @@
 			children = (
 				074DD658157F76A000C4DCA7 /* KWMusicManager.h */,
 				074DD659157F76A000C4DCA7 /* KWMusicManager.m */,
+				07E177D8159A019200F66DD9 /* KWLoopAudioTrack.h */,
+				07E177D9159A019200F66DD9 /* KWLoopAudioTrack.m */,
 			);
 			path = audio;
 			sourceTree = "<group>";
@@ -824,6 +832,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				07E177DB159A05D300F66DD9 /* main_intro.caf in Resources */,
+				07E177DC159A05D300F66DD9 /* main_loop.caf in Resources */,
 				070C25201599367900F0F042 /* break.caf in Resources */,
 				070C25211599367900F0F042 /* slash.caf in Resources */,
 				07185C2E1598462500B111E9 /* item.caf in Resources */,
@@ -917,7 +927,6 @@
 				071594691592C559003BC47E /* background.png in Resources */,
 				0715947B159339C9003BC47E /* Icon-72.png in Resources */,
 				0715947F15934095003BC47E /* complete.caf in Resources */,
-				070C251D159932A800F0F042 /* main.caf in Resources */,
 				07E177D21599F1D100F66DD9 /* blind.png in Resources */,
 				07E177D51599F47800F66DD9 /* blind-ipad.png in Resources */,
 			);
@@ -968,6 +977,7 @@
 				070FCCD6158E6BDC00F6DC00 /* SPStatusBar.m in Sources */,
 				070FCCDD158E836600F6DC00 /* CCToggleSprite.m in Sources */,
 				0715946C1592D1FD003BC47E /* SPItem.m in Sources */,
+				07E177DA159A019200F66DD9 /* KWLoopAudioTrack.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

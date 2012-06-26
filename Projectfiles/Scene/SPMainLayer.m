@@ -30,6 +30,7 @@
 @synthesize statusbar;
 @synthesize gameTimer;
 @synthesize itemTimer;
+@synthesize music;
 
 - (id)init {
   self = [super init];
@@ -57,7 +58,6 @@
     [gameTimer setOnUpdateListener:self selector:@selector(onGameTimerUpdate:)];
     [gameTimer setOnCompleteListener:self selector:@selector(onGameTimerOver:)];
     [self startGame];
-    [[OALSimpleAudio sharedInstance] playBg:@"main.caf"];
     itemTimer = [KWTimer timerWithMax:[[KWRandom random] nextIntFrom:5 to:15]];
     [itemTimer setOnCompleteListenerWithBlock:^(id obj) {
       SPItem* item = [SPItem item];
@@ -70,6 +70,8 @@
       [timer play];
     }];
     [self scheduleUpdate];
+    music = [KWLoopAudioTrack trackWithIntro:@"main_intro.caf" loop:@"main_loop.caf"];
+    [self.music play];
   }
   return self;
 }
@@ -238,7 +240,7 @@
   [[SPDrawingManager sharedManager] removeAllItems];
   [self.itemTimer stop];
   [self scheduleOnce:@selector(onReady) delay:0.5];
-  [[OALSimpleAudio sharedInstance] backgroundTrack].volume = 0.5;
+  self.music.volume = 0.5;
   [itemTimer play];
 }
 
@@ -269,7 +271,7 @@
       [node.parent addChild:go];
       [self.gameTimer play];
       self.state = SPGameStateMatch;
-      [[OALSimpleAudio sharedInstance] backgroundTrack].volume = 1.0;
+      self.music.volume = 1.0;
     }],
                       suicide,
                       nil]];
@@ -336,7 +338,7 @@
     [menu alignItemsHorizontallyWithPadding:30];
     menu.position = ccp(player0.center.x, player0.center.y - 60);
     [self addChild:menu];
-    [[OALSimpleAudio sharedInstance] backgroundTrack].volume = 0.5;
+    self.music.volume = 0.5;
   } else {
     self.state = SPGameStateResult;
   }
