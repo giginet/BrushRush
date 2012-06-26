@@ -66,7 +66,6 @@
       KWTimer* timer = (KWTimer*)obj;
       timer.max = [rnd nextIntFrom:5 to:15];
       [timer reset];
-      [timer play];
     }];
     [self scheduleUpdate];
     music = [KWLoopAudioTrack trackWithIntro:@"main_intro.caf" loop:@"main_loop.caf"];
@@ -240,7 +239,6 @@
   [[SPDrawingManager sharedManager] removeAllItems];
   [self scheduleOnce:@selector(onReady) delay:0.5];
   self.music.volume = 0.5;
-  [self.itemTimer reset];
   [self.itemTimer play];
 }
 
@@ -284,6 +282,10 @@
 
 - (void)onGameTimerOver:(KWTimer *)timer {
   self.state = SPGameStateSet;
+  SPDrawingManager* manager = [SPDrawingManager sharedManager];
+  for (SPDrawing* drawing in manager.drawings) {
+    [drawing.chargeTimer pause];
+  }
   for (SPPlayer* player in self.players) { 
     CCSprite* label = [CCSprite spriteWithFile:@"gameset.png"];
     label.position = ccp(player.center.x, player.center.y + 60);

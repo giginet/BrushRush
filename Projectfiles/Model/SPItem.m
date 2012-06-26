@@ -40,7 +40,6 @@
     useTimer = [KWTimer timer];
     velocity = [KWVector vectorAtRandom];
     [velocity resize:3];
-    [self scheduleUpdate];
     [self.changeTimer play];
     [self.useTimer setOnCompleteListener:self selector:@selector(onCompleteUseTimer:)];
   }
