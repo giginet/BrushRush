@@ -44,11 +44,10 @@
       SPPlayer* player = [[SPPlayer alloc] initWithId:i];
       [self.players addObject:player];
       [self addChild:player];
-    }
-    for (int i = 0; i < 2; ++i) {
-      CCSprite* sprite = [CCSprite spriteWithFile:[NSString stringWithFormat:@"player%d.png", i]];
-      sprite.position = ccp(director.screenCenter.x, (FRAME_SIZE + PLAYER_HEIGHT + STATUSBAR_HEIGHT) * i + (FRAME_SIZE + PLAYER_HEIGHT) / 2);
-      [self addChild:sprite];
+      CCSprite* frame = [CCSprite spriteWithFile:[NSString stringWithFormat:@"player%d.png", i]];
+      frame.position = ccp(director.screenCenter.x, (FRAME_SIZE + PLAYER_HEIGHT + STATUSBAR_HEIGHT) * i + (FRAME_SIZE + PLAYER_HEIGHT) / 2);
+      [self addChild:frame];
+      player.frame = frame;
     }
     statusbar = [SPStatusBar spriteWithFile:@"status.png"];
     [self addChild:statusbar];

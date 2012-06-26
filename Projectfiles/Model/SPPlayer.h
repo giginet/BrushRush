@@ -20,6 +20,7 @@
 @property(readonly, strong) NSMutableArray* drawings;
 @property(readwrite, strong) UITouch* lastTouch;
 @property(readonly, strong) SPDrawing* lastDrawing;
+@property(readwrite, strong) CCSprite* frame;
 @property(readwrite, strong) SPItem* item;
 
 + (id)playerById:(NSUInteger)n;

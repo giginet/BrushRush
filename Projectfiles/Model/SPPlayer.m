@@ -19,6 +19,7 @@
 @synthesize drawings;
 @synthesize lastTouch;
 @dynamic lastDrawing;
+@synthesize frame;
 @synthesize item;
 
 static NSMutableDictionary* players_;
@@ -83,6 +84,22 @@ static NSMutableDictionary* players_;
   item.owner = self;
   SPDrawingManager* manager = [SPDrawingManager sharedManager];
   [manager removeItem:i];
+}
+
+- (SPItem*)item {
+  return item;
+}
+
+- (void)setItem:(SPItem *)i {
+  item = i;
+  [self.frame stopAllActions];
+  if (i) {
+    NSLog(@"%@", self.frame);
+    [self.frame runAction:[CCRepeatForever actionWithAction:[CCSequence actions:
+                                                             [CCFadeTo actionWithDuration:0.1 opacity:64],
+                                                             [CCFadeTo actionWithDuration:0.1 opacity:255],
+                                                             nil]]];
+  }
 }
 
 @end
