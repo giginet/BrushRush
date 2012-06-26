@@ -61,8 +61,7 @@
     [itemTimer setOnCompleteListenerWithBlock:^(id obj) {
       SPItem* item = [SPItem item];
       KWRandom* rnd = [KWRandom random];
-      CGSize size = item.texture.contentSize;
-      item.position = ccp([rnd nextIntFrom:0 to:PLAYER_WIDTH - size.width], [rnd nextIntFrom:0 to:PLAYER_HEIGHT - size.height]);
+      item.position = ccp([rnd nextIntFrom:0 to:PLAYER_WIDTH], [rnd nextIntFrom:0 to:PLAYER_HEIGHT]);
       [[SPDrawingManager sharedManager] addItem:item];
       KWTimer* timer = (KWTimer*)obj;
       timer.max = [rnd nextIntFrom:5 to:15];
@@ -322,6 +321,7 @@
   SPPlayer* player1 = [self.players objectAtIndex:1];
   [self.statusbar setBadge:player0.win player1:player1.win];
   if (player0.win == 2 || player1.win == 2) {
+    [self.music stop];
     music = [KWLoopAudioTrack trackWithIntro:@"result_intro.caf" loop:@"result_loop.caf"];
     self.state = SPGameStateEnd;
     __block CCDirector* director = [CCDirector sharedDirector];
@@ -340,8 +340,13 @@
     [menu alignItemsHorizontallyWithPadding:30];
     menu.position = ccp(player0.center.x, player0.center.y - 60);
     [[OALSimpleAudio sharedInstance] playEffect:@"fanfare1.caf"];
-    [self addChild:menu];
-    [self.music play];
+    __block SPMainLayer* layer = self;
+    [self runAction:[CCSequence actions:[CCDelayTime actionWithDuration:3.0f],
+                     [CCCallBlockN actionWithBlock:^(CCNode* node){
+      [layer.music play];
+      [layer addChild:menu];
+    }], 
+                     nil]];
   } else {
     self.state = SPGameStateResult;
     [[OALSimpleAudio sharedInstance] playEffect:@"fanfare0.caf"];

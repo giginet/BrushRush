@@ -70,13 +70,17 @@
   self.position = ccpAdd(self.position, self.velocity.point);
   if (self.position.x > PLAYER_WIDTH - self.texture.contentSize.width) {
     velocity = [self.velocity reflect:[KWVector vectorWithPoint:ccp(-1, 0)]];
+    self.position = ccp(PLAYER_WIDTH - self.texture.contentSize.width, self.position.y);
   } else if (self.position.x < 0) {
     velocity = [self.velocity reflect:[KWVector vectorWithPoint:ccp(1, 0)]];
+    self.position = ccp(0, self.position.y);
   }
   if (self.position.y > PLAYER_HEIGHT - self.texture.contentSize.height) {
     velocity = [self.velocity reflect:[KWVector vectorWithPoint:ccp(0, -1)]];
+    self.position = ccp(self.position.x, PLAYER_HEIGHT - self.texture.contentSize.height);
   } else if (self.position.y < 0) {
     velocity = [self.velocity reflect:[KWVector vectorWithPoint:ccp(0, 1)]];
+    self.position = ccp(self.position.x, 0);
   }
 }
 
