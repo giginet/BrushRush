@@ -21,7 +21,7 @@
 @synthesize changeTimer;
 @synthesize useTimer;
 @synthesize velocity;
-@synthesize owner;
+@synthesize player;
 
 + (SPItem*)item {
   KWRandom* rnd = [KWRandom random];
@@ -91,7 +91,6 @@
 }
 
 - (void)useBy:(SPPlayer *)player {
-  NSLog(@"use %@", self.name);
   int times[] = {7, 7, 7, 1, 1};
   switch (self.kind) {
     case SPItemKindAccel:
@@ -113,7 +112,7 @@
 }
 
 - (void)onCompleteUseTimer:(KWTimer *)timer {
-  NSLog(@"type = %d", self.kind);
+  SPDrawingManager* manager = [SPDrawingManager sharedManager];
   switch (self.kind) {
     case SPItemKindAccel:
       break;
@@ -122,15 +121,21 @@
     case SPItemKindBlind:
       break;
     case SPItemKindPaint:
-      [[SPDrawingManager sharedManager] paintAt:self.position player:self.owner];
+      [manager paintAt:self.position player:self.player];
       break;
     case SPItemKindSnatch:
+      for(SPDrawing* drawing in [manager.drawings reverseObjectEnumerator]) {
+        if (![drawing.player isEqual:self.player]) {
+          drawing.player = self.player;
+          break;
+        }
+      }
       break;
     default:
       break;
   }
-  self.owner.item = nil;
-  self.owner = nil;
+  self.player.item = nil;
+  self.player = nil;
 }
 
 @end

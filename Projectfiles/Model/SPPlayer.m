@@ -81,7 +81,7 @@ static NSMutableDictionary* players_;
   [[OALSimpleAudio sharedInstance] playEffect:@"item.caf"];
   [i useBy:self];
   self.item = i;
-  item.owner = self;
+  item.player = self;
   SPDrawingManager* manager = [SPDrawingManager sharedManager];
   [manager removeItem:i];
 }

@@ -26,7 +26,7 @@ typedef enum {
 @property(readonly, strong) KWTimer* changeTimer;
 @property(readonly, strong) KWTimer* useTimer;
 @property(readonly, strong) KWVector* velocity;
-@property(readwrite, weak) SPPlayer* owner;
+@property(readwrite, weak) SPPlayer* player;
 
 + (SPItem*)item;
 - (id)initWithKind:(SPItemKind)k;
