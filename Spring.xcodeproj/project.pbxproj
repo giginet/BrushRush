@@ -119,6 +119,8 @@
 		074DD6A1157F76A000C4DCA7 /* sound_converter.py in Resources */ = {isa = PBXBuildFile; fileRef = 074DD689157F76A000C4DCA7 /* sound_converter.py */; };
 		074DD6A5157F7D1300C4DCA7 /* SPMainLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 074DD6A4157F7D1300C4DCA7 /* SPMainLayer.m */; };
 		07980DF91585B0E8004B230C /* CCTexture2D+DrawInPoly.m in Sources */ = {isa = PBXBuildFile; fileRef = 07980DF81585B0E8004B230C /* CCTexture2D+DrawInPoly.m */; };
+		07E177D21599F1D100F66DD9 /* blind.png in Resources */ = {isa = PBXBuildFile; fileRef = 07E177D11599F1D100F66DD9 /* blind.png */; };
+		07E177D51599F47800F66DD9 /* blind-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 07E177D41599F47700F66DD9 /* blind-ipad.png */; };
 		DC485B1113AA0E5600F2BC70 /* libchipmunk-mac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DC485B0D13AA0E5600F2BC70 /* libchipmunk-mac.a */; };
 		DC485B1713AA0EBB00F2BC70 /* libbox2d-mac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DC485B1613AA0EBB00F2BC70 /* libbox2d-mac.a */; };
 		DC485B4613AA18A600F2BC70 /* libcocosdenshion-mac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DC485B4513AA18A600F2BC70 /* libcocosdenshion-mac.a */; };
@@ -297,6 +299,8 @@
 		074DD6A4157F7D1300C4DCA7 /* SPMainLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SPMainLayer.m; path = Scene/SPMainLayer.m; sourceTree = "<group>"; };
 		07980DF71585B0E8004B230C /* CCTexture2D+DrawInPoly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "CCTexture2D+DrawInPoly.h"; path = "Util/CCTexture2D+DrawInPoly.h"; sourceTree = "<group>"; };
 		07980DF81585B0E8004B230C /* CCTexture2D+DrawInPoly.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "CCTexture2D+DrawInPoly.m"; path = "Util/CCTexture2D+DrawInPoly.m"; sourceTree = "<group>"; };
+		07E177D11599F1D100F66DD9 /* blind.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blind.png; sourceTree = "<group>"; };
+		07E177D41599F47700F66DD9 /* blind-ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blind-ipad.png"; sourceTree = "<group>"; };
 		DC3BE97813B4FB71003739CC /* BuildSettings-iOS.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "BuildSettings-iOS.xcconfig"; sourceTree = "<group>"; };
 		DC485B0D13AA0E5600F2BC70 /* libchipmunk-mac.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libchipmunk-mac.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC485B1613AA0EBB00F2BC70 /* libbox2d-mac.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libbox2d-mac.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -409,6 +413,8 @@
 		070FCC80158E65EB00F6DC00 /* item */ = {
 			isa = PBXGroup;
 			children = (
+				07E177D11599F1D100F66DD9 /* blind.png */,
+				07E177D41599F47700F66DD9 /* blind-ipad.png */,
 				070FCC81158E65EB00F6DC00 /* item_accel-ipad.png */,
 				070FCC82158E65EB00F6DC00 /* item_accel.png */,
 				070FCC83158E65EB00F6DC00 /* item_blind-ipad.png */,
@@ -912,6 +918,8 @@
 				0715947B159339C9003BC47E /* Icon-72.png in Resources */,
 				0715947F15934095003BC47E /* complete.caf in Resources */,
 				070C251D159932A800F0F042 /* main.caf in Resources */,
+				07E177D21599F1D100F66DD9 /* blind.png in Resources */,
+				07E177D51599F47800F66DD9 /* blind-ipad.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

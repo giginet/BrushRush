@@ -121,7 +121,6 @@
     case SPItemKindBlind:
       break;
     case SPItemKindPaint:
-      [manager paintAt:self.position player:self.player];
       break;
     case SPItemKindSnatch:
       for(SPDrawing* drawing in [manager.drawings reverseObjectEnumerator]) {
