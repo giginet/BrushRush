@@ -232,7 +232,10 @@ typedef enum {
   if (![self.player isEqual:other.player] && 
       self.type == SPDrawingTypeCharge && 
       other.type == SPDrawingTypeSlash) {
-    if ([self containsPoint:other.gravityPoint]) {
+    CGPoint origin = self.boundingBox.origin;
+    CGPoint end = ccpAdd(origin, ccp(self.boundingBox.size.width, self.boundingBox.size.height));
+    float diagonal = ccpDistance(origin, end);
+    if ([self containsPoint:other.gravityPoint] && other.length > diagonal / 2) {
       return YES;
     }
   }
