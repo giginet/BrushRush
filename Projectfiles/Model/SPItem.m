@@ -7,6 +7,7 @@
 //
 
 #import "SPItem.h"
+#import "SPDrawingManager.h"
 #import "define.h"
 
 @interface SPItem()
@@ -48,7 +49,7 @@
 
 - (SPItemKind)changeRandom {
   KWRandom* rnd = [KWRandom random];
-  self.kind = (SPItemKind)((self.kind + [rnd nextInt] % (SPItemKindNum - 1)) % SPItemKindNum);
+  self.kind = [rnd nextIntFrom:0 to:SPItemKindNum - 1];
   return self.kind;
   }
 
@@ -91,7 +92,7 @@
 
 - (void)useBy:(SPPlayer *)player {
   NSLog(@"use %@", self.name);
-  int times[] = {7, 7, 7, 2, 2};
+  int times[] = {7, 7, 7, 1, 1};
   switch (self.kind) {
     case SPItemKindAccel:
       break;
@@ -106,11 +107,13 @@
     default:
       break;
   }
+  [self.changeTimer stop];
   [self.useTimer set:times[(int)self.kind]];
   [self.useTimer play];
 }
 
 - (void)onCompleteUseTimer:(KWTimer *)timer {
+  NSLog(@"type = %d", self.kind);
   switch (self.kind) {
     case SPItemKindAccel:
       break;
@@ -119,6 +122,7 @@
     case SPItemKindBlind:
       break;
     case SPItemKindPaint:
+      [[SPDrawingManager sharedManager] paintAt:self.position player:self.owner];
       break;
     case SPItemKindSnatch:
       break;

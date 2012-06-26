@@ -113,4 +113,19 @@
   [items_ removeAllObjects];
 }
 
+- (void)paintAt:(CGPoint)point player:(SPPlayer *)player {
+  KWRandom* rnd = [KWRandom random];
+  SPDrawing* drawing = [[SPDrawing alloc] init];
+  for (int i = 0; i < 30; ++i) {
+    int deg = i * 12;
+    float radius = [rnd nextIntFrom:50 to:150];
+    KWVector* v = [KWVector vectorWithPoint:CGPointMake(1, 0)];
+    CGPoint p = ccpAdd(point, [[[v resize:radius] rotate:deg] point]);
+    [drawing addPoint:p];
+  }
+  drawing.player = player;
+  drawing.type = SPDrawingTypeArea;
+  [self addDrawing:drawing];
+}
+
 @end

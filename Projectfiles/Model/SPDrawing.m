@@ -52,6 +52,7 @@ typedef enum {
 - (id)initWithPoints:(NSArray *)points {
   self = [self init];
   if (self) {
+    points_ = [NSMutableArray arrayWithArray:points];
   }
   return self;
 }
@@ -140,6 +141,7 @@ typedef enum {
 - (void)setPlayer:(SPPlayer *)p {
   player = p;
   [p.drawings addObject:self];
+  self.color = p.color;
 }
 
 - (void)addPoint:(CGPoint)point {

@@ -30,5 +30,6 @@
 - (void)addItem:(SPItem*)item;
 - (void)removeItem:(SPItem*)item;
 - (void)removeAllItems;
+- (void)paintAt:(CGPoint)point player:(SPPlayer*)player;
 
 @end

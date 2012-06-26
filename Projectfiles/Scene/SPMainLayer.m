@@ -84,7 +84,6 @@
           player.lastTouch = touch;
           SPDrawing* drawing = [[SPDrawing alloc] init];
           [manager addDrawing:drawing];
-          drawing.color = player.color;
           drawing.player = player;
           [drawing addPoint:[player convertToNodeSpace:point]];
         }

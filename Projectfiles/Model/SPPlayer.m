@@ -94,7 +94,6 @@ static NSMutableDictionary* players_;
   item = i;
   [self.frame stopAllActions];
   if (i) {
-    NSLog(@"%@", self.frame);
     [self.frame runAction:[CCRepeatForever actionWithAction:[CCSequence actions:
                                                              [CCFadeTo actionWithDuration:0.1 opacity:64],
                                                              [CCFadeTo actionWithDuration:0.1 opacity:255],
