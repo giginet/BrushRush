@@ -173,8 +173,11 @@ typedef enum {
 }
 
 - (void)onEndCharge {
+  SPDrawingManager* manager = [SPDrawingManager sharedManager];
   self.type = SPDrawingTypeArea;
-  [[OALSimpleAudio sharedInstance] playEffect:@"complete.caf"];
+  if ([manager.drawings containsObject:self]) {
+    [[OALSimpleAudio sharedInstance] playEffect:@"complete.caf"];
+  }
   //SPDrawingManager* manager = [SPDrawingManager sharedManager];
   //[manager mergeWithIntersectsDrawing:player.lastDrawing];
 }
@@ -225,8 +228,7 @@ typedef enum {
 - (BOOL)canCuttingBy:(SPDrawing *)other {
   if (![self.player isEqual:other.player] && 
       self.type == SPDrawingTypeCharge && 
-      other.type == SPDrawingTypeSlash && 
-      CGRectIntersectsRect(self.boundingBox, other.boundingBox)) {
+      other.type == SPDrawingTypeSlash) {
     if ([self containsPoint:other.gravityPoint]) {
       return YES;
     }

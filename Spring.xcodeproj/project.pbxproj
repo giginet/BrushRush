@@ -34,6 +34,8 @@
 		070C250E1592A41500F0F042 /* draw-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 070C250C1592A41500F0F042 /* draw-ipad.png */; };
 		070C250F1592A41500F0F042 /* draw.png in Resources */ = {isa = PBXBuildFile; fileRef = 070C250D1592A41500F0F042 /* draw.png */; };
 		070C251D159932A800F0F042 /* main.caf in Resources */ = {isa = PBXBuildFile; fileRef = 070C251C159932A800F0F042 /* main.caf */; };
+		070C25201599367900F0F042 /* break.caf in Resources */ = {isa = PBXBuildFile; fileRef = 070C251E1599361300F0F042 /* break.caf */; };
+		070C25211599367900F0F042 /* slash.caf in Resources */ = {isa = PBXBuildFile; fileRef = 070C251F1599361300F0F042 /* slash.caf */; };
 		070FCCA8158E65EB00F6DC00 /* brush-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 070FCC7A158E65EB00F6DC00 /* brush-ipad.png */; };
 		070FCCA9158E65EB00F6DC00 /* brush.png in Resources */ = {isa = PBXBuildFile; fileRef = 070FCC7B158E65EB00F6DC00 /* brush.png */; };
 		070FCCAA158E65EB00F6DC00 /* paint0-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 070FCC7C158E65EB00F6DC00 /* paint0-ipad.png */; };
@@ -179,6 +181,8 @@
 		070C250C1592A41500F0F042 /* draw-ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "draw-ipad.png"; sourceTree = "<group>"; };
 		070C250D1592A41500F0F042 /* draw.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = draw.png; sourceTree = "<group>"; };
 		070C251C159932A800F0F042 /* main.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = main.caf; sourceTree = "<group>"; };
+		070C251E1599361300F0F042 /* break.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = break.caf; sourceTree = "<group>"; };
+		070C251F1599361300F0F042 /* slash.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = slash.caf; sourceTree = "<group>"; };
 		070FCC1C158E08AD00F6DC00 /* define.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = define.h; sourceTree = "<group>"; };
 		070FCC7A158E65EB00F6DC00 /* brush-ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "brush-ipad.png"; sourceTree = "<group>"; };
 		070FCC7B158E65EB00F6DC00 /* brush.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = brush.png; sourceTree = "<group>"; };
@@ -489,6 +493,8 @@
 			children = (
 				0715947E15934095003BC47E /* complete.caf */,
 				07185C2C159845ED00B111E9 /* item.caf */,
+				070C251E1599361300F0F042 /* break.caf */,
+				070C251F1599361300F0F042 /* slash.caf */,
 			);
 			name = SE;
 			path = Projectfiles/Resources/SE;
@@ -812,6 +818,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				070C25201599367900F0F042 /* break.caf in Resources */,
+				070C25211599367900F0F042 /* slash.caf in Resources */,
 				07185C2E1598462500B111E9 /* item.caf in Resources */,
 				DCC1A0FA13A94ED5005BD75D /* Default.png in Resources */,
 				DCC1A0FC13A94ED5005BD75D /* fps_images.png in Resources */,

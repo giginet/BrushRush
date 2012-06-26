@@ -29,7 +29,7 @@
 - (id)initWithKind:(SPItemKind)k {
   self = [super init];
   if (self) {
-    self.kind = k;
+    kind = k;
     changeTimer = [KWTimer timerWithMax:1.0];
     [self.changeTimer setOnCompleteListener:self 
                                    selector:@selector(onCompleteChangeTimer:)];

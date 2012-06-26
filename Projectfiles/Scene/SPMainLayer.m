@@ -133,10 +133,12 @@
             [lastDrawing fire];
           } else {
             lastDrawing.type = SPDrawingTypeSlash;
+            [[OALSimpleAudio sharedInstance] playEffect:@"slash.caf"];
             for (SPDrawing* other in [NSArray arrayWithArray:self.drawings]) {
               if ([other canCuttingBy:lastDrawing]) {
                 NSLog(@"cut");
                 [manager removeDrawing:other];
+                [[OALSimpleAudio sharedInstance] playEffect:@"break.caf"];
               }
             }
             [manager removeDrawing:lastDrawing];
