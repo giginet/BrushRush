@@ -64,11 +64,6 @@ static NSMutableDictionary* players_;
   for (SPItem* i in manager.items) {
     [i.texture drawAtPoint:i.position];
   }
-  SPPlayer* enemy = [SPPlayer playerById:(self.identifier + 1) % 2];
-  if (enemy.item && enemy.item.kind == SPItemKindBlind) {
-    CCTexture2D* blind = [[CCTextureCache sharedTextureCache] addImage:@"blind.png"];
-    [blind drawAtPoint:ccpSub(self.center, ccp(blind.contentSize.width / 2, blind.contentSize.height / 2))];
-  }
 }
 
 - (SPDrawing*)lastDrawing {

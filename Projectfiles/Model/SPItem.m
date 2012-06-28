@@ -9,6 +9,7 @@
 #import "SPItem.h"
 #import "SPDrawingManager.h"
 #import "define.h"
+#define BLIND_TAG 100
 
 @interface SPItem()
 - (void)onCompleteChangeTimer:(KWTimer*)timer;
@@ -93,21 +94,15 @@
   return names[(int)kind];
 }
 
-- (void)useBy:(SPPlayer *)player {
-  int times[] = {7, 7, 7, 1, 1};
-  switch (self.kind) {
-    case SPItemKindAccel:
-      break;
-    case SPItemKindBrake:
-      break;
-    case SPItemKindBlind:
-      break;
-    case SPItemKindPaint:
-      break;
-    case SPItemKindSnatch:
-      break;
-    default:
-      break;
+- (void)useBy:(SPPlayer *)user {
+  int times[] = {7, 7, 7, 1, 1}; 
+  if (self.kind == SPItemKindBlind) {
+    SPPlayer* enemy = [SPPlayer playerById:(user.identifier + 1) % 2];
+    CCAnimation* anime = [CCAnimation animationWithFiles:[NSString stringWithFormat:@"blind%d_", user.identifier] frameCount:2 delay:1.0];
+    CCSprite* sprite = [CCSprite spriteWithFile:@"blind0_0.png"];
+    sprite.position = enemy.center;
+    [sprite runAction:[CCRepeatForever actionWithAction:[CCAnimate actionWithAnimation:anime]]];
+    [enemy addChild:sprite z:BLIND_TAG tag:BLIND_TAG];
   }
   [self.changeTimer stop];
   [self.useTimer set:times[(int)self.kind]];
@@ -116,6 +111,7 @@
 
 - (void)onCompleteUseTimer:(KWTimer *)timer {
   SPDrawingManager* manager = [SPDrawingManager sharedManager];
+  SPPlayer* enemy = [SPPlayer playerById:(self.player.identifier + 1) % 2];
   switch (self.kind) {
     case SPItemKindAccel:
       [[OALSimpleAudio sharedInstance] playEffect:@"item_out.caf"];
@@ -124,6 +120,7 @@
       [[OALSimpleAudio sharedInstance] playEffect:@"item_out.caf"];
       break;
     case SPItemKindBlind:
+      [enemy removeChildByTag:BLIND_TAG cleanup:YES];
       [[OALSimpleAudio sharedInstance] playEffect:@"item_out.caf"];
       break;
     case SPItemKindPaint:
