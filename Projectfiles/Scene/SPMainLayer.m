@@ -308,6 +308,7 @@
 
 - (void)onResult {
   SPPlayer* winner = [self checkWinner];
+  NSMutableArray* labels = [NSMutableArray array];
   for (SPPlayer* player in self.players) { 
     NSString* filename = @"lose";
     if (!winner) {
@@ -319,9 +320,10 @@
         player.win += 1;
       }
     }
-    CCSprite* label = [CCSprite spriteWithFile:[NSString stringWithFormat:@"%@.png", filename]];
-    label.position = ccp(player.center.x, player.center.y + 135);
+    __block CCSprite* label = [CCSprite spriteWithFile:[NSString stringWithFormat:@"%@.png", filename]];
+    label.position = ccp(player.center.x, player.center.y + 60);
     [player addChild:label];
+    [labels addObject:label];
   }
   SPPlayer* player0 = [self.players objectAtIndex:0];
   SPPlayer* player1 = [self.players objectAtIndex:1];
@@ -351,9 +353,13 @@
     __block SPMainLayer* layer = self;
     [self runAction:[CCSequence actions:[CCDelayTime actionWithDuration:3.0f],
                      [CCCallBlockN actionWithBlock:^(CCNode* node){
+      CCSprite* label = [labels objectAtIndex:0];
+      [label runAction:[CCSequence actions:[CCMoveBy actionWithDuration:0.25 position:ccp(0, 75)],
+                        [CCCallBlockN actionWithBlock:^(CCNode* node){
+        [self addChild:sign];
+        [layer addChild:menu];
+      }], nil]];
       [layer.music play];
-      [self addChild:sign];
-      [layer addChild:menu];
     }], 
                      nil]];
   } else {
