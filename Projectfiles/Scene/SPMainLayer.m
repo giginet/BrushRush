@@ -320,7 +320,7 @@
       }
     }
     CCSprite* label = [CCSprite spriteWithFile:[NSString stringWithFormat:@"%@.png", filename]];
-    label.position = ccp(player.center.x, player.center.y + 60);
+    label.position = ccp(player.center.x, player.center.y + 135);
     [player addChild:label];
   }
   SPPlayer* player0 = [self.players objectAtIndex:0];
@@ -331,6 +331,8 @@
     music = [KWLoopAudioTrack trackWithIntro:@"result_intro.caf" loop:@"result_loop.caf"];
     self.state = SPGameStateEnd;
     __block CCDirector* director = [CCDirector sharedDirector];
+    CCSprite* sign = [CCSprite spriteWithFile:@"sign.png"];
+    sign.position = ccp(director.screenCenter.x, 130);
     CCMenuItemImage* restart = [CCMenuItemImage itemFromNormalImage:@"restart.png" 
                                                       selectedImage:@"restart_selected.png" 
                                                       disabledImage:@"restart_selected.png" 
@@ -343,13 +345,14 @@
                                                             block:^(id sender){
                                                             }];
     CCMenu* menu = [CCMenu menuWithItems:restart, title, nil];
-    [menu alignItemsHorizontallyWithPadding:30];
-    menu.position = ccp(player0.center.x, player0.center.y - 60);
+    [menu alignItemsVerticallyWithPadding:65];
+    menu.position = ccp(sign.position.x, self.position.y + 170);
     [[OALSimpleAudio sharedInstance] playEffect:@"fanfare1.caf"];
     __block SPMainLayer* layer = self;
     [self runAction:[CCSequence actions:[CCDelayTime actionWithDuration:3.0f],
                      [CCCallBlockN actionWithBlock:^(CCNode* node){
       [layer.music play];
+      [self addChild:sign];
       [layer addChild:menu];
     }], 
                      nil]];
