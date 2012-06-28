@@ -81,6 +81,9 @@ static NSMutableDictionary* players_;
 
 - (void)getItem:(SPItem *)i {
   [[OALSimpleAudio sharedInstance] playEffect:@"item.caf"];
+  KWRandom* rnd = [KWRandom random];
+  int k = [rnd nextIntFrom:0 to:1];
+  [[OALSimpleAudio sharedInstance] playEffect:[NSString stringWithFormat:@"%@_%d_%d.caf", i.name, self.identifier, k]];
   [i useBy:self];
   self.item = i;
   item.player = self;
