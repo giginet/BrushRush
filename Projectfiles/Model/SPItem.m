@@ -33,7 +33,7 @@
 - (id)initWithKind:(SPItemKind)k {
   self = [super init];
   if (self) {
-    kind = k;
+    self.kind = k;
     changeTimer = [KWTimer timerWithMax:1.0];
     [self.changeTimer setOnCompleteListener:self 
                                    selector:@selector(onCompleteChangeTimer:)];
@@ -91,7 +91,7 @@
 
 - (NSString*)name {
   NSString* names[] = {@"accel", @"blind", @"brake", @"paint", @"snatch"};
-  return names[(int)kind];
+  return names[(int)self.kind];
 }
 
 - (void)useBy:(SPPlayer *)user {
