@@ -28,6 +28,7 @@ typedef enum {
 
 @implementation SPDrawing
 @dynamic isCharging;
+@synthesize chain;
 @synthesize boundingBox;
 @synthesize color;
 @synthesize type;
@@ -40,6 +41,7 @@ typedef enum {
   self = [super init];
   if (self) {
     type = SPDrawingTypeWriting;
+    self.chain = 1;
     points_ = [NSMutableArray array];
     color = ccc3(1, 0, 0);
     boundingBox = CGRectMake(0, 0, 0, 0);
@@ -129,6 +131,14 @@ typedef enum {
 }
 
 - (void)fire {
+  SPDrawingManager* manager = [SPDrawingManager sharedManager];
+  int maxChain = 0;
+  for (SPDrawing* drawing in manager.drawings) {
+    if (CGRectIntersectsRect(drawing.boundingBox, self.boundingBox) && maxChain < drawing.chain) {
+      maxChain = drawing.chain;
+    }
+  }
+  self.chain = maxChain;
   chargeTimer = [KWTimer timerWithMax:[self chargeTime]];
   [self.chargeTimer setOnCompleteListener:self selector:@selector(onEndCharge)];
   [self.chargeTimer play];
@@ -177,6 +187,7 @@ typedef enum {
 
 - (void)onEndCharge {
   SPDrawingManager* manager = [SPDrawingManager sharedManager];
+  [self expand:pow(2, (int)(self.chain - 1) / 2.0)];
   self.type = SPDrawingTypeArea;
   if ([manager.drawings containsObject:self]) {
     [[OALSimpleAudio sharedInstance] playEffect:@"complete.caf"];

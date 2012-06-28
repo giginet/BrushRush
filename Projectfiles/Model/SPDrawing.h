@@ -32,6 +32,7 @@ typedef enum {
 }
 
 @property(readonly) BOOL isCharging;
+@property(readwrite) int chain;
 @property(readonly) CGRect boundingBox;
 @property(readonly) CGPoint gravityPoint;
 @property(readwrite) ccColor3B color;
