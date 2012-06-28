@@ -118,15 +118,20 @@
   SPDrawingManager* manager = [SPDrawingManager sharedManager];
   switch (self.kind) {
     case SPItemKindAccel:
+      [[OALSimpleAudio sharedInstance] playEffect:@"item_out.caf"];
       break;
     case SPItemKindBrake:
+      [[OALSimpleAudio sharedInstance] playEffect:@"item_out.caf"];
       break;
     case SPItemKindBlind:
+      [[OALSimpleAudio sharedInstance] playEffect:@"item_out.caf"];
       break;
     case SPItemKindPaint:
+      [[OALSimpleAudio sharedInstance] playEffect:@"paint.caf"];
       [manager paintAt:self.position player:self.player];
       break;
     case SPItemKindSnatch:
+      [[OALSimpleAudio sharedInstance] playEffect:@"snatch.caf"];
       for(SPDrawing* drawing in [manager.drawings reverseObjectEnumerator]) {
         if (![drawing.player isEqual:self.player]) {
           drawing.player = self.player;

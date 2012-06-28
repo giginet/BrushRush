@@ -59,6 +59,7 @@
     [gameTimer setOnCompleteListener:self selector:@selector(onGameTimerOver:)];
     itemTimer = [KWTimer timerWithMax:[[KWRandom random] nextIntFrom:5 to:15]];
     [itemTimer setOnCompleteListenerWithBlock:^(id obj) {
+      [[OALSimpleAudio sharedInstance] playEffect:@"item_in.caf"];
       SPItem* item = [SPItem item];
       KWRandom* rnd = [KWRandom random];
       item.position = ccp([rnd nextIntFrom:0 to:PLAYER_WIDTH], [rnd nextIntFrom:0 to:PLAYER_HEIGHT]);
@@ -245,6 +246,7 @@
 - (void)onReady {
    for (SPPlayer* player in self.players) { 
      CCSprite* label = [CCSprite spriteWithFile:@"ready.png"];
+     [[OALSimpleAudio sharedInstance] playEffect:@"ready0.caf"];
      label.position = ccp(player.center.x, player.center.y + 60);
     [player addChild:label];
      __block CCSprite* go = [CCSprite spriteWithFile:@"go.png"];
@@ -266,6 +268,7 @@
                       scale,
                       delay,
                       [CCCallBlockN actionWithBlock:^(CCNode* node){
+     [[OALSimpleAudio sharedInstance] playEffect:@"go0.caf"];
       [node.parent addChild:go];
       [self.gameTimer play];
       self.state = SPGameStateMatch;
@@ -286,6 +289,7 @@
   for (SPDrawing* drawing in manager.drawings) {
     [drawing.chargeTimer pause];
   }
+  [[OALSimpleAudio sharedInstance] playEffect:@"gameset.caf"];
   for (SPPlayer* player in self.players) { 
     CCSprite* label = [CCSprite spriteWithFile:@"gameset.png"];
     label.position = ccp(player.center.x, player.center.y + 60);
