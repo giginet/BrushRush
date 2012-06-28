@@ -134,11 +134,14 @@ typedef enum {
   SPDrawingManager* manager = [SPDrawingManager sharedManager];
   int maxChain = 0;
   for (SPDrawing* drawing in manager.drawings) {
-    if (CGRectIntersectsRect(drawing.boundingBox, self.boundingBox) && maxChain < drawing.chain) {
-      maxChain = drawing.chain;
+    if (CGRectIntersectsRect(drawing.boundingBox, self.boundingBox) && maxChain < drawing.chain && drawing.type == SPDrawingTypeCharge) {
+      maxChain = drawing.chain + 1;
     }
   }
   self.chain = maxChain;
+  if (self.chain > 1) {
+    NSLog(@"chain %d ", self.chain);
+  }
   chargeTimer = [KWTimer timerWithMax:[self chargeTime]];
   [self.chargeTimer setOnCompleteListener:self selector:@selector(onEndCharge)];
   [self.chargeTimer play];
@@ -187,7 +190,7 @@ typedef enum {
 
 - (void)onEndCharge {
   SPDrawingManager* manager = [SPDrawingManager sharedManager];
-  [self expand:pow(2, (int)(self.chain - 1) / 2.0)];
+  [self expand:pow(2, (float)(self.chain - 1) / 4.0)];
   self.type = SPDrawingTypeArea;
   if ([manager.drawings containsObject:self]) {
     [[OALSimpleAudio sharedInstance] playEffect:@"complete.caf"];
@@ -275,8 +278,8 @@ typedef enum {
   for (NSValue* value in self.points) {
     KWVector* v = [KWVector vectorWithPoint:[value CGPointValue]];
     KWVector* sub = [v sub:gp];
-    gp = [gp add:[sub scale:rate]];
-    [points_ addObject:[NSValue valueWithCGPoint:gp.point]];
+    KWVector* newPoint = [gp add:[sub scale:rate]];
+    [newPoints addObject:[NSValue valueWithCGPoint:newPoint.point]];
   }
   points_ = newPoints;
 }
