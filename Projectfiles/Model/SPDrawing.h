@@ -51,6 +51,7 @@ typedef enum {
 - (void)fire;
 - (BOOL)isClose;
 - (BOOL)canCuttingBy:(SPDrawing*)other;
+- (void)expand:(float)rate;
 - (ccTime)chargeTime;
 
 @end

@@ -258,4 +258,16 @@ typedef enum {
   return time;
 }
 
+- (void)expand:(float)rate {
+  KWVector* gp = [KWVector vectorWithPoint:self.gravityPoint];
+  NSMutableArray* newPoints = [NSMutableArray array];
+  for (NSValue* value in self.points) {
+    KWVector* v = [KWVector vectorWithPoint:[value CGPointValue]];
+    KWVector* sub = [v sub:gp];
+    gp = [gp add:[sub scale:rate]];
+    [points_ addObject:[NSValue valueWithCGPoint:gp.point]];
+  }
+  points_ = newPoints;
+}
+
 @end
