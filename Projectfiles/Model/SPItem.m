@@ -12,6 +12,8 @@
 #define BLIND_TAG 100
 
 @interface SPItem()
+- (NSString*)textureName:(int)k;
+- (NSString*)nameWithKind:(int)k;
 - (void)onCompleteChangeTimer:(KWTimer*)timer;
 - (void)onCompleteUseTimer:(KWTimer *)timer;
 @end
@@ -31,9 +33,9 @@
 }
 
 - (id)initWithKind:(SPItemKind)k {
-  self = [super init];
+  self = [super initWithFile:[self textureName:k]];
   if (self) {
-    self.kind = k;
+    kind = k;
     changeTimer = [KWTimer timerWithMax:1.0];
     [self.changeTimer setOnCompleteListener:self 
                                    selector:@selector(onCompleteChangeTimer:)];
@@ -84,14 +86,22 @@
   }
 }
 
+- (NSString*)textureName:(int)k { 
+  return [NSString stringWithFormat:@"item_%@.png", self.name];
+}
+
 - (void)setKind:(SPItemKind)k {
   kind = k;
-  [self setTexture:[[CCTextureCache sharedTextureCache] addImage:[NSString stringWithFormat:@"item_%@.png", self.name]]];
+  [self setTexture:[[CCTextureCache sharedTextureCache] addImage:[self textureName:k]]];
+}
+
+- (NSString*)nameWithKind:(int)k {
+  NSString* names[] = {@"accel", @"blind", @"brake", @"paint", @"snatch"};
+  return names[(int)k];
 }
 
 - (NSString*)name {
-  NSString* names[] = {@"accel", @"blind", @"brake", @"paint", @"snatch"};
-  return names[(int)self.kind];
+  return [self nameWithKind:self.kind];
 }
 
 - (void)useBy:(SPPlayer *)user {

@@ -239,7 +239,7 @@
   [[SPDrawingManager sharedManager] removeAllDrawings];
   [[SPDrawingManager sharedManager] removeAllItems];
   [self scheduleOnce:@selector(onReady) delay:0.5];
-  self.music.volume = 0.5;
+  self.music.volume = 0.25;
   [self.itemTimer play];
 }
 
@@ -272,7 +272,7 @@
       [node.parent addChild:go];
       [self.gameTimer play];
       self.state = SPGameStateMatch;
-      self.music.volume = 1.0;
+      self.music.volume = 0.5;
     }],
                       suicide,
                       nil]];
@@ -287,7 +287,7 @@
   self.state = SPGameStateSet;
   SPDrawingManager* manager = [SPDrawingManager sharedManager];
   for (SPDrawing* drawing in manager.drawings) {
-    [drawing.chargeTimer pause];
+    [drawing stopCharge];
   }
   [[OALSimpleAudio sharedInstance] playEffect:@"gameset.caf"];
   for (SPPlayer* player in self.players) { 
@@ -356,7 +356,7 @@
   } else {
     self.state = SPGameStateResult;
     [[OALSimpleAudio sharedInstance] playEffect:@"fanfare0.caf"];
-     self.music.volume = 0.5;
+     self.music.volume = 0.25;
   }
   [self.gameTimer stop];
   [self.itemTimer stop];

@@ -9,6 +9,7 @@
 #import "heqet.h"
 #import "KWLayer.h"
 #import "SPPlayer.h"
+#import "ObjectAL.h"
 
 /**
  This is a class which manages drawn shape.
@@ -29,6 +30,7 @@ typedef enum {
   float lengthCache_;
   BOOL dirty_;
   NSMutableArray* points_;
+  OALAudioTrack* chargeSound_;
 }
 
 @property(readonly) BOOL isCharging;
@@ -54,5 +56,6 @@ typedef enum {
 - (BOOL)canCuttingBy:(SPDrawing*)other;
 - (void)expand:(float)rate;
 - (ccTime)chargeTime;
+- (void)stopCharge;
 
 @end

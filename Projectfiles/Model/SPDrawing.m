@@ -47,6 +47,8 @@ typedef enum {
     boundingBox = CGRectMake(0, 0, 0, 0);
     lengthCache_ = 0;
     dirty_ = NO;
+    chargeSound_ = [OALAudioTrack track];
+    [chargeSound_ preloadFile:@"charge.caf"];
   }
   return self;
 }
@@ -131,6 +133,7 @@ typedef enum {
 }
 
 - (void)fire {
+  [chargeSound_ playFile:@"charge.caf" loops:-1];
   SPDrawingManager* manager = [SPDrawingManager sharedManager];
   int maxChain = 0;
   for (SPDrawing* drawing in manager.drawings) {
@@ -189,6 +192,7 @@ typedef enum {
 }
 
 - (void)onEndCharge {
+  [chargeSound_ stop];
   SPDrawingManager* manager = [SPDrawingManager sharedManager];
   [self expand:pow(2, (float)(self.chain - 1) / 4.0)];
   self.type = SPDrawingTypeArea;
@@ -282,6 +286,11 @@ typedef enum {
     [newPoints addObject:[NSValue valueWithCGPoint:newPoint.point]];
   }
   points_ = newPoints;
+}
+
+- (void)stopCharge {
+  [chargeSound_ stop];
+  [chargeTimer pause];
 }
 
 @end
