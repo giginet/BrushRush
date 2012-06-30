@@ -21,6 +21,7 @@ typedef enum {
 } SPRotation;
 
 @interface SPDrawing()
+- (void)onUpdateCharge:(KWTimer*)timer;
 - (void)onEndCharge;
 - (SPRotation)rotationDirectionByPoint:(CGPoint)p0 point1:(CGPoint)p1 point2:(CGPoint)p2;
 - (BOOL)intersectsLines:(CGPoint)p0b endPoint:(CGPoint)p0e beginPoint:(CGPoint)p1b endPoint:(CGPoint)p1e;
@@ -49,6 +50,9 @@ typedef enum {
     dirty_ = NO;
     chargeSound_ = [OALAudioTrack track];
     [chargeSound_ preloadFile:@"charge.caf"];
+    chargeEffect_ = [CCSprite spriteWithFile:@"fire0.png"];
+    CCAnimation* animate = [CCAnimation animationWithFiles:@"fire" frameCount:30 delay:1.0 / 60.0];
+    [chargeEffect_ runAction:[CCRepeatForever actionWithAction:[CCAnimate actionWithAnimation:animate]]];
   }
   return self;
 }
@@ -147,7 +151,10 @@ typedef enum {
   }
   chargeTimer = [KWTimer timerWithMax:[self chargeTime]];
   [self.chargeTimer setOnCompleteListener:self selector:@selector(onEndCharge)];
+  [self.chargeTimer setOnUpdateListener:self selector:@selector(onUpdateCharge:)];
   [self.chargeTimer play];
+  chargeEffect_.position = [[self.points objectAtIndex:0] CGPointValue];
+  [self.player addChild:chargeEffect_];
 }
 
 - (SPPlayer*)player {
@@ -191,6 +198,24 @@ typedef enum {
   return NO;
 }
 
+- (void)onUpdateCharge:(KWTimer*)timer {
+  float length = self.length;
+  float rate = self.chargeTimer.now / self.chargeTimer.max;
+  float charged = length * rate;
+  float dis = 0;
+  int count = [self.points count];
+  for (int i = 1; i < count; ++i) {
+    KWVector* prev = [KWVector vectorWithPoint:[[self.points objectAtIndex:i - 1] CGPointValue]];
+    KWVector* point = [KWVector vectorWithPoint:[[self.points objectAtIndex:i] CGPointValue]];
+    dis += ccpDistance(prev.point, point.point);
+    if (dis > charged) {
+      KWVector* newPoint = [prev add:[[point sub:prev] resize:dis - charged]];
+      chargeEffect_.position = newPoint.point;
+      break;
+    }
+  }
+}
+
 - (void)onEndCharge {
   [chargeSound_ stop];
   SPDrawingManager* manager = [SPDrawingManager sharedManager];
@@ -199,6 +224,7 @@ typedef enum {
   if ([manager.drawings containsObject:self]) {
     [[OALSimpleAudio sharedInstance] playEffect:@"complete.caf"];
   }
+  [self.player removeChild:chargeEffect_ cleanup:YES];
   //SPDrawingManager* manager = [SPDrawingManager sharedManager];
   //[manager mergeWithIntersectsDrawing:player.lastDrawing];
 }
