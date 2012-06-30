@@ -43,6 +43,7 @@ typedef enum {
 @property(readonly, strong) NSArray* points;
 @property(readonly) KWTimer* chargeTimer;
 @property(readwrite, weak) SPPlayer* player;
+@property(readonly) OALAudioTrack* writingSound;
 
 - (id)initWithPoints:(NSArray*)points;
 
@@ -58,5 +59,6 @@ typedef enum {
 - (void)expand:(float)rate;
 - (ccTime)chargeTime;
 - (void)stopCharge;
+- (void)removeFromStage;
 
 @end

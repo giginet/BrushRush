@@ -37,6 +37,7 @@ typedef enum {
 @synthesize chargeTimer;
 @synthesize player;
 @dynamic gravityPoint;
+@synthesize writingSound;
 
 - (id)init {
   self = [super init];
@@ -53,6 +54,8 @@ typedef enum {
     chargeEffect_ = [CCSprite spriteWithFile:@"fire0.png"];
     CCAnimation* animate = [CCAnimation animationWithFiles:@"fire" frameCount:30 delay:1.0 / 60.0];
     [chargeEffect_ runAction:[CCRepeatForever actionWithAction:[CCAnimate actionWithAnimation:animate]]];
+    writingSound = [OALAudioTrack track];
+    [writingSound preloadFile:@"write.caf"];
   }
   return self;
 }
@@ -317,6 +320,12 @@ typedef enum {
 - (void)stopCharge {
   [chargeSound_ stop];
   [chargeTimer pause];
+}
+
+- (void)removeFromStage {
+  SPDrawingManager* manager = [SPDrawingManager sharedManager];
+  [chargeEffect_.parent removeChild:chargeEffect_ cleanup:YES];
+  [manager removeDrawing:self];
 }
 
 @end

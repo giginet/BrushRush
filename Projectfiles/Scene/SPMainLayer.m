@@ -120,9 +120,12 @@
         if ([player.lastTouch isEqual:touch]) {
           CGPoint local = [player convertToNodeSpace:point];
           if (local.x < 0 || local.x > PLAYER_WIDTH || local.y < 0 || local.y > PLAYER_HEIGHT) {
-          [self disableCurrentDrawing:touches];
+            [self disableCurrentDrawing:touches];
           }
           SPDrawing* drawing = [player.drawings lastObject];
+          if (!drawing.writingSound.playing) {
+            [drawing.writingSound play];
+          }
           [drawing addPoint:[player convertToNodeSpace:point]];
         }
       }
@@ -154,8 +157,21 @@
             [[OALSimpleAudio sharedInstance] playEffect:@"slash.caf"];
             for (SPDrawing* other in [NSArray arrayWithArray:self.drawings]) {
               if ([other canCuttingBy:lastDrawing]) {
-                NSLog(@"cut");
-                [manager removeDrawing:other];
+                CCSprite* cutEffect = [CCSprite spriteWithFile:@"break0.png"];
+                float fps = 1.0 / [[KKStartupConfig config] maxFrameRate];
+                int width = contentSize_.width;
+                float scale = other.boundingBox.size.width / width;
+                cutEffect.scale = scale * 3;
+                CCAnimation* animation = [CCAnimation animationWithFiles:@"break" frameCount:12 delay:fps * 3];
+                [cutEffect runAction:[CCSequence actions:
+                                      [CCAnimate actionWithAnimation:animation],
+                                      [CCCallBlockN actionWithBlock:^(CCNode* node){
+                  [node.parent removeChild:node cleanup:YES];
+                }], 
+                                      nil]];
+                cutEffect.position = other.gravityPoint;
+                [other.player addChild:cutEffect];
+                [other removeFromStage];
                 [[OALSimpleAudio sharedInstance] playEffect:@"slash.caf"];
               }
             }
