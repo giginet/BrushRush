@@ -115,19 +115,19 @@ typedef enum {
   } else {
     const CCSprite* brush = [CCSprite spriteWithFile:@"brush.png"];
     float length = self.length;
-    float rate = self.chargeTimer.now / self.chargeTimer.max;
+    float rate = 1.0 - (self.chargeTimer.now / self.chargeTimer.max);
     float charged = length * rate;
     float dis = 0;
     for (int i = 1; i < count; ++i) {
       CGPoint prev = [[self.points objectAtIndex:i - 1] CGPointValue];
       CGPoint point = [[self.points objectAtIndex:i] CGPointValue];
       dis += ccpDistance(prev, point);
-      if (dis > charged) {
+      if (dis <= charged) {
         glColor4f(self.color.r, self.color.g, self.color.b, 1);
       } else {
         glColor4f(self.color.r, 0.4, self.color.b, 1);
       }
-      const int radius = 4.5;
+      const int radius = 5;
       KWVector* vector = [KWVector vectorWithPoint:ccpSub(point, prev)];
       int count = ceil(vector.length / radius);
       for (int i = 0; i < count; ++i) {
@@ -203,19 +203,20 @@ typedef enum {
 
 - (void)onUpdateCharge:(KWTimer*)timer {
   float length = self.length;
-  float rate = self.chargeTimer.now / self.chargeTimer.max;
+  float rate = 1.0 - (self.chargeTimer.now / self.chargeTimer.max);
   float charged = length * rate;
-  float dis = 0;
+  float disSum = 0;
   int count = [self.points count];
-  for (int i = 1; i < count; ++i) {
-    KWVector* prev = [KWVector vectorWithPoint:[[self.points objectAtIndex:i - 1] CGPointValue]];
+  for (int i = 0; i < count - 1; ++i) {
     KWVector* point = [KWVector vectorWithPoint:[[self.points objectAtIndex:i] CGPointValue]];
-    dis += ccpDistance(prev.point, point.point);
-    if (dis > charged) {
-      KWVector* newPoint = [prev add:[[point sub:prev] resize:dis - charged]];
+    KWVector* next = [KWVector vectorWithPoint:[[self.points objectAtIndex:i + 1] CGPointValue]];
+    float dis = ccpDistance(point.point, next.point);
+    if (disSum + dis >= charged) {
+      KWVector* newPoint = [point add:[[next sub:point] resize:charged - disSum]];
       chargeEffect_.position = newPoint.point;
       break;
     }
+    disSum += dis;
   }
 }
 
