@@ -56,6 +56,7 @@ typedef enum {
     [chargeEffect_ runAction:[CCRepeatForever actionWithAction:[CCAnimate actionWithAnimation:animate]]];
     writingSound = [OALAudioTrack track];
     [writingSound preloadFile:@"write.caf"];
+    brushTexture_ = [[CCTextureCache sharedTextureCache] addImage:@"brush.png"];
   }
   return self;
 }
@@ -113,7 +114,6 @@ typedef enum {
       ccFillPoly(vertices, count, YES);
     }
   } else {
-    const CCSprite* brush = [CCSprite spriteWithFile:@"brush.png"];
     float length = self.length;
     float rate = 1.0 - (self.chargeTimer.now / self.chargeTimer.max);
     float charged = length * rate;
@@ -127,12 +127,12 @@ typedef enum {
       } else {
         glColor4f(self.color.r, 0.4, self.color.b, 1);
       }
-      const int radius = 5;
+      const int radius = 4.5;
       KWVector* vector = [KWVector vectorWithPoint:ccpSub(point, prev)];
       int count = ceil(vector.length / radius);
       for (int i = 0; i < count; ++i) {
         CGPoint p = ccpAdd(prev, [[vector resize:radius] scale:i].point);
-        [brush.texture drawAtPoint:p];
+        [brushTexture_ drawAtPoint:p];
       }
      //ccDrawLine(prev, point);
     }

@@ -32,6 +32,7 @@ typedef enum {
   NSMutableArray* points_;
   OALAudioTrack* chargeSound_;
   CCSprite* chargeEffect_;
+  CCTexture2D* brushTexture_;
 }
 
 @property(readonly) BOOL isCharging;
