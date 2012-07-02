@@ -150,10 +150,11 @@
       for (SPPlayer* player in self.players) {
         if ([player.lastTouch isEqual:touch]) {
           SPDrawing* lastDrawing = player.lastDrawing;
-          if([lastDrawing isClose]) {
+          SPDrawingType detectedType = [lastDrawing detectType];
+          if (detectedType == SPDrawingTypeCharge) {
             lastDrawing.type = SPDrawingTypeCharge;
             [lastDrawing fire];
-          } else {
+          } else if (detectedType == SPDrawingTypeSlash) {
             lastDrawing.type = SPDrawingTypeSlash;
             [[OALSimpleAudio sharedInstance] playEffect:@"slash.caf"];
             for (SPDrawing* other in [NSArray arrayWithArray:self.drawings]) {
@@ -173,13 +174,13 @@
                 cutEffect.position = other.gravityPoint;
                 [other.player addChild:cutEffect];
                 [other removeFromStage];
-                [[OALSimpleAudio sharedInstance] playEffect:@"slash.caf"];
               }
             }
             [manager removeDrawing:lastDrawing];
+          } else if (detectedType == SPDrawingTypeNone) {
+            [manager removeDrawing:lastDrawing];
           }
           player.lastTouch = nil;
-          //NSLog(@"%f x %f, %f, %f", player.lastDrawing.boundingBox.size.width, player.lastDrawing.boundingBox.size.height, player.lastDrawing.boundingBox.origin.x, player.lastDrawing.boundingBox.origin.y);
         }
       }
     }

@@ -20,7 +20,8 @@ typedef enum {
   SPDrawingTypeWriting,
   SPDrawingTypeSlash,
   SPDrawingTypeCharge,
-  SPDrawingTypeArea
+  SPDrawingTypeArea,
+  SPDrawingTypeNone
 } SPDrawingType;
 
 
@@ -55,7 +56,7 @@ typedef enum {
 - (void)setPlayer:(SPPlayer *)player;
 - (void)addPoint:(CGPoint)point;
 - (void)fire;
-- (BOOL)isClose;
+- (SPDrawingType)detectType;
 - (BOOL)canCuttingBy:(SPDrawing*)other;
 - (void)expand:(float)rate;
 - (ccTime)chargeTime;

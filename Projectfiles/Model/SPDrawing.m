@@ -174,31 +174,37 @@ typedef enum {
 - (void)addPoint:(CGPoint)point {
   [points_ addObject:[NSValue valueWithCGPoint:point]];
   if ([points_ count] == 1) {
-    boundingBox.origin = point;
+    boundingBox = CGRectMake(point.x, point.y, 0, 0);
   } else {
-    if (point.x < self.boundingBox.origin.x) {
-      boundingBox.origin.x = point.x; 
-    } else if(point.x > self.boundingBox.origin.x + self.boundingBox.size.width) {
-      boundingBox.size.width = point.x - self.boundingBox.origin.x;
+    CGPoint begin = ccp(boundingBox.origin.x, boundingBox.origin.y);
+    CGPoint end = ccpAdd(begin, ccp(boundingBox.size.width, boundingBox.size.height));
+    if (point.x < begin.x) {
+      begin.x = point.x;
+    } else if(point.x > end.x) {
+      end.x = point.x;
     }
-    if (point.y < self.boundingBox.origin.y) {
-      boundingBox.origin.y = point.y;
-    } else if(point.y > self.boundingBox.origin.y + self.boundingBox.size.height) {
-      boundingBox.size.height = point.y - self.boundingBox.origin.y;
+    if (point.y < begin.y) {
+      begin.y = point.y;
+    } else if(point.y > end.y) {
+      end.y = point.y;
     }
+    boundingBox = CGRectMake(begin.x, begin.y, end.x - begin.x, end.y - begin.y);
   }
   dirty_ = YES;
 }
 
-- (BOOL)isClose {
+- (SPDrawingType)detectType {
   CGPoint begin = [[self.points objectAtIndex:0] CGPointValue];
   CGPoint end = [[self.points lastObject] CGPointValue];
-  float distance = hypotf(begin.x - end.x, begin.y - end.y);
+  float distance = ccpDistance(begin, end);
   float length = [self length];
-  if (distance <= length * 0.15) {
-    return YES;
+  float diagonal = hypotf(self.boundingBox.size.width, self.boundingBox.size.height);
+  if (length > 100 && (distance < 50 || distance <= length * 0.2) && distance <= 100) {
+    return SPDrawingTypeCharge;
+  } else if (length < diagonal * 1.5){
+    return SPDrawingTypeSlash;
   }
-  return NO;
+  return SPDrawingTypeNone;
 }
 
 - (void)onUpdateCharge:(KWTimer*)timer {
