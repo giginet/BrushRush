@@ -159,6 +159,7 @@
             [[OALSimpleAudio sharedInstance] playEffect:@"slash.caf"];
             for (SPDrawing* other in [NSArray arrayWithArray:self.drawings]) {
               if ([other canCuttingBy:lastDrawing]) {
+                [[OALSimpleAudio sharedInstance] playEffect:@"break.caf"];
                 CCSprite* cutEffect = [CCSprite spriteWithFile:@"break0.png"];
                 float fps = 1.0 / [[KKStartupConfig config] maxFrameRate];
                 int width = contentSize_.width;
@@ -264,7 +265,9 @@
 - (void)onReady {
    for (SPPlayer* player in self.players) { 
      CCSprite* label = [CCSprite spriteWithFile:@"ready.png"];
-     [[OALSimpleAudio sharedInstance] playEffect:@"ready0.caf"];
+     if (player.identifier == 0) {
+       [[OALSimpleAudio sharedInstance] playEffect:@"ready0.caf"];
+     }
      label.position = ccp(player.center.x, player.center.y + 60);
     [player addChild:label];
      __block CCSprite* go = [CCSprite spriteWithFile:@"go.png"];

@@ -50,10 +50,8 @@ typedef enum {
     lengthCache_ = 0;
     dirty_ = NO;
     chargeSound_ = [OALAudioTrack track];
-    [chargeSound_ preloadFile:@"charge.caf"];
-    chargeEffect_ = [CCSprite spriteWithFile:@"fire0.png"];
-    CCAnimation* animate = [CCAnimation animationWithFiles:@"fire" frameCount:30 delay:1.0 / 60.0];
-    [chargeEffect_ runAction:[CCRepeatForever actionWithAction:[CCAnimate actionWithAnimation:animate]]];
+    [chargeSound_ preloadFile:[NSString stringWithFormat:@"charge%d.caf", player.identifier]];
+    chargeEffect_ = [CCParticleSystemQuad particleWithFile:@"charge.plist"];
     writingSound = [OALAudioTrack track];
     [writingSound preloadFile:@"write.caf"];
     brushTexture_ = [[CCTextureCache sharedTextureCache] addImage:@"brush.png"];
@@ -140,7 +138,8 @@ typedef enum {
 }
 
 - (void)fire {
-  [chargeSound_ playFile:@"charge.caf" loops:-1];
+  chargeSound_.pan = -1 + player.identifier * 2;
+  [chargeSound_ playFile:[NSString stringWithFormat:@"charge%d.caf", player.identifier] loops:-1];
   SPDrawingManager* manager = [SPDrawingManager sharedManager];
   int maxChain = 0;
   for (SPDrawing* drawing in manager.drawings) {
@@ -157,6 +156,7 @@ typedef enum {
   [self.chargeTimer setOnUpdateListener:self selector:@selector(onUpdateCharge:)];
   [self.chargeTimer play];
   chargeEffect_.position = [[self.points objectAtIndex:0] CGPointValue];
+  chargeEffect_.rotation = 180 * player.identifier;
   [self.player addChild:chargeEffect_];
 }
 

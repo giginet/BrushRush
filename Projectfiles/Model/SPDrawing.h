@@ -32,8 +32,8 @@ typedef enum {
   BOOL dirty_;
   NSMutableArray* points_;
   OALAudioTrack* chargeSound_;
-  CCSprite* chargeEffect_;
   CCTexture2D* brushTexture_;
+  CCParticleSystemQuad* chargeEffect_;
 }
 
 @property(readonly) BOOL isCharging;
