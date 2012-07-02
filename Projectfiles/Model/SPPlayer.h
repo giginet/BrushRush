@@ -27,5 +27,6 @@
 - (id)initWithId:(NSUInteger)n;
 - (CGPoint)center;
 - (void)getItem:(SPItem*)item;
+- (void)resetPlayerStatus;
 
 @end

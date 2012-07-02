@@ -101,4 +101,9 @@ static NSMutableDictionary* players_;
   }
 }
 
+- (void)resetPlayerStatus {
+  self.lastTouch = nil;
+  self.item = nil;
+}
+
 @end
