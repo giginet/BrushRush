@@ -117,9 +117,10 @@
     for (UITouch* touch in touches) {
       CGPoint point = [self convertTouchToNodeSpace:touch];
       for (SPPlayer* player in self.players) {
+        SPPlayer* enemy = [SPPlayer playerById:(player.identifier + 1) % 2];
+        CGRect enemyRect = CGRectMake(enemy.position.x, enemy.position.y, PLAYER_WIDTH, PLAYER_HEIGHT);
         if ([player.lastTouch isEqual:touch]) {
-          CGPoint local = [player convertToNodeSpace:point];
-          if (local.x < 0 || local.x > PLAYER_WIDTH || local.y < 0 || local.y > PLAYER_HEIGHT) {
+          if (CGRectContainsPoint(enemyRect, point)) {
             [self disableCurrentDrawing:touches];
           }
           SPDrawing* drawing = [player.drawings lastObject];
