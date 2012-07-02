@@ -144,11 +144,11 @@ typedef enum {
   SPDrawingManager* manager = [SPDrawingManager sharedManager];
   int maxChain = 0;
   for (SPDrawing* drawing in manager.drawings) {
-    if (CGRectIntersectsRect(drawing.boundingBox, self.boundingBox) && maxChain < drawing.chain && drawing.type == SPDrawingTypeCharge) {
+    if (CGRectIntersectsRect(drawing.boundingBox, self.boundingBox) && maxChain < drawing.chain && drawing.type == SPDrawingTypeCharge && ![self isEqual:drawing]) {
       maxChain = drawing.chain + 1;
     }
   }
-  self.chain = maxChain;
+  self.chain = MAX(maxChain, 1);
   if (self.chain > 1) {
     NSLog(@"chain %d ", self.chain);
   }
