@@ -262,7 +262,7 @@
 }
 
 - (void)onReady {
-   for (__block SPPlayer* player in self.players) { 
+   for (SPPlayer* player in self.players) { 
      CCSprite* label = [CCSprite spriteWithFile:@"ready.png"];
      [[OALSimpleAudio sharedInstance] playEffect:@"ready0.caf"];
      label.position = ccp(player.center.x, player.center.y + 60);
@@ -276,6 +276,7 @@
      label.scale = 0.0;
      go.position = label.position;
      go.scale = 0.0;
+     __block int identifier = player.identifier;
      [go runAction:[CCSequence actions:
                     scale, 
                     [CCDelayTime actionWithDuration:0.4], 
@@ -286,7 +287,7 @@
                       scale,
                       delay,
                       [CCCallBlockN actionWithBlock:^(CCNode* node){
-      if (player.identifier == 0) {
+      if (identifier == 0) {
         [[OALSimpleAudio sharedInstance] playEffect:[NSString stringWithFormat:@"go0.caf"]];
       }
       [node.parent addChild:go];
