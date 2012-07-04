@@ -49,6 +49,9 @@ typedef enum {
     color = ccc3(1, 0, 0);
     boundingBox = CGRectMake(0, 0, 0, 0);
     lengthCache_ = 0;
+    chargeStatus_.chargedEdgeIndex = 0;
+    chargeStatus_.distanceFromEdge = 0;
+    chargeStatus_.chargedPoint = CGPointZero;
     dirty_ = NO;
     chargeSound_ = [OALAudioTrack track];
     [chargeSound_ preloadFile:[NSString stringWithFormat:@"charge%d.caf", player.identifier]];
@@ -114,32 +117,35 @@ typedef enum {
     }
   } else {
     float length = self.length;
-    float rate = 1.0 - (self.chargeTimer.now / self.chargeTimer.max);
+    float rate = 0;
+    if (self.type == SPDrawingTypeCharge) rate = 1.0 - (self.chargeTimer.now / self.chargeTimer.max);
     float charged = length * rate;
     float dis = 0;
     for (int i = 1; i < count; ++i) {
       CGPoint prev = [[self.points objectAtIndex:i - 1] CGPointValue];
       CGPoint point = [[self.points objectAtIndex:i] CGPointValue];
       dis += ccpDistance(prev, point);
-      if (dis <= charged) {
-        glColor4f(self.color.r, self.color.g, self.color.b, 1);
-      } else {
+      if (self.type != SPDrawingTypeCharge || dis > charged) {
         glColor4f(self.color.r, 0.4, self.color.b, 1);
-      }
-      if (BRUSH_TEXTURE) {
-        const int radius = 4.5;
-        KWVector* vector = [KWVector vectorWithPoint:ccpSub(point, prev)];
-        int count = ceil(vector.length / radius);
-        for (int i = 0; i < count; ++i) {
-          CGPoint p = ccpAdd(prev, [[vector resize:radius] scale:i].point);
-          [brushTexture_ drawAtPoint:p];
-        }
       } else {
-        const int radius = 4.5;
-        KWVector* vector = [KWVector vectorWithPoint:ccpSub(point, prev)];
-        int count = ceil(vector.length / radius);
-        for (int i = 0; i < count; ++i) {
-          CGPoint p = ccpAdd(prev, [[vector resize:radius] scale:i].point);
+        glColor4f(self.color.r, self.color.g, self.color.b, 1);
+      }
+      const int radius = 4.5;
+      KWVector* vector = [KWVector vectorWithPoint:ccpSub(point, prev)];
+      int c = ceil(vector.length / radius);
+      for (int j = 0; j < c; ++j) {
+        CGPoint p = ccpAdd(prev, [[vector resize:radius] scale:j].point);
+        if (i == chargeStatus_.chargedEdgeIndex) {
+          float dis = j * radius;
+          if (dis < chargeStatus_.distanceFromEdge) { 
+            glColor4f(self.color.r, 0.4, self.color.b, 1);
+          } else {
+            glColor4f(self.color.r, self.color.g, self.color.b, 1);
+          }
+        }
+        if (BRUSH_TEXTURE) {
+          [brushTexture_ drawAtPoint:p];
+        } else {
           ccFillCircle(p, radius, 0, 5, YES);
         }
       }
@@ -229,10 +235,13 @@ typedef enum {
     float dis = ccpDistance(point.point, next.point);
     if (disSum + dis >= charged) {
       KWVector* newPoint = [point add:[[next sub:point] resize:charged - disSum]];
-      chargeEffect_.position = newPoint.point;
+      chargeStatus_.chargedPoint = newPoint.point;
+      chargeStatus_.chargedEdgeIndex = i;
+      chargeStatus_.distanceFromEdge = charged - disSum;
       break;
     }
     disSum += dis;
+    chargeEffect_.position = chargeStatus_.chargedPoint;
   }
 }
 

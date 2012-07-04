@@ -24,12 +24,18 @@ typedef enum {
   SPDrawingTypeNone
 } SPDrawingType;
 
+typedef struct {
+  int chargedEdgeIndex;
+  float distanceFromEdge;
+  CGPoint chargedPoint; 
+} ChargeStatus;
 
 @interface SPDrawing : CCNode {
   int size_;
   float area_;
   float lengthCache_;
   BOOL dirty_;
+  ChargeStatus chargeStatus_;
   NSMutableArray* points_;
   OALAudioTrack* chargeSound_;
   CCTexture2D* brushTexture_;
