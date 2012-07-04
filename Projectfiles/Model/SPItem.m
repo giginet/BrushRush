@@ -107,12 +107,15 @@
 - (void)useBy:(SPPlayer *)user {
   int times[] = {7, 7, 7, 1, 1}; 
   if (self.kind == SPItemKindBlind) {
+    blindSound_ = [OALAudioTrack track];
+    [blindSound_ preloadFile:@"blind.caf"];
     SPPlayer* enemy = [SPPlayer playerById:(user.identifier + 1) % 2];
     CCAnimation* anime = [CCAnimation animationWithFiles:[NSString stringWithFormat:@"blind%d_", user.identifier] frameCount:2 delay:1.0];
     CCSprite* sprite = [CCSprite spriteWithFile:@"blind0_0.png"];
     sprite.position = enemy.center;
     [sprite runAction:[CCRepeatForever actionWithAction:[CCAnimate actionWithAnimation:anime]]];
     [enemy addChild:sprite z:BLIND_TAG tag:BLIND_TAG];
+    [blindSound_ play];
   }
   [self.changeTimer stop];
   [self.useTimer set:times[(int)self.kind]];
@@ -131,6 +134,7 @@
       break;
     case SPItemKindBlind:
       [enemy removeChildByTag:BLIND_TAG cleanup:YES];
+      [blindSound_ stop];
       [[OALSimpleAudio sharedInstance] playEffect:@"item_out.caf"];
       break;
     case SPItemKindPaint:

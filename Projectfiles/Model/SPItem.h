@@ -19,7 +19,9 @@ typedef enum {
   SPItemKindNum
 } SPItemKind;
 
-@interface SPItem : CCSprite
+@interface SPItem : CCSprite {
+  OALAudioTrack* blindSound_;
+}
 
 @property(readwrite) SPItemKind kind;
 @property(readonly, strong) NSString* name;
