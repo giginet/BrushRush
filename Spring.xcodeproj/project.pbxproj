@@ -76,7 +76,6 @@
 		07473E1D15A1FCD900B27CEF /* go0.caf in Resources */ = {isa = PBXBuildFile; fileRef = 07A034AF159EBA8E00D6A8CB /* go0.caf */; };
 		07473E2015A1FE0200B27CEF /* charge0.caf in Resources */ = {isa = PBXBuildFile; fileRef = 07473E1E15A1FCF600B27CEF /* charge0.caf */; };
 		07473E2115A1FE0200B27CEF /* charge1.caf in Resources */ = {isa = PBXBuildFile; fileRef = 07473E1F15A1FCF600B27CEF /* charge1.caf */; };
-		074DD68A157F76A000C4DCA7 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 074DD655157F76A000C4DCA7 /* .gitignore */; };
 		074DD68B157F76A000C4DCA7 /* KWMusicManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 074DD659157F76A000C4DCA7 /* KWMusicManager.m */; };
 		074DD68C157F76A000C4DCA7 /* tinymt32.c in Sources */ = {isa = PBXBuildFile; fileRef = 074DD65C157F76A000C4DCA7 /* tinymt32.c */; };
 		074DD68D157F76A000C4DCA7 /* KWLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 074DD660157F76A000C4DCA7 /* KWLayer.m */; };
@@ -97,9 +96,6 @@
 		074DD69C157F76A000C4DCA7 /* KWUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 074DD681157F76A000C4DCA7 /* KWUtility.m */; };
 		074DD69D157F76A000C4DCA7 /* KWVector.m in Sources */ = {isa = PBXBuildFile; fileRef = 074DD683157F76A000C4DCA7 /* KWVector.m */; };
 		074DD69E157F76A000C4DCA7 /* NSArrayExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 074DD685157F76A000C4DCA7 /* NSArrayExtension.m */; };
-		074DD69F157F76A000C4DCA7 /* README.rst in Resources */ = {isa = PBXBuildFile; fileRef = 074DD686157F76A000C4DCA7 /* README.rst */; };
-		074DD6A0157F76A000C4DCA7 /* graphic_converter.py in Resources */ = {isa = PBXBuildFile; fileRef = 074DD688157F76A000C4DCA7 /* graphic_converter.py */; };
-		074DD6A1157F76A000C4DCA7 /* sound_converter.py in Resources */ = {isa = PBXBuildFile; fileRef = 074DD689157F76A000C4DCA7 /* sound_converter.py */; };
 		074DD6A5157F7D1300C4DCA7 /* SPMainLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 074DD6A4157F7D1300C4DCA7 /* SPMainLayer.m */; };
 		07980DF91585B0E8004B230C /* CCTexture2D+DrawInPoly.m in Sources */ = {isa = PBXBuildFile; fileRef = 07980DF81585B0E8004B230C /* CCTexture2D+DrawInPoly.m */; };
 		07A033DE159CB73D00D6A8CB /* accel_0_0.caf in Resources */ = {isa = PBXBuildFile; fileRef = 07A033C6159CB73D00D6A8CB /* accel_0_0.caf */; };
@@ -253,6 +249,8 @@
 		07E177E2159A092500F66DD9 /* fanfare1.caf in Resources */ = {isa = PBXBuildFile; fileRef = 07E177DE159A091300F66DD9 /* fanfare1.caf */; };
 		07E177E3159A092500F66DD9 /* result_intro.caf in Resources */ = {isa = PBXBuildFile; fileRef = 07E177DF159A091300F66DD9 /* result_intro.caf */; };
 		07E177E4159A092500F66DD9 /* result_loop.caf in Resources */ = {isa = PBXBuildFile; fileRef = 07E177E0159A091300F66DD9 /* result_loop.caf */; };
+		07F0B52F15A2057100679DCF /* charge-ipad.plist in Resources */ = {isa = PBXBuildFile; fileRef = 07F0B52E15A2057100679DCF /* charge-ipad.plist */; };
+		07F0B53015A2069200679DCF /* item.caf in Resources */ = {isa = PBXBuildFile; fileRef = 07F0B52C15A2055900679DCF /* item.caf */; };
 		DC485B1113AA0E5600F2BC70 /* libchipmunk-mac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DC485B0D13AA0E5600F2BC70 /* libchipmunk-mac.a */; };
 		DC485B1713AA0EBB00F2BC70 /* libbox2d-mac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DC485B1613AA0EBB00F2BC70 /* libbox2d-mac.a */; };
 		DC485B4613AA18A600F2BC70 /* libcocosdenshion-mac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DC485B4513AA18A600F2BC70 /* libcocosdenshion-mac.a */; };
@@ -566,6 +564,8 @@
 		07E177DE159A091300F66DD9 /* fanfare1.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = fanfare1.caf; sourceTree = "<group>"; };
 		07E177DF159A091300F66DD9 /* result_intro.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = result_intro.caf; sourceTree = "<group>"; };
 		07E177E0159A091300F66DD9 /* result_loop.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = result_loop.caf; sourceTree = "<group>"; };
+		07F0B52C15A2055900679DCF /* item.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = item.caf; sourceTree = "<group>"; };
+		07F0B52E15A2057100679DCF /* charge-ipad.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "charge-ipad.plist"; sourceTree = "<group>"; };
 		DC3BE97813B4FB71003739CC /* BuildSettings-iOS.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "BuildSettings-iOS.xcconfig"; sourceTree = "<group>"; };
 		DC485B0D13AA0E5600F2BC70 /* libchipmunk-mac.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libchipmunk-mac.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC485B1613AA0EBB00F2BC70 /* libbox2d-mac.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libbox2d-mac.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -777,6 +777,7 @@
 			isa = PBXGroup;
 			children = (
 				07473E1A15A1FA5100B27CEF /* charge.plist */,
+				07F0B52E15A2057100679DCF /* charge-ipad.plist */,
 			);
 			path = Effect;
 			sourceTree = "<group>";
@@ -968,6 +969,7 @@
 				07473E1F15A1FCF600B27CEF /* charge1.caf */,
 				07A033F8159CBE7100D6A8CB /* break.caf */,
 				07A033FA159CBE7100D6A8CB /* complete.caf */,
+				07F0B52C15A2055900679DCF /* item.caf */,
 				07A033FB159CBE7100D6A8CB /* item_in.caf */,
 				07A033FC159CBE7100D6A8CB /* item_out.caf */,
 				07A033FD159CBE7100D6A8CB /* paint.caf */,
@@ -1261,6 +1263,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				07F0B53015A2069200679DCF /* item.caf in Resources */,
 				07473E2015A1FE0200B27CEF /* charge0.caf in Resources */,
 				07473E2115A1FE0200B27CEF /* charge1.caf in Resources */,
 				07473E1D15A1FCD900B27CEF /* go0.caf in Resources */,
@@ -1280,10 +1283,6 @@
 				DCC1A10813A94ED5005BD75D /* Icon@2x.png in Resources */,
 				DCC1A10B13A94ED5005BD75D /* iTunesArtwork in Resources */,
 				DCC1A3AF13A94F1A005BD75D /* config.lua in Resources */,
-				074DD68A157F76A000C4DCA7 /* .gitignore in Resources */,
-				074DD69F157F76A000C4DCA7 /* README.rst in Resources */,
-				074DD6A0157F76A000C4DCA7 /* graphic_converter.py in Resources */,
-				074DD6A1157F76A000C4DCA7 /* sound_converter.py in Resources */,
 				070FCCA8158E65EB00F6DC00 /* brush-ipad.png in Resources */,
 				070FCCA9158E65EB00F6DC00 /* brush.png in Resources */,
 				070FCCAA158E65EB00F6DC00 /* paint0-ipad.png in Resources */,
@@ -1488,6 +1487,7 @@
 				07A03558159EBBA600D6A8CB /* fire9-ipad.png in Resources */,
 				07A03559159EBBA600D6A8CB /* fire9.png in Resources */,
 				07473E1B15A1FA5100B27CEF /* charge.plist in Resources */,
+				07F0B52F15A2057100679DCF /* charge-ipad.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

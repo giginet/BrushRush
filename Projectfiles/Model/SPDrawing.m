@@ -13,6 +13,7 @@
 #import "SPDrawingManager.h"
 #import "OALSimpleAudio.h"
 #define DRAW_TEXTURE YES
+#define BRUSH_TEXTURE NO
 
 typedef enum {
   SPRotationStraight,
@@ -125,14 +126,23 @@ typedef enum {
       } else {
         glColor4f(self.color.r, 0.4, self.color.b, 1);
       }
-      const int radius = 4.5;
-      KWVector* vector = [KWVector vectorWithPoint:ccpSub(point, prev)];
-      int count = ceil(vector.length / radius);
-      for (int i = 0; i < count; ++i) {
-        CGPoint p = ccpAdd(prev, [[vector resize:radius] scale:i].point);
-        [brushTexture_ drawAtPoint:p];
+      if (BRUSH_TEXTURE) {
+        const int radius = 4.5;
+        KWVector* vector = [KWVector vectorWithPoint:ccpSub(point, prev)];
+        int count = ceil(vector.length / radius);
+        for (int i = 0; i < count; ++i) {
+          CGPoint p = ccpAdd(prev, [[vector resize:radius] scale:i].point);
+          [brushTexture_ drawAtPoint:p];
+        }
+      } else {
+        const int radius = 4.5;
+        KWVector* vector = [KWVector vectorWithPoint:ccpSub(point, prev)];
+        int count = ceil(vector.length / radius);
+        for (int i = 0; i < count; ++i) {
+          CGPoint p = ccpAdd(prev, [[vector resize:radius] scale:i].point);
+          ccFillCircle(p, radius, 0, 5, YES);
+        }
       }
-     //ccDrawLine(prev, point);
     }
   }
 }
