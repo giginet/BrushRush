@@ -166,20 +166,23 @@
             for (SPDrawing* other in [NSArray arrayWithArray:self.drawings]) {
               if ([other canCuttingBy:lastDrawing]) {
                 [[OALSimpleAudio sharedInstance] playEffect:@"break.caf"];
-                CCSprite* cutEffect = [CCSprite spriteWithFile:@"break0.png"];
+                
                 float fps = 1.0 / [[KKStartupConfig config] maxFrameRate];
                 int width = contentSize_.width;
                 float scale = other.boundingBox.size.width / width;
-                cutEffect.scale = scale * 3;
-                CCAnimation* animation = [CCAnimation animationWithFiles:@"break" frameCount:12 delay:fps * 3];
-                [cutEffect runAction:[CCSequence actions:
-                                      [CCAnimate actionWithAnimation:animation],
-                                      [CCCallBlockN actionWithBlock:^(CCNode* node){
-                  [node.parent removeChild:node cleanup:YES];
-                }], 
-                                      nil]];
-                cutEffect.position = other.gravityPoint;
-                [other.player addChild:cutEffect z:SPPlayerLayerEffect];
+                for (SPPlayer* p in self.players) {
+                  CCSprite* cutEffect = [CCSprite spriteWithFile:@"break0.png"];
+                  cutEffect.scale = scale * 3;
+                  CCAnimation* animation = [CCAnimation animationWithFiles:@"break" frameCount:12 delay:fps * 3];
+                  [cutEffect runAction:[CCSequence actions:
+                                        [CCAnimate actionWithAnimation:animation],
+                                        [CCCallBlockN actionWithBlock:^(CCNode* node){
+                    [node.parent removeChild:node cleanup:YES];
+                  }], 
+                                        nil]];
+                  cutEffect.position = other.gravityPoint;
+                  [p addChild:cutEffect z:SPPlayerLayerEffect];
+                }
                 [other removeFromStage];
               }
             }
