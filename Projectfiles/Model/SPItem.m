@@ -27,15 +27,19 @@
 @synthesize player;
 
 + (SPItem*)item {
-  KWRandom* rnd = [KWRandom random];
-  int kind = [rnd nextInt] % SPItemKindNum;
-  return [[SPItem alloc] initWithKind:kind];
+  return [[SPItem alloc] initWithFile:@""];
 }
 
-- (id)initWithKind:(SPItemKind)k {
-  self = [super initWithFile:[self textureName:k]];
+- (id)initWithFile:(NSString *)filename {
+  itemRoulette_ = [NSMutableArray array];
+  for (int i = 0; i < SPItemKindNum; ++i) {
+    [itemRoulette_ addObject:[NSNumber numberWithInt:i]];
+  }
+  itemRoulette_ = [NSMutableArray arrayWithArray:[itemRoulette_ shuffle]];
+  kind = [[itemRoulette_ objectAtIndex:0] intValue];
+  self = [super initWithFile:[self textureName:kind]];
   if (self) {
-    kind = k;
+    rouletteIndex_ = 1;
     changeTimer = [KWTimer timerWithMax:1.0];
     [self.changeTimer setOnCompleteListener:self 
                                    selector:@selector(onCompleteChangeTimer:)];
@@ -61,7 +65,8 @@
 }
 
 - (void)onCompleteChangeTimer:(KWTimer *)timer {
-  [self changeRandom];
+  rouletteIndex_ = (rouletteIndex_ + 1) % SPItemKindNum;
+  self.kind = [[itemRoulette_ objectAtIndex:rouletteIndex_] intValue];
 }
 
 - (SPItemKind)kind {

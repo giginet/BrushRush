@@ -20,6 +20,8 @@ typedef enum {
 } SPItemKind;
 
 @interface SPItem : CCSprite {
+  int rouletteIndex_;
+  NSMutableArray* itemRoulette_;
   OALAudioTrack* blindSound_;
 }
 
@@ -31,7 +33,6 @@ typedef enum {
 @property(readwrite, weak) SPPlayer* player;
 
 + (SPItem*)item;
-- (id)initWithKind:(SPItemKind)k;
 - (SPItemKind)changeRandom;
 - (void)update:(ccTime)time;
 - (void)useBy:(SPPlayer*)player;
