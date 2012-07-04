@@ -179,7 +179,7 @@ typedef enum {
     CCParticleSystemQuad* effect = [chargeEffects_ objectAtIndex:i];
     effect.position = [[self.points objectAtIndex:0] CGPointValue];
     effect.rotation = 180 * i;
-    [p addChild:effect];
+    [p addChild:effect z:SPPlayerLayerEffect];
   }
 }
 

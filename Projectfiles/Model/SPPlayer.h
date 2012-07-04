@@ -12,6 +12,13 @@
 @class SPDrawing;
 @class SPItem;
 
+typedef enum {
+  SPPlayerLayerMain,
+  SPPlayerLayerEffect,
+  SPPlayerLayerBlind,
+  SPPlayerLayerUI
+} SPPlayerLayer;
+
 @interface SPPlayer : CCLayerColor {
 }
 

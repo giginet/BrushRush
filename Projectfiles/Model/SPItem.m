@@ -114,7 +114,7 @@
     CCSprite* sprite = [CCSprite spriteWithFile:@"blind0_0.png"];
     sprite.position = enemy.center;
     [sprite runAction:[CCRepeatForever actionWithAction:[CCAnimate actionWithAnimation:anime]]];
-    [enemy addChild:sprite z:BLIND_TAG tag:BLIND_TAG];
+    [enemy addChild:sprite z:SPPlayerLayerBlind tag:BLIND_TAG];
     [blindSound_ play];
   }
   [self.changeTimer stop];

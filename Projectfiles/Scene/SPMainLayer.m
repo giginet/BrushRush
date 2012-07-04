@@ -179,7 +179,7 @@
                 }], 
                                       nil]];
                 cutEffect.position = other.gravityPoint;
-                [other.player addChild:cutEffect];
+                [other.player addChild:cutEffect z:SPPlayerLayerEffect];
                 [other removeFromStage];
               }
             }
@@ -300,7 +300,7 @@
       if (identifier == 0) {
         [[OALSimpleAudio sharedInstance] playEffect:[NSString stringWithFormat:@"go0.caf"]];
       }
-      [node.parent addChild:go];
+      [node.parent addChild:go z:SPPlayerLayerUI];
       [self.gameTimer play];
       self.state = SPGameStateMatch;
       self.music.volume = 0.5;
@@ -324,7 +324,7 @@
   for (SPPlayer* player in self.players) { 
     CCSprite* label = [CCSprite spriteWithFile:@"gameset.png"];
     label.position = ccp(player.center.x, player.center.y + 60);
-    [player addChild:label];
+    [player addChild:label z:SPPlayerLayerUI];
     label.scale = 0.0;
     [label runAction:[CCSequence actions:
                       [CCScaleTo actionWithDuration:0.2 scale:1.0],
@@ -354,7 +354,7 @@
     }
     __block CCSprite* label = [CCSprite spriteWithFile:[NSString stringWithFormat:@"%@.png", filename]];
     label.position = ccp(player.center.x, player.center.y + 60);
-    [player addChild:label];
+    [player addChild:label z:SPPlayerLayerUI];
     [labels addObject:label];
   }
   SPPlayer* player0 = [self.players objectAtIndex:0];
@@ -388,8 +388,8 @@
       CCSprite* label = [labels objectAtIndex:0];
       [label runAction:[CCSequence actions:[CCMoveBy actionWithDuration:0.25 position:ccp(0, 75)],
                         [CCCallBlockN actionWithBlock:^(CCNode* node){
-        [self addChild:sign];
-        [layer addChild:menu];
+        [self addChild:sign z:SPPlayerLayerUI];
+        [layer addChild:menu z:SPPlayerLayerUI];
       }], nil]];
       [layer.music play];
     }], 
