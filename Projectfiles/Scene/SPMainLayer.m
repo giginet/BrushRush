@@ -10,6 +10,7 @@
 #import "SPMainLayer.h"
 #import "CCDrawingPrimitives.h"
 #import "SPDrawingManager.h"
+#import "SPTitleLayer.h"
 #import "define.h"
 
 @interface SPMainLayer()
@@ -70,14 +71,14 @@
     }];
     [self scheduleUpdate];
     music = [KWLoopAudioTrack trackWithIntro:@"main_intro.caf" loop:@"main_loop.caf"];
-    [self.music play];
-    [self startGame];
   }
   return self;
 }
 
-- (void)onEnter {
-  [super onEnter];
+- (void)onEnterTransitionDidFinish {
+  [super onEnterTransitionDidFinish];
+  [self.music play];
+  [self startGame];
 }
 
 - (void)update:(ccTime)dt {
@@ -374,12 +375,15 @@
                                                       selectedImage:@"restart_selected.png" 
                                                       disabledImage:@"restart_selected.png" 
                                                               block:^(id sender){
-                                                                [director replaceScene:[SPMainLayer nodeWithScene]];
+                                                                CCTransitionFade* transition = [CCTransitionFade transitionWithDuration:1.0 scene:[SPMainLayer nodeWithScene]];
+                                                                [director replaceScene:transition];
                                                               }];
     CCMenuItemImage* title = [CCMenuItemImage itemFromNormalImage:@"title.png" 
                                                     selectedImage:@"title_selected.png" 
                                                     disabledImage:@"title_selected.png" 
                                                             block:^(id sender){
+                                                              CCTransitionFade* transition = [CCTransitionFade transitionWithDuration:1.0 scene:[SPTitleLayer nodeWithScene]];
+                                                              [director replaceScene:transition];
                                                             }];
     CCMenu* menu = [CCMenu menuWithItems:restart, title, nil];
     [menu alignItemsVerticallyWithPadding:65];
