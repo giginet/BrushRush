@@ -181,7 +181,7 @@ typedef enum {
 }
 
 - (void)setPlayer:(SPPlayer *)p {
-  [player.drawings removeObject:self];
+  //[player.drawings removeObject:self];
   player = p;
   [p.drawings addObject:self];
   self.color = p.color;

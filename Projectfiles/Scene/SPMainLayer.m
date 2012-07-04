@@ -117,17 +117,22 @@
     for (UITouch* touch in touches) {
       CGPoint point = [self convertTouchToNodeSpace:touch];
       for (SPPlayer* player in self.players) {
-        SPPlayer* enemy = [SPPlayer playerById:(player.identifier + 1) % 2];
-        CGRect enemyRect = CGRectMake(enemy.position.x, enemy.position.y, PLAYER_WIDTH, PLAYER_HEIGHT);
+        if (!player.lastTouch) continue;
         if ([player.lastTouch isEqual:touch]) {
+          SPPlayer* enemy = [SPPlayer playerById:(player.identifier + 1) % 2];
+          CGRect enemyRect = CGRectMake(enemy.position.x, enemy.position.y, PLAYER_WIDTH, PLAYER_HEIGHT);
           if (CGRectContainsPoint(enemyRect, point)) {
             [self disableCurrentDrawing:touches];
           }
           SPDrawing* drawing = [player.drawings lastObject];
-          if (!drawing.writingSound.playing) {
-            [drawing.writingSound play];
+          /*if (!drawing.writingSound.playing) {
+            //[drawing.writingSound play];
+          }*/
+          if (drawing.length < 3000) {
+            [drawing addPoint:[player convertToNodeSpace:point]];
+          } else {
+            [self disableCurrentDrawing:touches];
           }
-          [drawing addPoint:[player convertToNodeSpace:point]];
         }
       }
     }
@@ -149,6 +154,7 @@
     for (UITouch* touch in touches) {
       for (SPPlayer* player in self.players) {
         if ([player.lastTouch isEqual:touch]) {
+          if (!player.lastTouch) continue;
           SPDrawing* lastDrawing = player.lastDrawing;
           SPDrawingType detectedType = [lastDrawing detectType];
           if (detectedType == SPDrawingTypeCharge) {
@@ -194,6 +200,7 @@
 - (void)ccTouchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event {
   for (UITouch* touch in touches) {
     for (SPPlayer* player in self.players) {
+      if (!player.lastTouch) continue;
       if ([player.lastTouch isEqual:touch]) {
         player.lastTouch = nil;
         [[SPDrawingManager sharedManager] removeDrawing:player.lastDrawing];
