@@ -37,9 +37,9 @@ typedef struct {
   BOOL dirty_;
   ChargeStatus chargeStatus_;
   NSMutableArray* points_;
+  NSMutableArray* chargeEffects_;
   OALAudioTrack* chargeSound_;
   CCTexture2D* brushTexture_;
-  CCParticleSystemQuad* chargeEffect_;
 }
 
 @property(readonly) BOOL isCharging;

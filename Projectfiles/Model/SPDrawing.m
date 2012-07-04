@@ -55,7 +55,10 @@ typedef enum {
     dirty_ = NO;
     chargeSound_ = [OALAudioTrack track];
     [chargeSound_ preloadFile:[NSString stringWithFormat:@"charge%d.caf", player.identifier]];
-    chargeEffect_ = [CCParticleSystemQuad particleWithFile:@"charge.plist"];
+    chargeEffects_ = [NSMutableArray array];
+    for (int i = 0; i < 2; ++i) {
+      [chargeEffects_ addObject:[CCParticleSystemQuad particleWithFile:@"charge.plist"]];
+    }
     writingSound = [OALAudioTrack track];
     [writingSound preloadFile:@"write.caf"];
     brushTexture_ = [[CCTextureCache sharedTextureCache] addImage:@"brush.png"];
@@ -171,9 +174,13 @@ typedef enum {
   [self.chargeTimer setOnCompleteListener:self selector:@selector(onEndCharge)];
   [self.chargeTimer setOnUpdateListener:self selector:@selector(onUpdateCharge:)];
   [self.chargeTimer play];
-  chargeEffect_.position = [[self.points objectAtIndex:0] CGPointValue];
-  chargeEffect_.rotation = 180 * player.identifier;
-  [self.player addChild:chargeEffect_];
+  for (int i = 0; i < (int)[chargeEffects_ count]; ++i) {
+    SPPlayer* p = [SPPlayer playerById:i];
+    CCParticleSystemQuad* effect = [chargeEffects_ objectAtIndex:i];
+    effect.position = [[self.points objectAtIndex:0] CGPointValue];
+    effect.rotation = 180 * i;
+    [p addChild:effect];
+  }
 }
 
 - (SPPlayer*)player {
@@ -241,7 +248,9 @@ typedef enum {
       break;
     }
     disSum += dis;
-    chargeEffect_.position = chargeStatus_.chargedPoint;
+    for (CCParticleSystemQuad* effect in chargeEffects_) {
+      effect.position = chargeStatus_.chargedPoint;
+    }
   }
 }
 
@@ -253,7 +262,9 @@ typedef enum {
   if ([manager.drawings containsObject:self]) {
     [[OALSimpleAudio sharedInstance] playEffect:@"complete.caf"];
   }
-  [self.player removeChild:chargeEffect_ cleanup:YES];
+  for (CCParticleSystemQuad* effect in chargeEffects_) {
+    [effect.parent removeChild:effect cleanup:YES];
+  }
   //SPDrawingManager* manager = [SPDrawingManager sharedManager];
   //[manager mergeWithIntersectsDrawing:player.lastDrawing];
 }
@@ -349,8 +360,10 @@ typedef enum {
 }
 
 - (void)removeFromStage {
-  SPDrawingManager* manager = [SPDrawingManager sharedManager];
-  [chargeEffect_.parent removeChild:chargeEffect_ cleanup:YES];
+  SPDrawingManager* manager = [SPDrawingManager sharedManager];  
+  for (CCParticleSystemQuad* effect in chargeEffects_) {
+    [effect.parent removeChild:effect cleanup:YES];
+  }
   [manager removeDrawing:self];
 }
 
