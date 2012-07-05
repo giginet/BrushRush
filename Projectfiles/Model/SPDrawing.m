@@ -6,6 +6,7 @@
 //  Copyright (c) 2012 Kawaz. All rights reserved.
 //
 
+#import "heqet.h"
 #import "SPDrawing.h"
 #import "CCDrawingPrimitives.h"
 #import "KWDrawingPrimitives.h"
@@ -167,9 +168,6 @@ typedef enum {
     }
   }
   self.chain = MAX(maxChain, 1);
-  if (self.chain > 1) {
-    NSLog(@"chain %d ", self.chain);
-  }
   chargeTimer = [KWTimer timerWithMax:[self chargeTime]];
   [self.chargeTimer setOnCompleteListener:self selector:@selector(onEndCharge)];
   [self.chargeTimer setOnUpdateListener:self selector:@selector(onUpdateCharge:)];
@@ -264,6 +262,30 @@ typedef enum {
   }
   for (CCParticleSystemQuad* effect in chargeEffects_) {
     [effect.parent removeChild:effect cleanup:YES];
+  }
+  // Add chain label
+  if (self.chain > 1) {
+    for (int i = 0; i < 2; ++i) {
+      SPPlayer* p = [SPPlayer playerById:i];
+      CCLabelAtlas* count = [CCLabelAtlas labelWithString:[NSString stringWithFormat:@"%d", self.chain] 
+                                              charMapFile:@"number.png" 
+                                                itemWidth:35.5 
+                                               itemHeight:37 
+                                             startCharMap:'0'];
+      CCSprite* chainLabel = [CCSprite spriteWithFile:@"chain.png"];
+      chainLabel.position = ccp(self.gravityPoint.x, self.boundingBox.origin.y + self.boundingBox.size.height - 5);
+      [chainLabel runAction:[CCSequence actions:
+                             [CCScaleTo actionWithDuration:0.25 scale:1.0],
+                             [CCDelayTime actionWithDuration:0.5],
+                             [CCFadeOut actionWithDuration:0.25],
+                             [CCSuicide action],
+                             nil]];
+      int order = ceil(log10f(self.chain + 1));
+      count.position = ccp(-order * 35.5, 0);
+      chainLabel.scale = 0;
+      [chainLabel addChild:count];
+      [p addChild:chainLabel z:SPPlayerLayerUI];
+    }
   }
   //SPDrawingManager* manager = [SPDrawingManager sharedManager];
   //[manager mergeWithIntersectsDrawing:player.lastDrawing];

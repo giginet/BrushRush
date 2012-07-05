@@ -259,6 +259,9 @@
 		07AA535E15A4BCCF0071C6E5 /* play_selected-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 07AA535815A4BCCF0071C6E5 /* play_selected-ipad.png */; };
 		07AA535F15A4BCCF0071C6E5 /* play-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 07AA535915A4BCCF0071C6E5 /* play-ipad.png */; };
 		07AA536215A4C5CD0071C6E5 /* SPHowtoLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 07AA536115A4C5CD0071C6E5 /* SPHowtoLayer.m */; };
+		07AA536515A647070071C6E5 /* number-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 07AA536315A647070071C6E5 /* number-ipad.png */; };
+		07AA536615A647070071C6E5 /* number.png in Resources */ = {isa = PBXBuildFile; fileRef = 07AA536415A647070071C6E5 /* number.png */; };
+		07AA536915A648130071C6E5 /* CCSuicide.m in Sources */ = {isa = PBXBuildFile; fileRef = 07AA536815A648130071C6E5 /* CCSuicide.m */; };
 		07E177DA159A019200F66DD9 /* KWLoopAudioTrack.m in Sources */ = {isa = PBXBuildFile; fileRef = 07E177D9159A019200F66DD9 /* KWLoopAudioTrack.m */; };
 		07E177DB159A05D300F66DD9 /* main_intro.caf in Resources */ = {isa = PBXBuildFile; fileRef = 07E177D6159A010000F66DD9 /* main_intro.caf */; };
 		07E177DC159A05D300F66DD9 /* main_loop.caf in Resources */ = {isa = PBXBuildFile; fileRef = 07E177D7159A010000F66DD9 /* main_loop.caf */; };
@@ -592,6 +595,10 @@
 		07AA535915A4BCCF0071C6E5 /* play-ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "play-ipad.png"; sourceTree = "<group>"; };
 		07AA536015A4C5CD0071C6E5 /* SPHowtoLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SPHowtoLayer.h; path = Scene/SPHowtoLayer.h; sourceTree = "<group>"; };
 		07AA536115A4C5CD0071C6E5 /* SPHowtoLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SPHowtoLayer.m; path = Scene/SPHowtoLayer.m; sourceTree = "<group>"; };
+		07AA536315A647070071C6E5 /* number-ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "number-ipad.png"; sourceTree = "<group>"; };
+		07AA536415A647070071C6E5 /* number.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = number.png; sourceTree = "<group>"; };
+		07AA536715A648130071C6E5 /* CCSuicide.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCSuicide.h; sourceTree = "<group>"; };
+		07AA536815A648130071C6E5 /* CCSuicide.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCSuicide.m; sourceTree = "<group>"; };
 		07E177D6159A010000F66DD9 /* main_intro.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = main_intro.caf; sourceTree = "<group>"; };
 		07E177D7159A010000F66DD9 /* main_loop.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = main_loop.caf; sourceTree = "<group>"; };
 		07E177D8159A019200F66DD9 /* KWLoopAudioTrack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KWLoopAudioTrack.h; sourceTree = "<group>"; };
@@ -746,6 +753,8 @@
 		070FCC8B158E65EB00F6DC00 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				07AA536315A647070071C6E5 /* number-ipad.png */,
+				07AA536415A647070071C6E5 /* number.png */,
 				07A03434159CD8C700D6A8CB /* no_selected-ipad.png */,
 				07A03435159CD8C700D6A8CB /* no_selected.png */,
 				07A03436159CD8C700D6A8CB /* no-ipad.png */,
@@ -896,6 +905,8 @@
 				074DD674157F76A000C4DCA7 /* KWShadowLabelTTF.m */,
 				074DD675157F76A000C4DCA7 /* KWTimerLabel.h */,
 				074DD676157F76A000C4DCA7 /* KWTimerLabel.m */,
+				07AA536715A648130071C6E5 /* CCSuicide.h */,
+				07AA536815A648130071C6E5 /* CCSuicide.m */,
 			);
 			path = sprite;
 			sourceTree = "<group>";
@@ -1566,6 +1577,8 @@
 				07AA535D15A4BCCF0071C6E5 /* logo-ipad.png in Resources */,
 				07AA535E15A4BCCF0071C6E5 /* play_selected-ipad.png in Resources */,
 				07AA535F15A4BCCF0071C6E5 /* play-ipad.png in Resources */,
+				07AA536515A647070071C6E5 /* number-ipad.png in Resources */,
+				07AA536615A647070071C6E5 /* number.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1617,6 +1630,7 @@
 				07E177DA159A019200F66DD9 /* KWLoopAudioTrack.m in Sources */,
 				07AA534215A4BC0F0071C6E5 /* SPTitleLayer.m in Sources */,
 				07AA536215A4C5CD0071C6E5 /* SPHowtoLayer.m in Sources */,
+				07AA536915A648130071C6E5 /* CCSuicide.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

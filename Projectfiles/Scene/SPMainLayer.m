@@ -177,9 +177,7 @@
                   CCAnimation* animation = [CCAnimation animationWithFiles:@"break" frameCount:12 delay:fps * 3];
                   [cutEffect runAction:[CCSequence actions:
                                         [CCAnimate actionWithAnimation:animation],
-                                        [CCCallBlockN actionWithBlock:^(CCNode* node){
-                    [node.parent removeChild:node cleanup:YES];
-                  }], 
+                                        [CCSuicide action],
                                         nil]];
                   cutEffect.position = other.gravityPoint;
                   [p addChild:cutEffect z:SPPlayerLayerEffect];
@@ -284,9 +282,7 @@
      __block CCSprite* go = [CCSprite spriteWithFile:@"go.png"];
      id scale = [CCScaleTo actionWithDuration:0.2 scale:1.0];
      id delay = [CCDelayTime actionWithDuration:1.8];
-     id suicide = [CCCallBlockN actionWithBlock:^(CCNode* node) {
-      [node.parent removeChild:node cleanup:YES];
-     }];
+     id suicide = [CCSuicide action];
      label.scale = 0.0;
      go.position = label.position;
      go.scale = 0.0;
@@ -333,9 +329,7 @@
     [label runAction:[CCSequence actions:
                       [CCScaleTo actionWithDuration:0.2 scale:1.0],
                       [CCDelayTime actionWithDuration:2.8],
-                      [CCCallBlockN actionWithBlock:^(CCNode* node) {
-      [node.parent removeChild:node cleanup:YES];
-    }],
+                      [CCSuicide action],
                       nil]];
   }
   [self scheduleOnce:@selector(onResult) delay:3];
