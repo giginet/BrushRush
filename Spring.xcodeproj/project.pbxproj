@@ -274,6 +274,7 @@
 		07AA538415A6525E0071C6E5 /* logo_red_line.png in Resources */ = {isa = PBXBuildFile; fileRef = 07AA537615A6525E0071C6E5 /* logo_red_line.png */; };
 		07AA538515A6525E0071C6E5 /* logo_text-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 07AA537715A6525E0071C6E5 /* logo_text-ipad.png */; };
 		07AA538615A6525E0071C6E5 /* logo_text.png in Resources */ = {isa = PBXBuildFile; fileRef = 07AA537815A6525E0071C6E5 /* logo_text.png */; };
+		07AA538815A65CC70071C6E5 /* op.caf in Resources */ = {isa = PBXBuildFile; fileRef = 07AA538715A65C410071C6E5 /* op.caf */; };
 		07E177DA159A019200F66DD9 /* KWLoopAudioTrack.m in Sources */ = {isa = PBXBuildFile; fileRef = 07E177D9159A019200F66DD9 /* KWLoopAudioTrack.m */; };
 		07E177DB159A05D300F66DD9 /* main_intro.caf in Resources */ = {isa = PBXBuildFile; fileRef = 07E177D6159A010000F66DD9 /* main_intro.caf */; };
 		07E177DC159A05D300F66DD9 /* main_loop.caf in Resources */ = {isa = PBXBuildFile; fileRef = 07E177D7159A010000F66DD9 /* main_loop.caf */; };
@@ -623,6 +624,7 @@
 		07AA537615A6525E0071C6E5 /* logo_red_line.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo_red_line.png; sourceTree = "<group>"; };
 		07AA537715A6525E0071C6E5 /* logo_text-ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo_text-ipad.png"; sourceTree = "<group>"; };
 		07AA537815A6525E0071C6E5 /* logo_text.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo_text.png; sourceTree = "<group>"; };
+		07AA538715A65C410071C6E5 /* op.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = op.caf; sourceTree = "<group>"; };
 		07E177D6159A010000F66DD9 /* main_intro.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = main_intro.caf; sourceTree = "<group>"; };
 		07E177D7159A010000F66DD9 /* main_loop.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = main_loop.caf; sourceTree = "<group>"; };
 		07E177D8159A019200F66DD9 /* KWLoopAudioTrack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KWLoopAudioTrack.h; sourceTree = "<group>"; };
@@ -714,6 +716,7 @@
 		070C251B159932A800F0F042 /* Music */ = {
 			isa = PBXGroup;
 			children = (
+				07AA538715A65C410071C6E5 /* op.caf */,
 				07E177D6159A010000F66DD9 /* main_intro.caf */,
 				07E177D7159A010000F66DD9 /* main_loop.caf */,
 				07E177DD159A091300F66DD9 /* fanfare0.caf */,
@@ -1381,6 +1384,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				07AA538815A65CC70071C6E5 /* op.caf in Resources */,
 				07AA533F15A4B57C0071C6E5 /* blind.caf in Resources */,
 				07F0B53015A2069200679DCF /* item.caf in Resources */,
 				07473E2015A1FE0200B27CEF /* charge0.caf in Resources */,

@@ -8,9 +8,11 @@
 
 #import "SPTitleLayer.h"
 #import "SPMainLayer.h"
+#import "ObjectAL.h"
 
 @interface SPTitleLayer()
 - (CCNode*)logo;
+- (void)onLogoDidFinish;
 @end
 
 @implementation SPTitleLayer
@@ -22,11 +24,7 @@
     CCSprite* background = [CCSprite spriteWithFile:@"title_background.png"];
     background.position = director.screenCenter;
     [self addChild:background];
-    
-    CCNode* logo = [self logo];
-    logo.position = ccp(director.screenCenter.x - 632 / 2, 800 - 446 / 2);
-    [self addChild:logo];
-    
+        
     CCSprite* tail = [CCSprite spriteWithFile:@"title_tail.png"];
     tail.position = ccp(530, 150);
     tail.anchorPoint = ccp(0.3, 0.25);
@@ -64,6 +62,14 @@
     
   }
   return self;
+}
+
+- (void)onEnterTransitionDidFinish {
+  [super onEnterTransitionDidFinish];
+  CCDirector* director = [CCDirector sharedDirector];
+  CCNode* logo = [self logo];
+  logo.position = ccp(director.screenCenter.x - 632 / 2, 800 - 446 / 2);
+  [self addChild:logo];
 }
 
 - (CCNode*)logo {
@@ -125,8 +131,15 @@
                  [CCScaleTo actionWithDuration:flower scale:1.0],
                  nil]];
   
-  
+  [node runAction:[CCSequence actions:
+                   [CCDelayTime actionWithDuration:delay + line + flower + logo],
+                   [CCCallFunc actionWithTarget:self selector:@selector(onLogoDidFinish)],
+                   nil]];
   return node;
+}
+
+- (void)onLogoDidFinish {
+  [[OALSimpleAudio sharedInstance] playBg:@"op.caf" loop:-1];
 }
 
 @end
