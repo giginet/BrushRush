@@ -13,8 +13,7 @@
 #import "CCTexture2D+DrawInPoly.h"
 #import "SPDrawingManager.h"
 #import "OALSimpleAudio.h"
-#define DRAW_TEXTURE YES
-#define BRUSH_TEXTURE NO
+#import "define.h"
 
 typedef enum {
   SPRotationStraight,
@@ -371,7 +370,11 @@ typedef enum {
     KWVector* v = [KWVector vectorWithPoint:[value CGPointValue]];
     KWVector* sub = [v sub:gp];
     KWVector* newPoint = [gp add:[sub scale:rate]];
-    [newPoints addObject:[NSValue valueWithCGPoint:newPoint.point]];
+    float x = newPoint.x;
+    float y = newPoint.y;
+    x = MIN(MAX(0, x), PLAYER_WIDTH);
+    y = MIN(MAX(0, y), PLAYER_HEIGHT);
+    [newPoints addObject:[NSValue valueWithCGPoint:ccp(x, y)]];
   }
   points_ = newPoints;
 }

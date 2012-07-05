@@ -14,5 +14,7 @@
 #define STATUSBAR_HEIGHT 100
 #define FRAME_SIZE 20
 #define GAME_TIME 30
+#define DRAW_TEXTURE YES
+#define BRUSH_TEXTURE NO
 
 #endif
