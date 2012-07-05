@@ -71,6 +71,8 @@
     }];
     [self scheduleUpdate];
     music = [KWLoopAudioTrack trackWithIntro:@"main_intro.caf" loop:@"main_loop.caf"];
+    [[SPDrawingManager sharedManager] removeAllDrawings];
+    [[SPDrawingManager sharedManager] removeAllItems];
   }
   return self;
 }
