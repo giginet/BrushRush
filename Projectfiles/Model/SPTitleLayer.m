@@ -9,6 +9,10 @@
 #import "SPTitleLayer.h"
 #import "SPMainLayer.h"
 
+@interface SPTitleLayer()
+- (CCNode*)logo;
+@end
+
 @implementation SPTitleLayer
 
 - (id)init {
@@ -19,8 +23,8 @@
     background.position = director.screenCenter;
     [self addChild:background];
     
-    CCSprite* logo = [CCSprite spriteWithFile:@"logo.png"];
-    logo.position = ccp(director.screenCenter.x, 800);
+    CCNode* logo = [self logo];
+    logo.position = ccp(director.screenCenter.x - 632 / 2, 800 - 446 / 2);
     [self addChild:logo];
     
     CCSprite* tail = [CCSprite spriteWithFile:@"title_tail.png"];
@@ -54,8 +58,75 @@
     menu.position = ccp(director.screenCenter.x, 385);
     [self addChild:menu];
     
+    CCLabelTTF* credit = [CCLabelTTF labelWithString:@"copyright Ⓒ2009-2012 Kawaz All right reserved." fontName:@"Helvetica" fontSize:16];
+    credit.position = ccp(director.screenCenter.x, 60);
+    [self addChild:credit];
+    
   }
   return self;
+}
+
+- (CCNode*)logo {
+  const float delay = 0.5;
+  const float line = 0.3;
+  const float flower = 0.3;
+  const float logo = 0.5;
+  
+  CCNode* node = [CCNode node];
+  CCSprite* chara = [CCSprite spriteWithFile:@"logo_character.png"];
+  chara.position = ccp(207, 218);
+  [node addChild:chara];
+  
+  CCSprite* bl = [CCSprite spriteWithFile:@"logo_blue_line.png"];
+  bl.position = ccp(120, 288);
+  bl.anchorPoint = ccp(0, 0.5);
+  [node addChild:bl];
+  bl.scaleX = 0.0;
+  [bl runAction:[CCSequence actions:
+                 [CCDelayTime actionWithDuration:delay], 
+                 [CCScaleTo actionWithDuration:line scaleX:1.0 scaleY:1.0],
+                 nil]];
+  
+  CCSprite* rl = [CCSprite spriteWithFile:@"logo_red_line.png"];
+  rl.position = ccp(624, 138);
+  rl.anchorPoint = ccp(1.0, 0.5);
+  [node addChild:rl];
+  rl.scaleX = 0.0;
+  [rl runAction:[CCSequence actions:
+                 [CCDelayTime actionWithDuration:delay], 
+                 [CCScaleTo actionWithDuration:line scaleX:1.0 scaleY:1.0],
+                 nil]];
+  
+  CCSprite* text = [CCSprite spriteWithFile:@"logo_text.png"];
+  text.position = ccp(356, 229);
+  [node addChild:text];
+  text.opacity = 0.0;
+  [text runAction:[CCSequence actions:
+                 [CCDelayTime actionWithDuration:delay + line + flower], 
+                 [CCFadeIn actionWithDuration:logo],
+                 nil]];
+  
+  CCSprite* bf = [CCSprite spriteWithFile:@"logo_blue_flower.png"];
+  bf.position = ccp(434, 387);
+  [node addChild:bf];
+  bf.scale = 0.0;
+  [bf runAction:[CCSequence actions:
+                 [CCDelayTime actionWithDuration:delay + line], 
+                 [CCScaleTo actionWithDuration:flower scale:1.0],
+                 nil]];
+  
+  
+  CCSprite* rf = [CCSprite spriteWithFile:@"logo_red_flower.png"];
+  rf.position = ccp(235, 62);
+  [node addChild:rf];
+  rf.scale = 0.0;
+  [rf runAction:[CCSequence actions:
+                 [CCDelayTime actionWithDuration:delay + line], 
+                 [CCScaleTo actionWithDuration:flower scale:1.0],
+                 nil]];
+  
+  
+  return node;
 }
 
 @end
