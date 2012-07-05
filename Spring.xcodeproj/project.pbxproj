@@ -258,6 +258,7 @@
 		07AA535D15A4BCCF0071C6E5 /* logo-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 07AA535715A4BCCF0071C6E5 /* logo-ipad.png */; };
 		07AA535E15A4BCCF0071C6E5 /* play_selected-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 07AA535815A4BCCF0071C6E5 /* play_selected-ipad.png */; };
 		07AA535F15A4BCCF0071C6E5 /* play-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 07AA535915A4BCCF0071C6E5 /* play-ipad.png */; };
+		07AA536215A4C5CD0071C6E5 /* SPHowtoLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 07AA536115A4C5CD0071C6E5 /* SPHowtoLayer.m */; };
 		07E177DA159A019200F66DD9 /* KWLoopAudioTrack.m in Sources */ = {isa = PBXBuildFile; fileRef = 07E177D9159A019200F66DD9 /* KWLoopAudioTrack.m */; };
 		07E177DB159A05D300F66DD9 /* main_intro.caf in Resources */ = {isa = PBXBuildFile; fileRef = 07E177D6159A010000F66DD9 /* main_intro.caf */; };
 		07E177DC159A05D300F66DD9 /* main_loop.caf in Resources */ = {isa = PBXBuildFile; fileRef = 07E177D7159A010000F66DD9 /* main_loop.caf */; };
@@ -589,6 +590,8 @@
 		07AA535715A4BCCF0071C6E5 /* logo-ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo-ipad.png"; sourceTree = "<group>"; };
 		07AA535815A4BCCF0071C6E5 /* play_selected-ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "play_selected-ipad.png"; sourceTree = "<group>"; };
 		07AA535915A4BCCF0071C6E5 /* play-ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "play-ipad.png"; sourceTree = "<group>"; };
+		07AA536015A4C5CD0071C6E5 /* SPHowtoLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SPHowtoLayer.h; path = Scene/SPHowtoLayer.h; sourceTree = "<group>"; };
+		07AA536115A4C5CD0071C6E5 /* SPHowtoLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SPHowtoLayer.m; path = Scene/SPHowtoLayer.m; sourceTree = "<group>"; };
 		07E177D6159A010000F66DD9 /* main_intro.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = main_intro.caf; sourceTree = "<group>"; };
 		07E177D7159A010000F66DD9 /* main_loop.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = main_loop.caf; sourceTree = "<group>"; };
 		07E177D8159A019200F66DD9 /* KWLoopAudioTrack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KWLoopAudioTrack.h; sourceTree = "<group>"; };
@@ -934,6 +937,8 @@
 				074DD6A4157F7D1300C4DCA7 /* SPMainLayer.m */,
 				07AA534015A4BC0F0071C6E5 /* SPTitleLayer.h */,
 				07AA534115A4BC0F0071C6E5 /* SPTitleLayer.m */,
+				07AA536015A4C5CD0071C6E5 /* SPHowtoLayer.h */,
+				07AA536115A4C5CD0071C6E5 /* SPHowtoLayer.m */,
 			);
 			name = Scene;
 			sourceTree = "<group>";
@@ -1611,6 +1616,7 @@
 				0715946C1592D1FD003BC47E /* SPItem.m in Sources */,
 				07E177DA159A019200F66DD9 /* KWLoopAudioTrack.m in Sources */,
 				07AA534215A4BC0F0071C6E5 /* SPTitleLayer.m in Sources */,
+				07AA536215A4C5CD0071C6E5 /* SPHowtoLayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

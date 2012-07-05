@@ -24,7 +24,7 @@ local config =
 		DirectorTypeFallback = DirectorType.NSTimer,
 
 		MaxFrameRate = 60,
-		DisplayFPS = YES,
+		DisplayFPS = NO,
 
 		EnableUserInteraction = YES,
 		EnableMultiTouch = NO,
