@@ -43,6 +43,7 @@
                                               selectedImage:@"play_selected.png" 
                                               disabledImage:@"play_selected.png" 
                                                       block:^(id sender){
+                                                        [titleMusic_ fadeTo:0 duration:1.0 target:nil selector:nil];
                                                         CCTransitionFade* transition = [CCTransitionFade transitionWithDuration:0.5f scene:[SPMainLayer nodeWithScene]];
                                                         [director replaceScene:transition];
                                                       }];
@@ -59,7 +60,8 @@
     CCLabelTTF* credit = [CCLabelTTF labelWithString:@"copyright Ⓒ2009-2012 Kawaz All right reserved." fontName:@"Helvetica" fontSize:16];
     credit.position = ccp(director.screenCenter.x, 60);
     [self addChild:credit];
-    
+    titleMusic_ = [OALAudioTrack track];
+    [titleMusic_ preloadFile:@"op.caf"];
   }
   return self;
 }
@@ -139,7 +141,7 @@
 }
 
 - (void)onLogoDidFinish {
-  [[OALSimpleAudio sharedInstance] playBg:@"op.caf" loop:-1];
+  [titleMusic_ playFile:@"op.caf" loops:-1];
 }
 
 @end

@@ -7,7 +7,10 @@
 //
 
 #import "CCLayer.h"
+#import "ObjectAL.h"
 
-@interface SPTitleLayer : CCLayer
+@interface SPTitleLayer : CCLayer {
+  OALAudioTrack* titleMusic_;
+}
 
 @end
