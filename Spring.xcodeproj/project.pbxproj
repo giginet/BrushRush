@@ -275,6 +275,11 @@
 		07AA538515A6525E0071C6E5 /* logo_text-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 07AA537715A6525E0071C6E5 /* logo_text-ipad.png */; };
 		07AA538615A6525E0071C6E5 /* logo_text.png in Resources */ = {isa = PBXBuildFile; fileRef = 07AA537815A6525E0071C6E5 /* logo_text.png */; };
 		07AA538815A65CC70071C6E5 /* op.caf in Resources */ = {isa = PBXBuildFile; fileRef = 07AA538715A65C410071C6E5 /* op.caf */; };
+		07AA538C15A65DD60071C6E5 /* KWLogoLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 07AA538B15A65DD60071C6E5 /* KWLogoLayer.m */; };
+		07AA539115A65E990071C6E5 /* kawaz-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 07AA538E15A65E990071C6E5 /* kawaz-hd.png */; };
+		07AA539215A65E990071C6E5 /* kawaz-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 07AA538F15A65E990071C6E5 /* kawaz-ipad.png */; };
+		07AA539315A65E990071C6E5 /* kawaz.png in Resources */ = {isa = PBXBuildFile; fileRef = 07AA539015A65E990071C6E5 /* kawaz.png */; };
+		07AA539615A661DD0071C6E5 /* SPLogoLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 07AA539515A661DD0071C6E5 /* SPLogoLayer.m */; };
 		07E177DA159A019200F66DD9 /* KWLoopAudioTrack.m in Sources */ = {isa = PBXBuildFile; fileRef = 07E177D9159A019200F66DD9 /* KWLoopAudioTrack.m */; };
 		07E177DB159A05D300F66DD9 /* main_intro.caf in Resources */ = {isa = PBXBuildFile; fileRef = 07E177D6159A010000F66DD9 /* main_intro.caf */; };
 		07E177DC159A05D300F66DD9 /* main_loop.caf in Resources */ = {isa = PBXBuildFile; fileRef = 07E177D7159A010000F66DD9 /* main_loop.caf */; };
@@ -625,6 +630,13 @@
 		07AA537715A6525E0071C6E5 /* logo_text-ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo_text-ipad.png"; sourceTree = "<group>"; };
 		07AA537815A6525E0071C6E5 /* logo_text.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo_text.png; sourceTree = "<group>"; };
 		07AA538715A65C410071C6E5 /* op.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = op.caf; sourceTree = "<group>"; };
+		07AA538A15A65DD60071C6E5 /* KWLogoLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KWLogoLayer.h; path = template/KWLogoLayer.h; sourceTree = "<group>"; };
+		07AA538B15A65DD60071C6E5 /* KWLogoLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KWLogoLayer.m; path = template/KWLogoLayer.m; sourceTree = "<group>"; };
+		07AA538E15A65E990071C6E5 /* kawaz-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "kawaz-hd.png"; path = "resources/kawaz-hd.png"; sourceTree = "<group>"; };
+		07AA538F15A65E990071C6E5 /* kawaz-ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "kawaz-ipad.png"; path = "resources/kawaz-ipad.png"; sourceTree = "<group>"; };
+		07AA539015A65E990071C6E5 /* kawaz.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = kawaz.png; path = resources/kawaz.png; sourceTree = "<group>"; };
+		07AA539415A661DD0071C6E5 /* SPLogoLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SPLogoLayer.h; path = Scene/SPLogoLayer.h; sourceTree = "<group>"; };
+		07AA539515A661DD0071C6E5 /* SPLogoLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SPLogoLayer.m; path = Scene/SPLogoLayer.m; sourceTree = "<group>"; };
 		07E177D6159A010000F66DD9 /* main_intro.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = main_intro.caf; sourceTree = "<group>"; };
 		07E177D7159A010000F66DD9 /* main_loop.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = main_loop.caf; sourceTree = "<group>"; };
 		07E177D8159A019200F66DD9 /* KWLoopAudioTrack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KWLoopAudioTrack.h; sourceTree = "<group>"; };
@@ -869,11 +881,13 @@
 		074DD656157F76A000C4DCA7 /* Heqet */ = {
 			isa = PBXGroup;
 			children = (
-				074DD657157F76A000C4DCA7 /* audio */,
 				074DD65A157F76A000C4DCA7 /* heqet.h */,
+				074DD657157F76A000C4DCA7 /* audio */,
 				074DD65B157F76A000C4DCA7 /* libs */,
+				07AA538D15A65DF40071C6E5 /* resources */,
 				074DD65E157F76A000C4DCA7 /* scene */,
 				074DD665157F76A000C4DCA7 /* sprite */,
+				07AA538915A65DA40071C6E5 /* template */,
 				074DD677157F76A000C4DCA7 /* util */,
 			);
 			path = Heqet;
@@ -977,6 +991,8 @@
 				07AA534115A4BC0F0071C6E5 /* SPTitleLayer.m */,
 				07AA536015A4C5CD0071C6E5 /* SPHowtoLayer.h */,
 				07AA536115A4C5CD0071C6E5 /* SPHowtoLayer.m */,
+				07AA539415A661DD0071C6E5 /* SPLogoLayer.h */,
+				07AA539515A661DD0071C6E5 /* SPLogoLayer.m */,
 			);
 			name = Scene;
 			sourceTree = "<group>";
@@ -1208,6 +1224,25 @@
 				07AA537815A6525E0071C6E5 /* logo_text.png */,
 			);
 			path = logo;
+			sourceTree = "<group>";
+		};
+		07AA538915A65DA40071C6E5 /* template */ = {
+			isa = PBXGroup;
+			children = (
+				07AA538A15A65DD60071C6E5 /* KWLogoLayer.h */,
+				07AA538B15A65DD60071C6E5 /* KWLogoLayer.m */,
+			);
+			name = template;
+			sourceTree = "<group>";
+		};
+		07AA538D15A65DF40071C6E5 /* resources */ = {
+			isa = PBXGroup;
+			children = (
+				07AA538E15A65E990071C6E5 /* kawaz-hd.png */,
+				07AA538F15A65E990071C6E5 /* kawaz-ipad.png */,
+				07AA539015A65E990071C6E5 /* kawaz.png */,
+			);
+			name = resources;
 			sourceTree = "<group>";
 		};
 		DCC1A0D613A94EC0005BD75D = {
@@ -1639,6 +1674,9 @@
 				07AA538415A6525E0071C6E5 /* logo_red_line.png in Resources */,
 				07AA538515A6525E0071C6E5 /* logo_text-ipad.png in Resources */,
 				07AA538615A6525E0071C6E5 /* logo_text.png in Resources */,
+				07AA539115A65E990071C6E5 /* kawaz-hd.png in Resources */,
+				07AA539215A65E990071C6E5 /* kawaz-ipad.png in Resources */,
+				07AA539315A65E990071C6E5 /* kawaz.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1691,6 +1729,8 @@
 				07AA534215A4BC0F0071C6E5 /* SPTitleLayer.m in Sources */,
 				07AA536215A4C5CD0071C6E5 /* SPHowtoLayer.m in Sources */,
 				07AA536915A648130071C6E5 /* CCSuicide.m in Sources */,
+				07AA538C15A65DD60071C6E5 /* KWLogoLayer.m in Sources */,
+				07AA539615A661DD0071C6E5 /* SPLogoLayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

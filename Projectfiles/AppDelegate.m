@@ -18,6 +18,7 @@
 #endif
   [self.window setMultipleTouchEnabled:YES];
   [[CCDirector sharedDirector].openGLView setMultipleTouchEnabled:YES];
+  [CCFileUtils setiPadSuffix:@""];
 }
 
 -(id) alternateRootViewController
