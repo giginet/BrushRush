@@ -95,7 +95,10 @@
       if (!player.lastTouch && [player containsPoint:point]) {
         BOOL used = NO;
         for (SPItem* item in [NSArray arrayWithArray:manager.items]) {
-          CGRect box = CGRectMake(item.position.x, item.position.y, item.texture.contentSize.width, item.texture.contentSize.height);
+          CGRect box = CGRectMake(item.position.x - item.texture.contentSize.width / 2, 
+                                  item.position.y - item.texture.contentSize.height / 2, 
+                                  item.texture.contentSize.width * 2, 
+                                  item.texture.contentSize.height * 2);
           CGPoint local = [player convertToNodeSpace:point];
           if (CGRectContainsPoint(box, local)) {
             [player getItem:item];

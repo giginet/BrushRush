@@ -14,6 +14,7 @@
 #import "SPDrawingManager.h"
 #import "OALSimpleAudio.h"
 #import "define.h"
+#define CHARGE_EFFECT YES
 
 typedef enum {
   SPRotationStraight,
@@ -53,12 +54,14 @@ typedef enum {
     chargeStatus_.distanceFromEdge = 0;
     chargeStatus_.chargedPoint = CGPointZero;
     dirty_ = NO;
-    chargeSound_ = [OALAudioTrack track];
-    [chargeSound_ preloadFile:[NSString stringWithFormat:@"charge%d.caf", player.identifier]];
-    /*chargeEffects_ = [NSMutableArray array];
-    for (int i = 0; i < 2; ++i) {
-      [chargeEffects_ addObject:[CCParticleSystemQuad particleWithFile:@"charge.plist"]];
-    }*/
+    //chargeSound_ = [OALAudioTrack track];
+    //[chargeSound_ preloadFile:[NSString stringWithFormat:@"charge%d.caf", player.identifier]];
+    if (CHARGE_EFFECT) {
+      chargeEffects_ = [NSMutableArray array];
+      for (int i = 0; i < 2; ++i) {
+        [chargeEffects_ addObject:[CCParticleSystemQuad particleWithFile:@"charge.plist"]];
+      }
+    }
     /*writingSound = [OALAudioTrack track];
     [writingSound preloadFile:@"write.caf"];*/
     brushTexture_ = [[CCTextureCache sharedTextureCache] addImage:@"brush.png"];
@@ -157,8 +160,8 @@ typedef enum {
 }
 
 - (void)fire {
-  chargeSound_.pan = -1 + player.identifier * 2;
-  [chargeSound_ playFile:[NSString stringWithFormat:@"charge%d.caf", player.identifier] loops:-1];
+  //chargeSound_.pan = -1 + player.identifier * 2;
+  //[chargeSound_ playFile:[NSString stringWithFormat:@"charge%d.caf", player.identifier] loops:-1];
   SPDrawingManager* manager = [SPDrawingManager sharedManager];
   int maxChain = 0;
   for (SPDrawing* drawing in manager.drawings) {
@@ -171,13 +174,15 @@ typedef enum {
   [self.chargeTimer setOnCompleteListener:self selector:@selector(onEndCharge)];
   [self.chargeTimer setOnUpdateListener:self selector:@selector(onUpdateCharge:)];
   [self.chargeTimer play];
-  /*for (int i = 0; i < (int)[chargeEffects_ count]; ++i) {
-    SPPlayer* p = [SPPlayer playerById:i];
-    CCParticleSystemQuad* effect = [chargeEffects_ objectAtIndex:i];
-    effect.position = [[self.points objectAtIndex:0] CGPointValue];
-    effect.rotation = 180 * i;
-    [p addChild:effect z:SPPlayerLayerEffect];
-  }*/
+  if (CHARGE_EFFECT) {
+    for (int i = 0; i < (int)[chargeEffects_ count]; ++i) {
+      SPPlayer* p = [SPPlayer playerById:i];
+      CCParticleSystemQuad* effect = [chargeEffects_ objectAtIndex:i];
+      effect.position = self.position;
+      effect.rotation = 180 * i;
+      [p addChild:effect z:SPPlayerLayerEffect];
+    }
+  }
 }
 
 - (SPPlayer*)player {
@@ -195,6 +200,7 @@ typedef enum {
   [points_ addObject:[NSValue valueWithCGPoint:point]];
   if ([points_ count] == 1) {
     boundingBox = CGRectMake(point.x, point.y, 0, 0);
+    self.position = point;
   } else {
     CGPoint begin = ccp(boundingBox.origin.x, boundingBox.origin.y);
     CGPoint end = ccpAdd(begin, ccp(boundingBox.size.width, boundingBox.size.height));
@@ -245,23 +251,28 @@ typedef enum {
       break;
     }
     disSum += dis;
-    /*for (CCParticleSystemQuad* effect in chargeEffects_) {
-      effect.position = chargeStatus_.chargedPoint;
-    }*/
+    if (CHARGE_EFFECT) {
+      for (CCParticleSystemQuad* effect in chargeEffects_) {
+        effect.position = chargeStatus_.chargedPoint;
+      }
+    }
   }
 }
 
 - (void)onEndCharge {
-  [chargeSound_ stop];
+  //[chargeSound_ stop];
   SPDrawingManager* manager = [SPDrawingManager sharedManager];
   [self expand:pow(2, (float)(self.chain - 1) / 4.0)];
   self.type = SPDrawingTypeArea;
+  int chainCount = MIN(5, self.chain);
   if ([manager.drawings containsObject:self]) {
-    [[OALSimpleAudio sharedInstance] playEffect:@"complete.caf"];
+    [[OALSimpleAudio sharedInstance] playEffect:[NSString stringWithFormat:@"complete%d.caf", chainCount]];
   }
-  /*for (CCParticleSystemQuad* effect in chargeEffects_) {
-    [effect.parent removeChild:effect cleanup:YES];
-  }*/
+  if (CHARGE_EFFECT) {
+    for (CCParticleSystemQuad* effect in chargeEffects_) {
+      [effect.parent removeChild:effect cleanup:YES];
+    }
+  }
   // Add chain label
   if (self.chain > 1) {
     for (int i = 0; i < 2; ++i) {
@@ -287,6 +298,13 @@ typedef enum {
     }
   }
   self.player.lastArea = self;
+  [[CCTextureCache sharedTextureCache] removeUnusedTextures];
+  for (int i = 0; i < 2; ++i) {
+    CCParticleSystemQuad* completeEffect = [CCParticleSystemQuad particleWithFile:[NSString stringWithFormat:@"complete%d.plist", i]];
+    SPPlayer* p = [SPPlayer playerById:i];
+    completeEffect.position = self.gravityPoint;
+    [p addChild:completeEffect];
+  }
   //SPDrawingManager* manager = [SPDrawingManager sharedManager];
   //[manager mergeWithIntersectsDrawing:player.lastDrawing];
 }
@@ -381,15 +399,17 @@ typedef enum {
 }
 
 - (void)stopCharge {
-  [chargeSound_ stop];
+  //[chargeSound_ stop];
   [chargeTimer pause];
 }
 
 - (void)removeFromStage {
   SPDrawingManager* manager = [SPDrawingManager sharedManager];  
-  /*for (CCParticleSystemQuad* effect in chargeEffects_) {
-    [effect.parent removeChild:effect cleanup:YES];
-  }*/
+  if (CHARGE_EFFECT) {
+    for (CCParticleSystemQuad* effect in chargeEffects_) {
+      [effect.parent removeChild:effect cleanup:YES];
+    }
+  }
   [manager removeDrawing:self];
 }
 

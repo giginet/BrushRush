@@ -94,7 +94,6 @@
 		07A033F4159CB73D00D6A8CB /* snatch_1_0.caf in Resources */ = {isa = PBXBuildFile; fileRef = 07A033DC159CB73D00D6A8CB /* snatch_1_0.caf */; };
 		07A033F5159CB73D00D6A8CB /* snatch_1_1.caf in Resources */ = {isa = PBXBuildFile; fileRef = 07A033DD159CB73D00D6A8CB /* snatch_1_1.caf */; };
 		07A03403159CBE7100D6A8CB /* break.caf in Resources */ = {isa = PBXBuildFile; fileRef = 07A033F8159CBE7100D6A8CB /* break.caf */; };
-		07A03405159CBE7100D6A8CB /* complete.caf in Resources */ = {isa = PBXBuildFile; fileRef = 07A033FA159CBE7100D6A8CB /* complete.caf */; };
 		07A03406159CBE7100D6A8CB /* item_in.caf in Resources */ = {isa = PBXBuildFile; fileRef = 07A033FB159CBE7100D6A8CB /* item_in.caf */; };
 		07A03407159CBE7100D6A8CB /* item_out.caf in Resources */ = {isa = PBXBuildFile; fileRef = 07A033FC159CBE7100D6A8CB /* item_out.caf */; };
 		07A03408159CBE7100D6A8CB /* paint.caf in Resources */ = {isa = PBXBuildFile; fileRef = 07A033FD159CBE7100D6A8CB /* paint.caf */; };
@@ -190,6 +189,14 @@
 		07E177E2159A092500F66DD9 /* fanfare1.caf in Resources */ = {isa = PBXBuildFile; fileRef = 07E177DE159A091300F66DD9 /* fanfare1.caf */; };
 		07E177E3159A092500F66DD9 /* result_intro.caf in Resources */ = {isa = PBXBuildFile; fileRef = 07E177DF159A091300F66DD9 /* result_intro.caf */; };
 		07E177E4159A092500F66DD9 /* result_loop.caf in Resources */ = {isa = PBXBuildFile; fileRef = 07E177E0159A091300F66DD9 /* result_loop.caf */; };
+		07E3B4FB15A84C83003301B8 /* complete0.caf in Resources */ = {isa = PBXBuildFile; fileRef = 07E3B4F515A84C1F003301B8 /* complete0.caf */; };
+		07E3B4FC15A84C83003301B8 /* complete1.caf in Resources */ = {isa = PBXBuildFile; fileRef = 07E3B4F615A84C1F003301B8 /* complete1.caf */; };
+		07E3B4FD15A84C83003301B8 /* complete2.caf in Resources */ = {isa = PBXBuildFile; fileRef = 07E3B4F715A84C1F003301B8 /* complete2.caf */; };
+		07E3B4FE15A84C83003301B8 /* complete3.caf in Resources */ = {isa = PBXBuildFile; fileRef = 07E3B4F815A84C1F003301B8 /* complete3.caf */; };
+		07E3B4FF15A84C83003301B8 /* complete4.caf in Resources */ = {isa = PBXBuildFile; fileRef = 07E3B4F915A84C1F003301B8 /* complete4.caf */; };
+		07E3B50015A84C83003301B8 /* complete5.caf in Resources */ = {isa = PBXBuildFile; fileRef = 07E3B4FA15A84C1F003301B8 /* complete5.caf */; };
+		07E3B50515A85B22003301B8 /* complete0.plist in Resources */ = {isa = PBXBuildFile; fileRef = 07E3B50315A85B22003301B8 /* complete0.plist */; };
+		07E3B50615A85B22003301B8 /* complete1.plist in Resources */ = {isa = PBXBuildFile; fileRef = 07E3B50415A85B22003301B8 /* complete1.plist */; };
 		07F0B53015A2069200679DCF /* item.caf in Resources */ = {isa = PBXBuildFile; fileRef = 07F0B52C15A2055900679DCF /* item.caf */; };
 		DC485B1113AA0E5600F2BC70 /* libchipmunk-mac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DC485B0D13AA0E5600F2BC70 /* libchipmunk-mac.a */; };
 		DC485B1713AA0EBB00F2BC70 /* libbox2d-mac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DC485B1613AA0EBB00F2BC70 /* libbox2d-mac.a */; };
@@ -347,7 +354,6 @@
 		07A033DC159CB73D00D6A8CB /* snatch_1_0.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = snatch_1_0.caf; sourceTree = "<group>"; };
 		07A033DD159CB73D00D6A8CB /* snatch_1_1.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = snatch_1_1.caf; sourceTree = "<group>"; };
 		07A033F8159CBE7100D6A8CB /* break.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = break.caf; sourceTree = "<group>"; };
-		07A033FA159CBE7100D6A8CB /* complete.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = complete.caf; sourceTree = "<group>"; };
 		07A033FB159CBE7100D6A8CB /* item_in.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = item_in.caf; sourceTree = "<group>"; };
 		07A033FC159CBE7100D6A8CB /* item_out.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = item_out.caf; sourceTree = "<group>"; };
 		07A033FD159CBE7100D6A8CB /* paint.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = paint.caf; sourceTree = "<group>"; };
@@ -450,6 +456,14 @@
 		07E177DE159A091300F66DD9 /* fanfare1.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = fanfare1.caf; sourceTree = "<group>"; };
 		07E177DF159A091300F66DD9 /* result_intro.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = result_intro.caf; sourceTree = "<group>"; };
 		07E177E0159A091300F66DD9 /* result_loop.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = result_loop.caf; sourceTree = "<group>"; };
+		07E3B4F515A84C1F003301B8 /* complete0.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = complete0.caf; sourceTree = "<group>"; };
+		07E3B4F615A84C1F003301B8 /* complete1.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = complete1.caf; sourceTree = "<group>"; };
+		07E3B4F715A84C1F003301B8 /* complete2.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = complete2.caf; sourceTree = "<group>"; };
+		07E3B4F815A84C1F003301B8 /* complete3.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = complete3.caf; sourceTree = "<group>"; };
+		07E3B4F915A84C1F003301B8 /* complete4.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = complete4.caf; sourceTree = "<group>"; };
+		07E3B4FA15A84C1F003301B8 /* complete5.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = complete5.caf; sourceTree = "<group>"; };
+		07E3B50315A85B22003301B8 /* complete0.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = complete0.plist; sourceTree = "<group>"; };
+		07E3B50415A85B22003301B8 /* complete1.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = complete1.plist; sourceTree = "<group>"; };
 		07F0B52C15A2055900679DCF /* item.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = item.caf; sourceTree = "<group>"; };
 		DC3BE97813B4FB71003739CC /* BuildSettings-iOS.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "BuildSettings-iOS.xcconfig"; sourceTree = "<group>"; };
 		DC485B0D13AA0E5600F2BC70 /* libchipmunk-mac.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libchipmunk-mac.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -623,6 +637,8 @@
 			isa = PBXGroup;
 			children = (
 				07473E1A15A1FA5100B27CEF /* charge.plist */,
+				07E3B50315A85B22003301B8 /* complete0.plist */,
+				07E3B50415A85B22003301B8 /* complete1.plist */,
 			);
 			path = Effect;
 			sourceTree = "<group>";
@@ -820,11 +836,16 @@
 		07A033F7159CBE7100D6A8CB /* SE */ = {
 			isa = PBXGroup;
 			children = (
+				07E3B4F515A84C1F003301B8 /* complete0.caf */,
+				07E3B4F615A84C1F003301B8 /* complete1.caf */,
+				07E3B4F715A84C1F003301B8 /* complete2.caf */,
+				07E3B4F815A84C1F003301B8 /* complete3.caf */,
+				07E3B4F915A84C1F003301B8 /* complete4.caf */,
+				07E3B4FA15A84C1F003301B8 /* complete5.caf */,
 				07AA533D15A4B51A0071C6E5 /* blind.caf */,
 				07473E1E15A1FCF600B27CEF /* charge0.caf */,
 				07473E1F15A1FCF600B27CEF /* charge1.caf */,
 				07A033F8159CBE7100D6A8CB /* break.caf */,
-				07A033FA159CBE7100D6A8CB /* complete.caf */,
 				07F0B52C15A2055900679DCF /* item.caf */,
 				07A033FB159CBE7100D6A8CB /* item_in.caf */,
 				07A033FC159CBE7100D6A8CB /* item_out.caf */,
@@ -1125,6 +1146,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				07E3B4FB15A84C83003301B8 /* complete0.caf in Resources */,
+				07E3B4FC15A84C83003301B8 /* complete1.caf in Resources */,
+				07E3B4FD15A84C83003301B8 /* complete2.caf in Resources */,
+				07E3B4FE15A84C83003301B8 /* complete3.caf in Resources */,
+				07E3B4FF15A84C83003301B8 /* complete4.caf in Resources */,
+				07E3B50015A84C83003301B8 /* complete5.caf in Resources */,
 				07AA538815A65CC70071C6E5 /* op.caf in Resources */,
 				07AA533F15A4B57C0071C6E5 /* blind.caf in Resources */,
 				07F0B53015A2069200679DCF /* item.caf in Resources */,
@@ -1202,7 +1229,6 @@
 				07A033F4159CB73D00D6A8CB /* snatch_1_0.caf in Resources */,
 				07A033F5159CB73D00D6A8CB /* snatch_1_1.caf in Resources */,
 				07A03403159CBE7100D6A8CB /* break.caf in Resources */,
-				07A03405159CBE7100D6A8CB /* complete.caf in Resources */,
 				07A03406159CBE7100D6A8CB /* item_in.caf in Resources */,
 				07A03407159CBE7100D6A8CB /* item_out.caf in Resources */,
 				07A03408159CBE7100D6A8CB /* paint.caf in Resources */,
@@ -1285,6 +1311,8 @@
 				07AA539115A65E990071C6E5 /* kawaz-hd.png in Resources */,
 				07AA539215A65E990071C6E5 /* kawaz-ipad.png in Resources */,
 				07AA539315A65E990071C6E5 /* kawaz.png in Resources */,
+				07E3B50515A85B22003301B8 /* complete0.plist in Resources */,
+				07E3B50615A85B22003301B8 /* complete1.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

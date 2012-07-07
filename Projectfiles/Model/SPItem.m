@@ -40,7 +40,7 @@
   self = [super initWithFile:[self textureName:kind]];
   if (self) {
     rouletteIndex_ = 1;
-    changeTimer = [KWTimer timerWithMax:1.0];
+    changeTimer = [KWTimer timerWithMax:2.0];
     [self.changeTimer setOnCompleteListener:self 
                                    selector:@selector(onCompleteChangeTimer:)];
     self.changeTimer.looping = YES;
@@ -110,7 +110,7 @@
 }
 
 - (void)useBy:(SPPlayer *)user {
-  int times[] = {7, 7, 7, 1, 1}; 
+  int times[] = {7, 7, 5, 1, 1}; 
   if (self.kind == SPItemKindBlind) {
     blindSound_ = [OALAudioTrack track];
     [blindSound_ preloadFile:@"blind.caf"];
