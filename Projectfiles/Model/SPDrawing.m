@@ -219,7 +219,7 @@ typedef enum {
   float distance = ccpDistance(begin, end);
   float length = [self length];
   float diagonal = hypotf(self.boundingBox.size.width, self.boundingBox.size.height);
-  if (length > 100 && (distance < 50 || distance <= length * 0.2) && distance <= 100) {
+  if (length > 100 && (distance < 50 || distance <= length * 0.3) && distance <= 100) {
     return SPDrawingTypeCharge;
   } else if (length < diagonal * 1.5){
     return SPDrawingTypeSlash;
@@ -352,7 +352,7 @@ typedef enum {
 }
 
 - (ccTime)chargeTime {
-  float time = self.length / 1000 * 2;
+  float time = self.length / 1000 * 2.5;
   if (self.player.item) {
     if (self.player.item.kind == SPItemKindAccel) {
       time /= 1.5;
