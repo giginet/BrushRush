@@ -267,6 +267,14 @@ typedef enum {
   int chainCount = MIN(5, self.chain);
   if ([manager.drawings containsObject:self]) {
     [[OALSimpleAudio sharedInstance] playEffect:[NSString stringWithFormat:@"complete%d.caf", chainCount]];
+    [[CCTextureCache sharedTextureCache] removeUnusedTextures];
+    for (int i = 0; i < 2; ++i) {
+      CCParticleSystemQuad* completeEffect = [CCParticleSystemQuad particleWithFile:[NSString stringWithFormat:@"complete%d.plist", self.player.identifier]];
+      SPPlayer* p = [SPPlayer playerById:i];
+      completeEffect.position = self.gravityPoint;
+      [p addChild:completeEffect];
+    }
+    self.player.lastArea = self;
   }
   if (CHARGE_EFFECT) {
     for (CCParticleSystemQuad* effect in chargeEffects_) {
@@ -296,14 +304,6 @@ typedef enum {
       [chainLabel addChild:count];
       [p addChild:chainLabel z:SPPlayerLayerUI];
     }
-  }
-  self.player.lastArea = self;
-  [[CCTextureCache sharedTextureCache] removeUnusedTextures];
-  for (int i = 0; i < 2; ++i) {
-    CCParticleSystemQuad* completeEffect = [CCParticleSystemQuad particleWithFile:[NSString stringWithFormat:@"complete%d.plist", i]];
-    SPPlayer* p = [SPPlayer playerById:i];
-    completeEffect.position = self.gravityPoint;
-    [p addChild:completeEffect];
   }
   //SPDrawingManager* manager = [SPDrawingManager sharedManager];
   //[manager mergeWithIntersectsDrawing:player.lastDrawing];

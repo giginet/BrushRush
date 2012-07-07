@@ -185,7 +185,10 @@
                                         [CCSuicide action],
                                         nil]];
                   cutEffect.position = other.gravityPoint;
+                  CCParticleSystemQuad* slashEffect = [CCParticleSystemQuad particleWithFile:@"cut.plist"];
+                  slashEffect.position = other.gravityPoint;
                   [p addChild:cutEffect z:SPPlayerLayerEffect];
+                  [p addChild:slashEffect];
                 }
                 [other removeFromStage];
               }

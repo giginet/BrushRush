@@ -197,6 +197,7 @@
 		07E3B50015A84C83003301B8 /* complete5.caf in Resources */ = {isa = PBXBuildFile; fileRef = 07E3B4FA15A84C1F003301B8 /* complete5.caf */; };
 		07E3B50515A85B22003301B8 /* complete0.plist in Resources */ = {isa = PBXBuildFile; fileRef = 07E3B50315A85B22003301B8 /* complete0.plist */; };
 		07E3B50615A85B22003301B8 /* complete1.plist in Resources */ = {isa = PBXBuildFile; fileRef = 07E3B50415A85B22003301B8 /* complete1.plist */; };
+		07E3B50A15A85E7A003301B8 /* cut.plist in Resources */ = {isa = PBXBuildFile; fileRef = 07E3B50915A85E7A003301B8 /* cut.plist */; };
 		07F0B53015A2069200679DCF /* item.caf in Resources */ = {isa = PBXBuildFile; fileRef = 07F0B52C15A2055900679DCF /* item.caf */; };
 		DC485B1113AA0E5600F2BC70 /* libchipmunk-mac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DC485B0D13AA0E5600F2BC70 /* libchipmunk-mac.a */; };
 		DC485B1713AA0EBB00F2BC70 /* libbox2d-mac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DC485B1613AA0EBB00F2BC70 /* libbox2d-mac.a */; };
@@ -464,6 +465,7 @@
 		07E3B4FA15A84C1F003301B8 /* complete5.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = complete5.caf; sourceTree = "<group>"; };
 		07E3B50315A85B22003301B8 /* complete0.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = complete0.plist; sourceTree = "<group>"; };
 		07E3B50415A85B22003301B8 /* complete1.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = complete1.plist; sourceTree = "<group>"; };
+		07E3B50915A85E7A003301B8 /* cut.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = cut.plist; sourceTree = "<group>"; };
 		07F0B52C15A2055900679DCF /* item.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = item.caf; sourceTree = "<group>"; };
 		DC3BE97813B4FB71003739CC /* BuildSettings-iOS.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "BuildSettings-iOS.xcconfig"; sourceTree = "<group>"; };
 		DC485B0D13AA0E5600F2BC70 /* libchipmunk-mac.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libchipmunk-mac.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -639,6 +641,7 @@
 				07473E1A15A1FA5100B27CEF /* charge.plist */,
 				07E3B50315A85B22003301B8 /* complete0.plist */,
 				07E3B50415A85B22003301B8 /* complete1.plist */,
+				07E3B50915A85E7A003301B8 /* cut.plist */,
 			);
 			path = Effect;
 			sourceTree = "<group>";
@@ -1313,6 +1316,7 @@
 				07AA539315A65E990071C6E5 /* kawaz.png in Resources */,
 				07E3B50515A85B22003301B8 /* complete0.plist in Resources */,
 				07E3B50615A85B22003301B8 /* complete1.plist in Resources */,
+				07E3B50A15A85E7A003301B8 /* cut.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
