@@ -105,15 +105,6 @@
                  [CCScaleTo actionWithDuration:line scaleX:1.0 scaleY:1.0],
                  nil]];
   
-  CCSprite* text = [CCSprite spriteWithFile:@"logo_text.png"];
-  text.position = ccp(356, 229);
-  [node addChild:text];
-  text.opacity = 0.0;
-  [text runAction:[CCSequence actions:
-                 [CCDelayTime actionWithDuration:delay + line + flower], 
-                 [CCFadeIn actionWithDuration:logo],
-                 nil]];
-  
   CCSprite* bf = [CCSprite spriteWithFile:@"logo_blue_flower.png"];
   bf.position = ccp(434, 387);
   [node addChild:bf];
@@ -132,6 +123,15 @@
                  [CCDelayTime actionWithDuration:delay + line], 
                  [CCScaleTo actionWithDuration:flower scale:1.0],
                  nil]];
+  
+  CCSprite* text = [CCSprite spriteWithFile:@"logo_text.png"];
+  text.position = ccp(356, 229);
+  [node addChild:text];
+  text.opacity = 0.0;
+  [text runAction:[CCSequence actions:
+                 [CCDelayTime actionWithDuration:delay + line + flower], 
+                 [CCFadeIn actionWithDuration:logo],
+                   nil]];
   
   [node runAction:[CCSequence actions:
                    [CCDelayTime actionWithDuration:delay + line + flower + logo],

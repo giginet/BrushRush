@@ -55,12 +55,12 @@ typedef enum {
     dirty_ = NO;
     chargeSound_ = [OALAudioTrack track];
     [chargeSound_ preloadFile:[NSString stringWithFormat:@"charge%d.caf", player.identifier]];
-    chargeEffects_ = [NSMutableArray array];
+    /*chargeEffects_ = [NSMutableArray array];
     for (int i = 0; i < 2; ++i) {
       [chargeEffects_ addObject:[CCParticleSystemQuad particleWithFile:@"charge.plist"]];
-    }
-    writingSound = [OALAudioTrack track];
-    [writingSound preloadFile:@"write.caf"];
+    }*/
+    /*writingSound = [OALAudioTrack track];
+    [writingSound preloadFile:@"write.caf"];*/
     brushTexture_ = [[CCTextureCache sharedTextureCache] addImage:@"brush.png"];
   }
   return self;
@@ -171,13 +171,13 @@ typedef enum {
   [self.chargeTimer setOnCompleteListener:self selector:@selector(onEndCharge)];
   [self.chargeTimer setOnUpdateListener:self selector:@selector(onUpdateCharge:)];
   [self.chargeTimer play];
-  for (int i = 0; i < (int)[chargeEffects_ count]; ++i) {
+  /*for (int i = 0; i < (int)[chargeEffects_ count]; ++i) {
     SPPlayer* p = [SPPlayer playerById:i];
     CCParticleSystemQuad* effect = [chargeEffects_ objectAtIndex:i];
     effect.position = [[self.points objectAtIndex:0] CGPointValue];
     effect.rotation = 180 * i;
     [p addChild:effect z:SPPlayerLayerEffect];
-  }
+  }*/
 }
 
 - (SPPlayer*)player {
@@ -245,9 +245,9 @@ typedef enum {
       break;
     }
     disSum += dis;
-    for (CCParticleSystemQuad* effect in chargeEffects_) {
+    /*for (CCParticleSystemQuad* effect in chargeEffects_) {
       effect.position = chargeStatus_.chargedPoint;
-    }
+    }*/
   }
 }
 
@@ -259,17 +259,17 @@ typedef enum {
   if ([manager.drawings containsObject:self]) {
     [[OALSimpleAudio sharedInstance] playEffect:@"complete.caf"];
   }
-  for (CCParticleSystemQuad* effect in chargeEffects_) {
+  /*for (CCParticleSystemQuad* effect in chargeEffects_) {
     [effect.parent removeChild:effect cleanup:YES];
-  }
+  }*/
   // Add chain label
   if (self.chain > 1) {
     for (int i = 0; i < 2; ++i) {
       SPPlayer* p = [SPPlayer playerById:i];
       CCLabelAtlas* count = [CCLabelAtlas labelWithString:[NSString stringWithFormat:@"%d", self.chain] 
                                               charMapFile:@"number.png" 
-                                                itemWidth:35.5 
-                                               itemHeight:37 
+                                                itemWidth:45.2
+                                               itemHeight:45 
                                              startCharMap:'0'];
       CCSprite* chainLabel = [CCSprite spriteWithFile:@"chain.png"];
       chainLabel.position = ccp(self.gravityPoint.x, self.boundingBox.origin.y + self.boundingBox.size.height - 5);
@@ -280,7 +280,7 @@ typedef enum {
                              [CCSuicide action],
                              nil]];
       int order = ceil(log10f(self.chain + 1));
-      count.position = ccp(-order * 35.5, 0);
+      count.position = ccp(-order * 45.2, 0);
       chainLabel.scale = 0;
       [chainLabel addChild:count];
       [p addChild:chainLabel z:SPPlayerLayerUI];
@@ -340,7 +340,7 @@ typedef enum {
     CGPoint origin = self.boundingBox.origin;
     CGPoint end = ccpAdd(origin, ccp(self.boundingBox.size.width, self.boundingBox.size.height));
     float diagonal = ccpDistance(origin, end);
-    if ([self containsPoint:other.gravityPoint] && other.length > diagonal / 2) {
+    if (CGRectContainsPoint(self.boundingBox, other.gravityPoint) && other.length > diagonal / 2) {
       return YES;
     }
   }
@@ -386,9 +386,9 @@ typedef enum {
 
 - (void)removeFromStage {
   SPDrawingManager* manager = [SPDrawingManager sharedManager];  
-  for (CCParticleSystemQuad* effect in chargeEffects_) {
+  /*for (CCParticleSystemQuad* effect in chargeEffects_) {
     [effect.parent removeChild:effect cleanup:YES];
-  }
+  }*/
   [manager removeDrawing:self];
 }
 
