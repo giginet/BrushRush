@@ -150,12 +150,7 @@
       break;
     case SPItemKindSnatch:
       [[OALSimpleAudio sharedInstance] playEffect:@"snatch.caf"];
-      for(SPDrawing* drawing in [manager.drawings reverseObjectEnumerator]) {
-        if (![drawing.player isEqual:self.player]) {
-          drawing.player = self.player;
-          break;
-        }
-      }
+      enemy.lastArea.player = self.player;
       break;
     default:
       break;

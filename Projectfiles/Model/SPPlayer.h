@@ -29,6 +29,7 @@ typedef enum {
 @property(readonly, strong) SPDrawing* lastDrawing;
 @property(readwrite, strong) CCSprite* frame;
 @property(readwrite, strong) SPItem* item;
+@property(readwrite, weak) SPDrawing* lastArea;
 
 + (id)playerById:(NSUInteger)n;
 - (id)initWithId:(NSUInteger)n;

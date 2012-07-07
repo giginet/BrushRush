@@ -21,6 +21,7 @@
 @dynamic lastDrawing;
 @synthesize frame;
 @synthesize item;
+@synthesize lastArea;
 
 static NSMutableDictionary* players_;
 

@@ -286,6 +286,7 @@ typedef enum {
       [p addChild:chainLabel z:SPPlayerLayerUI];
     }
   }
+  self.player.lastArea = self;
   //SPDrawingManager* manager = [SPDrawingManager sharedManager];
   //[manager mergeWithIntersectsDrawing:player.lastDrawing];
 }
