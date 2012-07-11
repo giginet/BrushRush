@@ -121,25 +121,23 @@
 
 - (void)ccTouchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
   if (self.state == SPGameStateMatch) {
-    for (UITouch* touch in touches) {
-      CGPoint point = [self convertTouchToNodeSpace:touch];
-      for (SPPlayer* player in self.players) {
-        if (!player.lastTouch) continue;
-        if ([player.lastTouch isEqual:touch]) {
-          SPPlayer* enemy = [SPPlayer playerById:(player.identifier + 1) % 2];
-          CGRect enemyRect = CGRectMake(enemy.position.x, enemy.position.y, PLAYER_WIDTH, PLAYER_HEIGHT);
-          if (CGRectContainsPoint(enemyRect, point)) {
-            [self disableCurrentDrawing:touches];
-          }
-          SPDrawing* drawing = [player.drawings lastObject];
-          /*if (!drawing.writingSound.playing) {
-            //[drawing.writingSound play];
-          }*/
-          if (drawing.length < 3000) {
-            [drawing addPoint:[player convertToNodeSpace:point]];
-          } else {
-            [self disableCurrentDrawing:touches];
-          }
+    for (SPPlayer* player in self.players) {
+      if (!player.lastTouch) continue;
+      if ([touches containsObject:player.lastTouch]) {
+        CGPoint point = [self convertTouchToNodeSpace:player.lastTouch];
+        SPPlayer* enemy = [SPPlayer playerById:(player.identifier + 1) % 2];
+        CGRect enemyRect = CGRectMake(enemy.position.x, enemy.position.y, PLAYER_WIDTH, PLAYER_HEIGHT);
+        if (CGRectContainsPoint(enemyRect, point)) {
+          [self disableCurrentDrawing:touches];
+        }
+        SPDrawing* drawing = [player.drawings lastObject];
+        /*if (!drawing.writingSound.playing) {
+         //[drawing.writingSound play];
+         }*/
+        if (drawing.length < 3000) {
+          [drawing addPoint:[player convertToNodeSpace:point]];
+        } else {
+          [self disableCurrentDrawing:touches];
         }
       }
     }
@@ -158,48 +156,46 @@
 - (void)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
   if (self.state == SPGameStateMatch) {
     SPDrawingManager* manager = [SPDrawingManager sharedManager];
-    for (UITouch* touch in touches) {
-      for (SPPlayer* player in self.players) {
-        if ([player.lastTouch isEqual:touch]) {
-          if (!player.lastTouch) continue;
-          SPDrawing* lastDrawing = player.lastDrawing;
-          SPDrawingType detectedType = [lastDrawing detectType];
-          if (detectedType == SPDrawingTypeCharge) {
-            lastDrawing.type = SPDrawingTypeCharge;
-            [lastDrawing fire];
-          } else if (detectedType == SPDrawingTypeSlash) {
-            lastDrawing.type = SPDrawingTypeSlash;
-            [[OALSimpleAudio sharedInstance] playEffect:@"slash.caf"];
-            for (SPDrawing* other in [NSArray arrayWithArray:self.drawings]) {
-              if ([other canCuttingBy:lastDrawing]) {
-                [[OALSimpleAudio sharedInstance] playEffect:@"break.caf"];
-                
-                float fps = 1.0 / [[KKStartupConfig config] maxFrameRate];
-                int width = contentSize_.width;
-                float scale = other.boundingBox.size.width / width;
-                for (SPPlayer* p in self.players) {
-                  CCSprite* cutEffect = [CCSprite spriteWithFile:[NSString stringWithFormat:@"break%d_0.png", other.player.identifier]];
-                  cutEffect.scale = scale * 4;
-                  CCAnimation* animation = [CCAnimation animationWithFiles:[NSString stringWithFormat:@"break%d_", other.player.identifier] frameCount:7 delay:fps * 4];
-                  [cutEffect runAction:[CCSequence actions:
-                                        [CCAnimate actionWithAnimation:animation],
-                                        [CCSuicide action],
-                                        nil]];
-                  cutEffect.position = other.gravityPoint;
-                  CCParticleSystemQuad* slashEffect = [CCParticleSystemQuad particleWithFile:@"cut.plist"];
-                  slashEffect.position = other.gravityPoint;
-                  [p addChild:cutEffect z:SPPlayerLayerEffect];
-                  [p addChild:slashEffect];
-                }
-                [other removeFromStage];
+    for (SPPlayer* player in self.players) {
+      if (!player.lastTouch) continue;
+      if ([touches containsObject:player.lastTouch]) {
+        SPDrawing* lastDrawing = player.lastDrawing;
+        SPDrawingType detectedType = [lastDrawing detectType];
+        if (detectedType == SPDrawingTypeCharge) {
+          lastDrawing.type = SPDrawingTypeCharge;
+          [lastDrawing fire];
+        } else if (detectedType == SPDrawingTypeSlash) {
+          lastDrawing.type = SPDrawingTypeSlash;
+          [[OALSimpleAudio sharedInstance] playEffect:@"slash.caf"];
+          for (SPDrawing* other in [NSArray arrayWithArray:self.drawings]) {
+            if ([other canCuttingBy:lastDrawing]) {
+              [[OALSimpleAudio sharedInstance] playEffect:@"break.caf"];
+              
+              float fps = 1.0 / [[KKStartupConfig config] maxFrameRate];
+              int width = contentSize_.width;
+              float scale = other.boundingBox.size.width / width;
+              for (SPPlayer* p in self.players) {
+                CCSprite* cutEffect = [CCSprite spriteWithFile:[NSString stringWithFormat:@"break%d_0.png", other.player.identifier]];
+                cutEffect.scale = scale * 4;
+                CCAnimation* animation = [CCAnimation animationWithFiles:[NSString stringWithFormat:@"break%d_", other.player.identifier] frameCount:7 delay:fps * 4];
+                [cutEffect runAction:[CCSequence actions:
+                                      [CCAnimate actionWithAnimation:animation],
+                                      [CCSuicide action],
+                                      nil]];
+                cutEffect.position = other.gravityPoint;
+                CCParticleSystemQuad* slashEffect = [CCParticleSystemQuad particleWithFile:@"cut.plist"];
+                slashEffect.position = other.gravityPoint;
+                [p addChild:cutEffect z:SPPlayerLayerEffect];
+                [p addChild:slashEffect];
               }
+              [other removeFromStage];
             }
-            [manager removeDrawing:lastDrawing];
-          } else if (detectedType == SPDrawingTypeNone) {
-            [manager removeDrawing:lastDrawing];
           }
-          player.lastTouch = nil;
+          [manager removeDrawing:lastDrawing];
+        } else if (detectedType == SPDrawingTypeNone) {
+          [manager removeDrawing:lastDrawing];
         }
+        player.lastTouch = nil;
       }
     }
   } else if (self.state == SPGameStateResult) {
@@ -329,7 +325,7 @@
   for (SPDrawing* drawing in manager.drawings) {
     [drawing stopCharge];
   }
-  [[OALSimpleAudio sharedInstance] playEffect:[NSString stringWithFormat:@"gameset%d.caf", gameCount_ % 2]];
+  [[OALSimpleAudio sharedInstance] playEffect:@"gameset0.caf"];
   for (SPPlayer* player in self.players) { 
     CCSprite* label = [CCSprite spriteWithFile:@"gameset.png"];
     label.position = ccp(player.center.x, player.center.y + 60);
