@@ -44,17 +44,23 @@
                                               selectedImage:@"play_selected.png" 
                                               disabledImage:@"play_selected.png" 
                                                       block:^(id sender){
-                                                        [titleMusic_ fadeTo:0 duration:1.0 target:nil selector:nil];
-                                                        CCTransitionFade* transition = [CCTransitionFade transitionWithDuration:0.5f scene:[SPMainLayer nodeWithScene]];
-                                                        [director replaceScene:transition];
+                                                        [[OALSimpleAudio sharedInstance] playEffect:@"decide.caf"];
+                                                        [self runAction:[CCSequence actions:[CCDelayTime actionWithDuration:0.5f], [CCCallBlock actionWithBlock:^{
+                                                          [titleMusic_ fadeTo:0 duration:1.0 target:nil selector:nil];
+                                                          CCTransitionFade* transition = [CCTransitionFade transitionWithDuration:1.0f scene:[SPMainLayer nodeWithScene]];
+                                                          [director replaceScene:transition];
+                                                        }], nil]];  
                                                       }];
     CCMenuItem* howto = [CCMenuItemImage itemFromNormalImage:@"howto.png" 
                                                selectedImage:@"howto_selected.png" 
                                                disabledImage:@"howto_selected.png" 
                                                        block:^(id sender){
-                                                         [titleMusic_ fadeTo:0 duration:1.0 target:nil selector:nil];
-                                                         CCTransitionFade* transition = [CCTransitionFade transitionWithDuration:0.5f scene:[SPHowtoLayer nodeWithScene]];
-                                                         [director pushScene:transition];
+                                                         [[OALSimpleAudio sharedInstance] playEffect:@"decide.caf"];
+                                                         [self runAction:[CCSequence actions:[CCDelayTime actionWithDuration:0.5f], [CCCallBlock actionWithBlock:^{
+                                                           [titleMusic_ fadeTo:0 duration:1.0 target:nil selector:nil];
+                                                           CCTransitionFade* transition = [CCTransitionFade transitionWithDuration:1.0f scene:[SPHowtoLayer nodeWithScene]];
+                                                           [director pushScene:transition];
+                                                         }], nil]];
                                                        }];
     menu_ = [CCMenu menuWithItems:play, howto, nil];
     menu_.isTouchEnabled = NO;
