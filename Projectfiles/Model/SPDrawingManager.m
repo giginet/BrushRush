@@ -39,7 +39,7 @@
 
 - (void)removeDrawing:(SPDrawing *)drawing {
   [drawings_ removeObject:drawing];
-  [drawing.player.drawings removeObject:self];
+  [drawing.player.drawings removeObject:drawing];
 }
 
 - (void)removeAllDrawings {

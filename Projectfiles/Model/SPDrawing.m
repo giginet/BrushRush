@@ -163,9 +163,8 @@ typedef enum {
 - (void)fire {
   //chargeSound_.pan = -1 + player.identifier * 2;
   //[chargeSound_ playFile:[NSString stringWithFormat:@"charge%d.caf", player.identifier] loops:-1];
-  SPDrawingManager* manager = [SPDrawingManager sharedManager];
   int maxChain = 0;
-  for (SPDrawing* drawing in manager.drawings) {
+  for (SPDrawing* drawing in self.player.drawings) {
     if (CGRectIntersectsRect(drawing.boundingBox, self.boundingBox) && maxChain < drawing.chain && drawing.type == SPDrawingTypeCharge && ![self isEqual:drawing]) {
       maxChain = drawing.chain + 1;
     }
