@@ -42,7 +42,6 @@
 		071594651592C0EC003BC47E /* crystal1_enable.png in Resources */ = {isa = PBXBuildFile; fileRef = 0715945B1592C0EC003BC47E /* crystal1_enable.png */; };
 		071594691592C559003BC47E /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 071594671592C559003BC47E /* background.png */; };
 		0715946C1592D1FD003BC47E /* SPItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 0715946B1592D1FD003BC47E /* SPItem.m */; };
-		0715947B159339C9003BC47E /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 0715947A159339C9003BC47E /* Icon-72.png */; };
 		07473E1B15A1FA5100B27CEF /* charge.plist in Resources */ = {isa = PBXBuildFile; fileRef = 07473E1A15A1FA5100B27CEF /* charge.plist */; };
 		07473E1D15A1FCD900B27CEF /* go0.caf in Resources */ = {isa = PBXBuildFile; fileRef = 07A034AF159EBA8E00D6A8CB /* go0.caf */; };
 		07473E2015A1FE0200B27CEF /* charge0.caf in Resources */ = {isa = PBXBuildFile; fileRef = 07473E1E15A1FCF600B27CEF /* charge0.caf */; };
@@ -108,6 +107,7 @@
 		0796072815AD46B6006E52BE /* break1_5.png in Resources */ = {isa = PBXBuildFile; fileRef = 0796071A15AD46B6006E52BE /* break1_5.png */; };
 		0796072915AD46B6006E52BE /* break1_6.png in Resources */ = {isa = PBXBuildFile; fileRef = 0796071B15AD46B6006E52BE /* break1_6.png */; };
 		0796072B15ADEA91006E52BE /* paper.caf in Resources */ = {isa = PBXBuildFile; fileRef = 0796072A15ADEA80006E52BE /* paper.caf */; };
+		0796073115ADED92006E52BE /* Default-Landscape.png in Resources */ = {isa = PBXBuildFile; fileRef = 0796073015ADED92006E52BE /* Default-Landscape.png */; };
 		07980DF91585B0E8004B230C /* CCTexture2D+DrawInPoly.m in Sources */ = {isa = PBXBuildFile; fileRef = 07980DF81585B0E8004B230C /* CCTexture2D+DrawInPoly.m */; };
 		07A033DE159CB73D00D6A8CB /* accel_0_0.caf in Resources */ = {isa = PBXBuildFile; fileRef = 07A033C6159CB73D00D6A8CB /* accel_0_0.caf */; };
 		07A033DF159CB73D00D6A8CB /* accel_0_1.caf in Resources */ = {isa = PBXBuildFile; fileRef = 07A033C7159CB73D00D6A8CB /* accel_0_1.caf */; };
@@ -288,7 +288,6 @@
 		071594671592C559003BC47E /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
 		0715946A1592D1FD003BC47E /* SPItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SPItem.h; path = Model/SPItem.h; sourceTree = "<group>"; };
 		0715946B1592D1FD003BC47E /* SPItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SPItem.m; path = Model/SPItem.m; sourceTree = "<group>"; };
-		0715947A159339C9003BC47E /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72.png"; sourceTree = "<group>"; };
 		07473E1A15A1FA5100B27CEF /* charge.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = charge.plist; sourceTree = "<group>"; };
 		07473E1E15A1FCF600B27CEF /* charge0.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = charge0.caf; sourceTree = "<group>"; };
 		07473E1F15A1FCF600B27CEF /* charge1.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = charge1.caf; sourceTree = "<group>"; };
@@ -380,6 +379,7 @@
 		0796071A15AD46B6006E52BE /* break1_5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = break1_5.png; sourceTree = "<group>"; };
 		0796071B15AD46B6006E52BE /* break1_6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = break1_6.png; sourceTree = "<group>"; };
 		0796072A15ADEA80006E52BE /* paper.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = paper.caf; sourceTree = "<group>"; };
+		0796073015ADED92006E52BE /* Default-Landscape.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Landscape.png"; path = "Resources/Default-Landscape.png"; sourceTree = "<group>"; };
 		07980DF71585B0E8004B230C /* CCTexture2D+DrawInPoly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "CCTexture2D+DrawInPoly.h"; path = "Util/CCTexture2D+DrawInPoly.h"; sourceTree = "<group>"; };
 		07980DF81585B0E8004B230C /* CCTexture2D+DrawInPoly.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "CCTexture2D+DrawInPoly.m"; path = "Util/CCTexture2D+DrawInPoly.m"; sourceTree = "<group>"; };
 		07A033C6159CB73D00D6A8CB /* accel_0_0.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = accel_0_0.caf; sourceTree = "<group>"; };
@@ -1020,7 +1020,6 @@
 		DCC1A0D613A94EC0005BD75D = {
 			isa = PBXGroup;
 			children = (
-				0715947A159339C9003BC47E /* Icon-72.png */,
 				DCC1A38C13A94F1A005BD75D /* Projectfiles */,
 				DCC1A0F713A94ED5005BD75D /* Projectfiles-iOS */,
 				DCFA90ED13B4F6A0009DD35A /* BuildSettings */,
@@ -1057,6 +1056,7 @@
 			isa = PBXGroup;
 			children = (
 				DCC1A0F913A94ED5005BD75D /* Default.png */,
+				0796073015ADED92006E52BE /* Default-Landscape.png */,
 				DCC1A0FB13A94ED5005BD75D /* fps_images.png */,
 				DCC1A0FD13A94ED5005BD75D /* Icon-72.png */,
 				DCC1A0FF13A94ED5005BD75D /* Icon-Small-50.png */,
@@ -1236,7 +1236,6 @@
 				071594631592C0EC003BC47E /* crystal1_disable.png in Resources */,
 				071594651592C0EC003BC47E /* crystal1_enable.png in Resources */,
 				071594691592C559003BC47E /* background.png in Resources */,
-				0715947B159339C9003BC47E /* Icon-72.png in Resources */,
 				07A033DE159CB73D00D6A8CB /* accel_0_0.caf in Resources */,
 				07A033DF159CB73D00D6A8CB /* accel_0_1.caf in Resources */,
 				07A033E0159CB73D00D6A8CB /* accel_1_0.caf in Resources */,
@@ -1362,6 +1361,7 @@
 				0796072715AD46B6006E52BE /* break1_4.png in Resources */,
 				0796072815AD46B6006E52BE /* break1_5.png in Resources */,
 				0796072915AD46B6006E52BE /* break1_6.png in Resources */,
+				0796073115ADED92006E52BE /* Default-Landscape.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
