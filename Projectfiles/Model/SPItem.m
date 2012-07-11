@@ -149,8 +149,16 @@
       [manager paintAt:self.position player:self.player];
       break;
     case SPItemKindSnatch:
-      [[OALSimpleAudio sharedInstance] playEffect:@"snatch.caf"];
-      enemy.lastArea.player = self.player;
+      if (enemy.lastArea && [manager.drawings containsObject:enemy.lastArea]) {
+        [[OALSimpleAudio sharedInstance] playEffect:@"snatch.caf"];
+        [manager removeDrawing:enemy.lastArea];
+        enemy.lastArea.player = self.player;
+        [manager addDrawing:enemy.lastArea];
+        player.lastArea = enemy.lastArea;
+      } else {
+        [[OALSimpleAudio sharedInstance] playEffect:@"item_out.caf"];
+      }
+      enemy.lastArea = nil;
       break;
     default:
       break;
