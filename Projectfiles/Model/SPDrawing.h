@@ -69,5 +69,6 @@ typedef struct {
 - (ccTime)chargeTime;
 - (void)stopCharge;
 - (void)removeFromStage;
+- (void)updateBoundingBox;
 
 @end

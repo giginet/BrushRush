@@ -271,6 +271,11 @@ typedef enum {
 - (void)onEndCharge {
   //[chargeSound_ stop];
   SPDrawingManager* manager = [SPDrawingManager sharedManager];
+  for (SPDrawing* drawing in [NSArray arrayWithArray:manager.drawings]) {
+    if (![self isEqual:drawing] && CGRectContainsRect(self.boundingBox, drawing.boundingBox)) {
+      [manager removeDrawing:drawing];
+    }
+  }
   [self expand:pow(2, (float)(self.chain - 1) / 4.0)];
   self.type = SPDrawingTypeArea;
   int chainCount = MIN(MAX_CHAIN - 1, self.chain);
@@ -404,6 +409,7 @@ typedef enum {
     [newPoints addObject:[NSValue valueWithCGPoint:ccp(x, y)]];
   }
   points_ = newPoints;
+  [self updateBoundingBox];
 }
 
 - (void)stopCharge {
@@ -425,6 +431,28 @@ typedef enum {
   CGPoint first = [[self.points objectAtIndex:0] CGPointValue];
   CGPoint last = [[self.points lastObject] CGPointValue];
   return atan2f(last.y - first.y, last.x - first.x) * 180 / M_PI;
+}
+
+- (void)updateBoundingBox {
+  CGPoint origin = [[self.points objectAtIndex:0] CGPointValue];
+  int minx = origin.x;
+  int miny = origin.y;
+  int maxx = minx;
+  int maxy = miny;
+  for (NSValue* value in self.points) {
+    CGPoint point = [value CGPointValue];
+    if (point.x < minx) {
+      minx = point.x;
+    } else if (maxx < point.x) {
+      maxx = point.x;
+    }
+    if (point.y < miny) {
+      miny = point.y;
+    } else if (maxy < point.y) {
+      maxy = point.y;
+    }
+  }
+  boundingBox = CGRectMake(minx, miny, maxx - minx, maxy - miny);
 }
 
 @end
