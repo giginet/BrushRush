@@ -73,6 +73,7 @@
     music = [KWLoopAudioTrack trackWithIntro:@"main_intro.caf" loop:@"main_loop.caf"];
     [[SPDrawingManager sharedManager] removeAllDrawings];
     [[SPDrawingManager sharedManager] removeAllItems];
+    gameCount_ = 0;
   }
   return self;
 }
@@ -283,7 +284,7 @@
    for (SPPlayer* player in self.players) { 
      CCSprite* label = [CCSprite spriteWithFile:@"ready.png"];
      if (player.identifier == 0) {
-       [[OALSimpleAudio sharedInstance] playEffect:@"ready0.caf"];
+       [[OALSimpleAudio sharedInstance] playEffect:[NSString stringWithFormat:@"ready%d.caf", gameCount_ % 2]];
      }
      label.position = ccp(player.center.x, player.center.y + 60);
     [player addChild:label];
@@ -306,7 +307,7 @@
                       delay,
                       [CCCallBlockN actionWithBlock:^(CCNode* node){
       if (identifier == 0) {
-        [[OALSimpleAudio sharedInstance] playEffect:[NSString stringWithFormat:@"go0.caf"]];
+        [[OALSimpleAudio sharedInstance] playEffect:[NSString stringWithFormat:[NSString stringWithFormat:@"go%d.caf", gameCount_ % 2]]];
       }
       [node.parent addChild:go z:SPPlayerLayerUI];
       [self.gameTimer play];
@@ -328,7 +329,7 @@
   for (SPDrawing* drawing in manager.drawings) {
     [drawing stopCharge];
   }
-  [[OALSimpleAudio sharedInstance] playEffect:@"gameset0.caf"];
+  [[OALSimpleAudio sharedInstance] playEffect:[NSString stringWithFormat:@"gameset%d.caf", gameCount_ % 2]];
   for (SPPlayer* player in self.players) { 
     CCSprite* label = [CCSprite spriteWithFile:@"gameset.png"];
     label.position = ccp(player.center.x, player.center.y + 60);
@@ -344,6 +345,7 @@
 }
 
 - (void)onResult {
+  ++gameCount_;
   SPPlayer* winner = [self checkWinner];
   NSMutableArray* labels = [NSMutableArray array];
   for (SPPlayer* player in self.players) { 
@@ -377,6 +379,7 @@
                                                       selectedImage:@"restart_selected.png" 
                                                       disabledImage:@"restart_selected.png" 
                                                               block:^(id sender){
+                                                                [[OALSimpleAudio sharedInstance] playEffect:@"decide.caf"];
                                                                 CCTransitionFade* transition = [CCTransitionFade transitionWithDuration:1.0 scene:[SPMainLayer nodeWithScene]];
                                                                 [director replaceScene:transition];
                                                               }];
@@ -384,6 +387,7 @@
                                                     selectedImage:@"title_selected.png" 
                                                     disabledImage:@"title_selected.png" 
                                                             block:^(id sender){
+                                                              [[OALSimpleAudio sharedInstance] playEffect:@"decide.caf"];
                                                               CCTransitionFade* transition = [CCTransitionFade transitionWithDuration:1.0 scene:[SPTitleLayer nodeWithScene]];
                                                               [director replaceScene:transition];
                                                             }];

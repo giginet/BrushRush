@@ -19,7 +19,9 @@ typedef enum {
   SPGameStateEnd
 } SPGameState;
 
-@interface SPMainLayer : CCLayer
+@interface SPMainLayer : CCLayer {
+  int gameCount_;
+}
 
 @property(readwrite) SPGameState state;
 @property(readonly, strong) NSArray* drawings;
