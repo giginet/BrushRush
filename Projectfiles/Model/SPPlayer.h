@@ -30,6 +30,8 @@ typedef enum {
 @property(readwrite, strong) CCSprite* frame;
 @property(readwrite, strong) SPItem* item;
 @property(readwrite, weak) SPDrawing* lastArea;
+@property(readonly) OALAudioTrack* writingSound;
+@property(readonly) OALAudioTrack* chargeSound;
 
 + (id)playerById:(NSUInteger)n;
 - (id)initWithId:(NSUInteger)n;

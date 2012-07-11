@@ -45,7 +45,6 @@ typedef struct {
   ChargeStatus chargeStatus_;
   NSMutableArray* points_;
   NSMutableArray* chargeEffects_;
-  OALAudioTrack* chargeSound_;
   CCTexture2D* brushTexture_;
 }
 
@@ -59,7 +58,6 @@ typedef struct {
 @property(readonly, strong) NSArray* points;
 @property(readonly) KWTimer* chargeTimer;
 @property(readwrite, weak) SPPlayer* player;
-@property(readonly) OALAudioTrack* writingSound;
 
 - (id)initWithPoints:(NSArray*)points;
 

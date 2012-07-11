@@ -41,7 +41,6 @@ typedef enum {
 @synthesize chargeTimer;
 @synthesize player;
 @dynamic gravityPoint;
-@synthesize writingSound;
 
 - (id)init {
   self = [super init];
@@ -57,16 +56,12 @@ typedef enum {
     chargeStatus_.distanceSumToEdge = 0;
     chargeStatus_.chargedPoint = CGPointZero;
     dirty_ = NO;
-    //chargeSound_ = [OALAudioTrack track];
-    //[chargeSound_ preloadFile:[NSString stringWithFormat:@"charge%d.caf", player.identifier]];
     if (CHARGE_EFFECT) {
       chargeEffects_ = [NSMutableArray array];
       for (int i = 0; i < 2; ++i) {
         [chargeEffects_ addObject:[CCParticleSystemQuad particleWithFile:@"charge.plist"]];
       }
     }
-    /*writingSound = [OALAudioTrack track];
-    [writingSound preloadFile:@"write.caf"];*/
     brushTexture_ = [[CCTextureCache sharedTextureCache] addImage:@"brush.png"];
   }
   return self;
@@ -162,8 +157,9 @@ typedef enum {
 }
 
 - (void)fire {
-  //chargeSound_.pan = -1 + player.identifier * 2;
-  //[chargeSound_ playFile:[NSString stringWithFormat:@"charge%d.caf", player.identifier] loops:-1];
+  if (CHARGE_SOUND && !self.player.chargeSound.playing) {
+    [self.player.chargeSound play];
+  }
   int maxChain = 0;
   for (SPDrawing* drawing in self.player.drawings) {
     if (CGRectIntersectsRect(drawing.boundingBox, self.boundingBox) && maxChain < drawing.chain && drawing.type == SPDrawingTypeCharge && ![self isEqual:drawing]) {
@@ -177,8 +173,9 @@ typedef enum {
   [self.chargeTimer play];
   int count = [self.points count];
   if (count > 30) {
+    int rate = floor(count / 30.0);
     NSMutableArray* new = [NSMutableArray array];
-    for (int i = 0; i < count; i += 2) {
+    for (int i = 0; i < count; i += 2 * rate) {
       [new addObject:[self.points objectAtIndex:i]];
     }
     points_ = [NSArray arrayWithArray:new];
@@ -273,13 +270,7 @@ typedef enum {
 }
 
 - (void)onEndCharge {
-  //[chargeSound_ stop];
   SPDrawingManager* manager = [SPDrawingManager sharedManager];
-  for (SPDrawing* drawing in [NSArray arrayWithArray:manager.drawings]) {
-    if (![self isEqual:drawing] && CGRectContainsRect(self.boundingBox, drawing.boundingBox)) {
-      [manager removeDrawing:drawing];
-    }
-  }
   [self expand:pow(2, (float)(self.chain - 1) / 4.0)];
   self.type = SPDrawingTypeArea;
   int chainCount = MIN(MAX_CHAIN - 1, self.chain);
@@ -293,6 +284,18 @@ typedef enum {
     }
     self.player.lastArea = self;
   }
+  
+  int chargingCount = 0;
+  for (SPDrawing* drawing in [NSArray arrayWithArray:manager.drawings]) {
+    if (![self isEqual:drawing] && CGRectContainsRect(self.boundingBox, drawing.boundingBox)) {
+      [drawing removeFromStage];
+    }
+    if ([drawing.player isEqual:self.player] && drawing.type == SPDrawingTypeCharge) chargingCount += 1;
+  }
+  if (CHARGE_SOUND && chargingCount == 0) {
+    [self.player.chargeSound stop];
+  }
+  
   if (CHARGE_EFFECT) {
     for (CCParticleSystemQuad* effect in chargeEffects_) {
       [effect.parent removeChild:effect cleanup:YES];
@@ -322,8 +325,6 @@ typedef enum {
       [p addChild:chainLabel z:SPPlayerLayerUI];
     }
   }
-  //SPDrawingManager* manager = [SPDrawingManager sharedManager];
-  //[manager mergeWithIntersectsDrawing:player.lastDrawing];
 }
 
 - (CGPoint)gravityPoint {
@@ -417,7 +418,6 @@ typedef enum {
 }
 
 - (void)stopCharge {
-  //[chargeSound_ stop];
   [chargeTimer pause];
 }
 

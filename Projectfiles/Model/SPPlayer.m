@@ -22,6 +22,8 @@
 @synthesize frame;
 @synthesize item;
 @synthesize lastArea;
+@synthesize writingSound;
+@synthesize chargeSound;
 
 static NSMutableDictionary* players_;
 
@@ -45,6 +47,15 @@ static NSMutableDictionary* players_;
     [players_ setObject:self forKey:[NSNumber numberWithInt:n]];
     int y = self.identifier == 0 ? FRAME_SIZE : FRAME_SIZE + PLAYER_HEIGHT + STATUSBAR_HEIGHT;
     self.position = ccp(FRAME_SIZE, y);
+    if (WRITING_SOUND) {
+      writingSound = [OALAudioTrack track];
+      [writingSound preloadFile:@"write.caf"];
+    }
+    if (CHARGE_SOUND) {
+      chargeSound = [OALAudioTrack track];
+      [chargeSound preloadFile:[NSString stringWithFormat:@"charge%d.caf", self.identifier]];
+      chargeSound.numberOfLoops = -1;
+    }
   }
   return self;
 }
@@ -106,6 +117,7 @@ static NSMutableDictionary* players_;
   self.lastTouch = nil;
   self.item = nil;
   self.frame.opacity = 255;
+  [self.chargeSound stop];
 }
 
 @end

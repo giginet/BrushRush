@@ -132,9 +132,9 @@
           [self disableCurrentDrawing:touches];
         }
         SPDrawing* drawing = [player.drawings lastObject];
-        /*if (!drawing.writingSound.playing) {
-         //[drawing.writingSound play];
-         }*/
+        if (WRITING_SOUND && drawing && !player.writingSound.playing) {
+          [player.writingSound play];
+         }
         if (drawing.length < 3000) {
           [drawing addPoint:[player convertToNodeSpace:point]];
         } else {

@@ -17,5 +17,7 @@
 #define DRAW_TEXTURE YES
 #define BRUSH_TEXTURE NO
 #define BRUSH_RADIUS 4.5
+#define WRITING_SOUND NO
+#define CHARGE_SOUND YES
 
 #endif
