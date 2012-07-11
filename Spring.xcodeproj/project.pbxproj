@@ -90,11 +90,8 @@
 		079606EB15AD349F006E52BE /* complete6.caf in Resources */ = {isa = PBXBuildFile; fileRef = 079606DD15AD341F006E52BE /* complete6.caf */; };
 		079606EC15AD349F006E52BE /* decide.caf in Resources */ = {isa = PBXBuildFile; fileRef = 079606DE15AD341F006E52BE /* decide.caf */; };
 		079606ED15AD349F006E52BE /* gameset.caf in Resources */ = {isa = PBXBuildFile; fileRef = 079606DF15AD341F006E52BE /* gameset.caf */; };
-		079606EE15AD349F006E52BE /* go1.caf in Resources */ = {isa = PBXBuildFile; fileRef = 079606E015AD341F006E52BE /* go1.caf */; };
-		079606EF15AD349F006E52BE /* ready1.caf in Resources */ = {isa = PBXBuildFile; fileRef = 079606E115AD341F006E52BE /* ready1.caf */; };
 		079606F015AD349F006E52BE /* select.caf in Resources */ = {isa = PBXBuildFile; fileRef = 079606E215AD341F006E52BE /* select.caf */; };
 		079606F115AD349F006E52BE /* title.caf in Resources */ = {isa = PBXBuildFile; fileRef = 079606E315AD341F006E52BE /* title.caf */; };
-		079606F315AD356D006E52BE /* gameset0.caf in Resources */ = {isa = PBXBuildFile; fileRef = 079606F215AD3555006E52BE /* gameset0.caf */; };
 		07980DF91585B0E8004B230C /* CCTexture2D+DrawInPoly.m in Sources */ = {isa = PBXBuildFile; fileRef = 07980DF81585B0E8004B230C /* CCTexture2D+DrawInPoly.m */; };
 		07A033DE159CB73D00D6A8CB /* accel_0_0.caf in Resources */ = {isa = PBXBuildFile; fileRef = 07A033C6159CB73D00D6A8CB /* accel_0_0.caf */; };
 		07A033DF159CB73D00D6A8CB /* accel_0_1.caf in Resources */ = {isa = PBXBuildFile; fileRef = 07A033C7159CB73D00D6A8CB /* accel_0_1.caf */; };
@@ -108,7 +105,7 @@
 		07A033E7159CB73D00D6A8CB /* brake_0_0.caf in Resources */ = {isa = PBXBuildFile; fileRef = 07A033CF159CB73D00D6A8CB /* brake_0_0.caf */; };
 		07A033E8159CB73D00D6A8CB /* brake_0_1.caf in Resources */ = {isa = PBXBuildFile; fileRef = 07A033D0159CB73D00D6A8CB /* brake_0_1.caf */; };
 		07A033E9159CB73D00D6A8CB /* brake_1_0.caf in Resources */ = {isa = PBXBuildFile; fileRef = 07A033D1159CB73D00D6A8CB /* brake_1_0.caf */; };
-		07A033EA159CB73D00D6A8CB /* gameset.caf in Resources */ = {isa = PBXBuildFile; fileRef = 07A033D2159CB73D00D6A8CB /* gameset.caf */; };
+		07A033EA159CB73D00D6A8CB /* gameset0.caf in Resources */ = {isa = PBXBuildFile; fileRef = 07A033D2159CB73D00D6A8CB /* gameset0.caf */; };
 		07A033EB159CB73D00D6A8CB /* go1.caf in Resources */ = {isa = PBXBuildFile; fileRef = 07A033D3159CB73D00D6A8CB /* go1.caf */; };
 		07A033EC159CB73D00D6A8CB /* paint_1_0.caf in Resources */ = {isa = PBXBuildFile; fileRef = 07A033D4159CB73D00D6A8CB /* paint_1_0.caf */; };
 		07A033ED159CB73D00D6A8CB /* paint_0_0.caf in Resources */ = {isa = PBXBuildFile; fileRef = 07A033D5159CB73D00D6A8CB /* paint_0_0.caf */; };
@@ -361,11 +358,8 @@
 		079606DD15AD341F006E52BE /* complete6.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = complete6.caf; sourceTree = "<group>"; };
 		079606DE15AD341F006E52BE /* decide.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = decide.caf; sourceTree = "<group>"; };
 		079606DF15AD341F006E52BE /* gameset.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = gameset.caf; sourceTree = "<group>"; };
-		079606E015AD341F006E52BE /* go1.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = go1.caf; sourceTree = "<group>"; };
-		079606E115AD341F006E52BE /* ready1.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = ready1.caf; sourceTree = "<group>"; };
 		079606E215AD341F006E52BE /* select.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = select.caf; sourceTree = "<group>"; };
 		079606E315AD341F006E52BE /* title.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = title.caf; sourceTree = "<group>"; };
-		079606F215AD3555006E52BE /* gameset0.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = gameset0.caf; sourceTree = "<group>"; };
 		07980DF71585B0E8004B230C /* CCTexture2D+DrawInPoly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "CCTexture2D+DrawInPoly.h"; path = "Util/CCTexture2D+DrawInPoly.h"; sourceTree = "<group>"; };
 		07980DF81585B0E8004B230C /* CCTexture2D+DrawInPoly.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "CCTexture2D+DrawInPoly.m"; path = "Util/CCTexture2D+DrawInPoly.m"; sourceTree = "<group>"; };
 		07A033C6159CB73D00D6A8CB /* accel_0_0.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = accel_0_0.caf; sourceTree = "<group>"; };
@@ -380,7 +374,7 @@
 		07A033CF159CB73D00D6A8CB /* brake_0_0.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = brake_0_0.caf; sourceTree = "<group>"; };
 		07A033D0159CB73D00D6A8CB /* brake_0_1.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = brake_0_1.caf; sourceTree = "<group>"; };
 		07A033D1159CB73D00D6A8CB /* brake_1_0.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = brake_1_0.caf; sourceTree = "<group>"; };
-		07A033D2159CB73D00D6A8CB /* gameset.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = gameset.caf; sourceTree = "<group>"; };
+		07A033D2159CB73D00D6A8CB /* gameset0.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = gameset0.caf; sourceTree = "<group>"; };
 		07A033D3159CB73D00D6A8CB /* go1.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = go1.caf; sourceTree = "<group>"; };
 		07A033D4159CB73D00D6A8CB /* paint_1_0.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = paint_1_0.caf; sourceTree = "<group>"; };
 		07A033D5159CB73D00D6A8CB /* paint_0_0.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = paint_0_0.caf; sourceTree = "<group>"; };
@@ -850,7 +844,7 @@
 				07A033CF159CB73D00D6A8CB /* brake_0_0.caf */,
 				07A033D0159CB73D00D6A8CB /* brake_0_1.caf */,
 				07A033D1159CB73D00D6A8CB /* brake_1_0.caf */,
-				07A033D2159CB73D00D6A8CB /* gameset.caf */,
+				07A033D2159CB73D00D6A8CB /* gameset0.caf */,
 				07A034AF159EBA8E00D6A8CB /* go0.caf */,
 				07A033D3159CB73D00D6A8CB /* go1.caf */,
 				07A033D4159CB73D00D6A8CB /* paint_1_0.caf */,
@@ -892,9 +886,6 @@
 				079606DD15AD341F006E52BE /* complete6.caf */,
 				079606DE15AD341F006E52BE /* decide.caf */,
 				079606DF15AD341F006E52BE /* gameset.caf */,
-				079606F215AD3555006E52BE /* gameset0.caf */,
-				079606E015AD341F006E52BE /* go1.caf */,
-				079606E115AD341F006E52BE /* ready1.caf */,
 				079606E215AD341F006E52BE /* select.caf */,
 				079606E315AD341F006E52BE /* title.caf */,
 			);
@@ -1169,7 +1160,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				079606F315AD356D006E52BE /* gameset0.caf in Resources */,
 				079606E415AD349F006E52BE /* howto.caf in Resources */,
 				079606E515AD349F006E52BE /* complete0.caf in Resources */,
 				079606E615AD349F006E52BE /* complete1.caf in Resources */,
@@ -1180,8 +1170,6 @@
 				079606EB15AD349F006E52BE /* complete6.caf in Resources */,
 				079606EC15AD349F006E52BE /* decide.caf in Resources */,
 				079606ED15AD349F006E52BE /* gameset.caf in Resources */,
-				079606EE15AD349F006E52BE /* go1.caf in Resources */,
-				079606EF15AD349F006E52BE /* ready1.caf in Resources */,
 				079606F015AD349F006E52BE /* select.caf in Resources */,
 				079606F115AD349F006E52BE /* title.caf in Resources */,
 				07AA538815A65CC70071C6E5 /* op.caf in Resources */,
@@ -1248,7 +1236,7 @@
 				07A033E7159CB73D00D6A8CB /* brake_0_0.caf in Resources */,
 				07A033E8159CB73D00D6A8CB /* brake_0_1.caf in Resources */,
 				07A033E9159CB73D00D6A8CB /* brake_1_0.caf in Resources */,
-				07A033EA159CB73D00D6A8CB /* gameset.caf in Resources */,
+				07A033EA159CB73D00D6A8CB /* gameset0.caf in Resources */,
 				07A033EB159CB73D00D6A8CB /* go1.caf in Resources */,
 				07A033EC159CB73D00D6A8CB /* paint_1_0.caf in Resources */,
 				07A033ED159CB73D00D6A8CB /* paint_0_0.caf in Resources */,

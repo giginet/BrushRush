@@ -11,6 +11,7 @@
 
 @interface SPTitleLayer : CCLayer {
   OALAudioTrack* titleMusic_;
+  CCMenu* menu_;
 }
 
 @end

@@ -52,13 +52,15 @@
                                                selectedImage:@"howto_selected.png" 
                                                disabledImage:@"howto_selected.png" 
                                                        block:^(id sender){
+                                                         [titleMusic_ fadeTo:0 duration:1.0 target:nil selector:nil];
                                                          CCTransitionFade* transition = [CCTransitionFade transitionWithDuration:0.5f scene:[SPHowtoLayer nodeWithScene]];
                                                          [director pushScene:transition];
                                                        }];
-    CCMenu* menu = [CCMenu menuWithItems:play, howto, nil];
-    [menu alignItemsVerticallyWithPadding:55];
-    menu.position = ccp(director.screenCenter.x, 385);
-    [self addChild:menu];
+    menu_ = [CCMenu menuWithItems:play, howto, nil];
+    menu_.isTouchEnabled = NO;
+    [menu_ alignItemsVerticallyWithPadding:55];
+    menu_.position = ccp(director.screenCenter.x, 385);
+    [self addChild:menu_];
     
     CCLabelTTF* credit = [CCLabelTTF labelWithString:@"copyright Ⓒ2009-2012 Kawaz All right reserved." fontName:@"Helvetica" fontSize:16];
     credit.position = ccp(director.screenCenter.x, 60);
@@ -94,6 +96,9 @@
   [node addChild:bl];
   bl.scaleX = 0.0;
   [bl runAction:[CCSequence actions:
+                 [CCCallBlock actionWithBlock:^{
+    [[OALSimpleAudio sharedInstance] playEffect:@"title.caf"];
+  }],
                  [CCDelayTime actionWithDuration:delay], 
                  [CCScaleTo actionWithDuration:line scaleX:1.0 scaleY:1.0],
                  nil]];
@@ -144,6 +149,7 @@
 }
 
 - (void)onLogoDidFinish {
+  menu_.isTouchEnabled = YES;
   [titleMusic_ playFile:@"op.caf" loops:-1];
 }
 
