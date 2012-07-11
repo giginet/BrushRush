@@ -226,7 +226,7 @@ typedef enum {
   float distance = ccpDistance(begin, end);
   float length = [self length];
   float diagonal = hypotf(self.boundingBox.size.width, self.boundingBox.size.height);
-  if (length > 100 && (distance < 50 || distance <= length * 0.3) && distance <= 100) {
+  if (length > 150 && (distance < 50 || distance <= length * 0.3) && distance <= 100) {
     return SPDrawingTypeCharge;
   } else if (length < diagonal * 1.5){
     return SPDrawingTypeSlash;

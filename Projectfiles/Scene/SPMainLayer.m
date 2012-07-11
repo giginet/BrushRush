@@ -185,7 +185,7 @@
                 cutEffect.position = other.gravityPoint;
                 CCParticleSystemQuad* slashEffect = [CCParticleSystemQuad particleWithFile:@"cut.plist"];
                 slashEffect.position = other.gravityPoint;
-                slashEffect.rotation = -1 * ((int)(player.lastDrawing.angle + 360) % 360);
+                slashEffect.rotation = -1 * ((int)(player.lastDrawing.angle + 360) % 360 + 180);
                 slashEffect.scaleX = -1;
                 [p addChild:cutEffect z:SPPlayerLayerEffect];
                 [p addChild:slashEffect];
