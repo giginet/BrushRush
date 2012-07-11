@@ -33,6 +33,7 @@ typedef enum {
 @implementation SPDrawing
 @dynamic isCharging;
 @synthesize chain;
+@synthesize angle;
 @synthesize boundingBox;
 @synthesize color;
 @synthesize type;
@@ -411,6 +412,12 @@ typedef enum {
     }
   }
   [manager removeDrawing:self];
+}
+
+- (float)angle {
+  CGPoint first = [[self.points objectAtIndex:0] CGPointValue];
+  CGPoint last = [[self.points lastObject] CGPointValue];
+  return atan2f(last.y - first.y, last.x - first.x) * 180 / M_PI;
 }
 
 @end

@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>angle</key>
-	<real>135</real>
+	<real>0.0</real>
 	<key>angleVariance</key>
 	<real>0.0</real>
 	<key>blendFuncDestination</key>
