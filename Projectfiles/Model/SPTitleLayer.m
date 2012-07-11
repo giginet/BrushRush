@@ -85,6 +85,7 @@
   CCNode* logo = [self logo];
   logo.position = ccp(director.screenCenter.x - 632 / 2, 800 - 446 / 2);
   [self addChild:logo];
+  [[OALSimpleAudio sharedInstance] playEffect:@"title.caf"];
 }
 
 - (CCNode*)logo {
@@ -104,9 +105,6 @@
   [node addChild:bl];
   bl.scaleX = 0.0;
   [bl runAction:[CCSequence actions:
-                 [CCCallBlock actionWithBlock:^{
-    [[OALSimpleAudio sharedInstance] playEffect:@"title.caf"];
-  }],
                  [CCDelayTime actionWithDuration:delay], 
                  [CCScaleTo actionWithDuration:line scaleX:1.0 scaleY:1.0],
                  nil]];
