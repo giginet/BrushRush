@@ -24,9 +24,16 @@ typedef enum {
   SPDrawingTypeNone
 } SPDrawingType;
 
+
+// 高速化のためにチャージ状態を構造体として保存しておくけどめちゃくちゃ可読性悪いのでコメント
+// chargedEdgeIndex チャージが完了した点の手前の頂点のindex値
+// distanceFromEdge 手前の頂点からチャージ完了地点までの距離
+// distanceSumToEdge 0番目の点から、チャージ完了地点の手前の頂点までの距離の総和
+// chargedPoint チャージ完了した点
 typedef struct {
   int chargedEdgeIndex;
   float distanceFromEdge;
+  float distanceSumToEdge;
   CGPoint chargedPoint; 
 } ChargeStatus;
 

@@ -54,6 +54,7 @@ typedef enum {
     lengthCache_ = 0;
     chargeStatus_.chargedEdgeIndex = 0;
     chargeStatus_.distanceFromEdge = 0;
+    chargeStatus_.distanceSumToEdge = 0;
     chargeStatus_.chargedPoint = CGPointZero;
     dirty_ = NO;
     //chargeSound_ = [OALAudioTrack track];
@@ -129,22 +130,21 @@ typedef enum {
     if (self.type == SPDrawingTypeCharge) rate = 1.0 - (self.chargeTimer.now / self.chargeTimer.max);
     float charged = length * rate;
     float dis = 0;
-    for (int i = 1; i < count; ++i) {
-      CGPoint prev = [[self.points objectAtIndex:i - 1] CGPointValue];
+    for (int i = 0; i < count - 1; ++i) {
       CGPoint point = [[self.points objectAtIndex:i] CGPointValue];
-      dis += ccpDistance(prev, point);
+      CGPoint next = [[self.points objectAtIndex:i + 1] CGPointValue];
+      dis += ccpDistance(point, next);
       if (self.type != SPDrawingTypeCharge || dis > charged) {
         glColor4f(self.color.r, 0.4, self.color.b, 1);
       } else {
         glColor4f(self.color.r, self.color.g, self.color.b, 1);
       }
-      const int radius = 4.5;
-      KWVector* vector = [KWVector vectorWithPoint:ccpSub(point, prev)];
-      int c = ceil(vector.length / radius);
+      KWVector* vector = [KWVector vectorWithPoint:ccpSub(next, point)];
+      int c = ceil(vector.length / BRUSH_RADIUS);
       for (int j = 0; j < c; ++j) {
-        CGPoint p = ccpAdd(prev, [[vector resize:radius] scale:j].point);
+        CGPoint p = ccpAdd(point, [[vector resize:BRUSH_RADIUS] scale:j].point);
         if (i == chargeStatus_.chargedEdgeIndex) {
-          float dis = j * radius;
+          float dis = j * BRUSH_RADIUS;
           if (dis < chargeStatus_.distanceFromEdge) { 
             glColor4f(self.color.r, 0.4, self.color.b, 1);
           } else {
@@ -154,7 +154,7 @@ typedef enum {
         if (BRUSH_TEXTURE) {
           [brushTexture_ drawAtPoint:p];
         } else {
-          ccFillCircle(p, radius, 0, 5, YES);
+          ccFillCircle(p, BRUSH_RADIUS, 0, 5, YES);
         }
       }
     }
@@ -248,9 +248,9 @@ typedef enum {
   float length = self.length;
   float rate = 1.0 - (self.chargeTimer.now / self.chargeTimer.max);
   float charged = length * rate;
-  float disSum = 0;
+  float disSum = chargeStatus_.distanceSumToEdge;
   int count = [self.points count];
-  for (int i = 0; i < count - 1; ++i) {
+  for (int i = chargeStatus_.chargedEdgeIndex; i < count - 1; ++i) {
     KWVector* point = [KWVector vectorWithPoint:[[self.points objectAtIndex:i] CGPointValue]];
     KWVector* next = [KWVector vectorWithPoint:[[self.points objectAtIndex:i + 1] CGPointValue]];
     float dis = ccpDistance(point.point, next.point);
@@ -259,13 +259,15 @@ typedef enum {
       chargeStatus_.chargedPoint = newPoint.point;
       chargeStatus_.chargedEdgeIndex = i;
       chargeStatus_.distanceFromEdge = charged - disSum;
+      chargeStatus_.distanceSumToEdge = disSum;
       break;
+    } else {
+      disSum += dis;
     }
-    disSum += dis;
-    if (CHARGE_EFFECT) {
-      for (CCParticleSystemQuad* effect in chargeEffects_) {
-        effect.position = chargeStatus_.chargedPoint;
-      }
+  }
+  if (CHARGE_EFFECT) {
+    for (CCParticleSystemQuad* effect in chargeEffects_) {
+      effect.position = chargeStatus_.chargedPoint;
     }
   }
 }
