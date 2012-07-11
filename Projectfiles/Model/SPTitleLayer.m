@@ -78,6 +78,7 @@
 }
 
 - (void)onEnterTransitionDidFinish {
+  [KKInput sharedInput].gestureSwipeEnabled = NO;
   [super onEnterTransitionDidFinish];
   CCDirector* director = [CCDirector sharedDirector];
   CCNode* logo = [self logo];
