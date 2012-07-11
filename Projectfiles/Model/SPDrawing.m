@@ -175,6 +175,14 @@ typedef enum {
   [self.chargeTimer setOnCompleteListener:self selector:@selector(onEndCharge)];
   [self.chargeTimer setOnUpdateListener:self selector:@selector(onUpdateCharge:)];
   [self.chargeTimer play];
+  int count = [self.points count];
+  if (count > 30) {
+    NSMutableArray* new = [NSMutableArray array];
+    for (int i = 0; i < count; i += 2) {
+      [new addObject:[self.points objectAtIndex:i]];
+    }
+    points_ = [NSArray arrayWithArray:new];
+  }
   if (CHARGE_EFFECT) {
     for (int i = 0; i < (int)[chargeEffects_ count]; ++i) {
       SPPlayer* p = [SPPlayer playerById:i];
@@ -268,7 +276,6 @@ typedef enum {
   int chainCount = MIN(MAX_CHAIN - 1, self.chain);
   if ([manager.drawings containsObject:self]) {
     [[OALSimpleAudio sharedInstance] playEffect:[NSString stringWithFormat:@"complete%d.caf", chainCount]];
-    [[CCTextureCache sharedTextureCache] removeUnusedTextures];
     for (int i = 0; i < 2; ++i) {
       CCParticleSystemQuad* completeEffect = [CCParticleSystemQuad particleWithFile:[NSString stringWithFormat:@"complete%d.plist", self.player.identifier]];
       SPPlayer* p = [SPPlayer playerById:i];

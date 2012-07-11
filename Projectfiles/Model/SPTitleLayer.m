@@ -155,10 +155,10 @@
 }
 
 - (void)onLogoDidFinish {
-  menu_.isTouchEnabled = YES;
   [self runAction:[CCSequence actions:
                    [CCDelayTime actionWithDuration:1.0f],
                    [CCCallBlock actionWithBlock:^{
+    menu_.isTouchEnabled = YES;
     [titleMusic_ playFile:@"op.caf" loops:-1];
   }], nil]];
 }

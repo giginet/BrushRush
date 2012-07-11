@@ -79,6 +79,7 @@
 }
 
 - (void)onEnterTransitionDidFinish {
+  [[CCTextureCache sharedTextureCache] removeUnusedTextures];
   [super onEnterTransitionDidFinish];
   [self.music play];
   [self startGame];
@@ -344,6 +345,7 @@
 
 - (void)onResult {
   ++gameCount_;
+  [[CCTextureCache sharedTextureCache] removeUnusedTextures];
   SPPlayer* winner = [self checkWinner];
   NSMutableArray* labels = [NSMutableArray array];
   for (SPPlayer* player in self.players) { 
