@@ -392,7 +392,7 @@
     menu.position = ccp(sign.position.x, self.position.y + 170);
     [[OALSimpleAudio sharedInstance] playEffect:@"fanfare1.caf"];
     __block SPMainLayer* layer = self;
-    [self runAction:[CCSequence actions:[CCDelayTime actionWithDuration:3.0f],
+    [self runAction:[CCSequence actions:[CCDelayTime actionWithDuration:5.0f],
                      [CCCallBlockN actionWithBlock:^(CCNode* node){
       CCSprite* label = [labels objectAtIndex:0];
       [label runAction:[CCSequence actions:[CCMoveBy actionWithDuration:0.25 position:ccp(0, 75)],

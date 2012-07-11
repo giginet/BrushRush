@@ -8,18 +8,23 @@
 
 #import "SPTitleLayer.h"
 #import "SPHowtoLayer.h"
+#import "OALSimpleAudio.h"
 
 @interface SPHowtoLayer()
-- (void)pushNextScene:(NSUInteger)n;
+- (void)pushNextScene:(NSUInteger)n transition:(BOOL)transition;
 @end
 
 @implementation SPHowtoLayer
 @synthesize number;
 
-#define HOWTO_COUNT 12
+#define HOWTO_COUNT 13
 
 - (id)init {
   self = [self initWithNumber:0];
+  if (self) {
+    [[OALSimpleAudio sharedInstance] preloadBg:@"howto.caf"];
+    [[OALSimpleAudio sharedInstance] playBg];
+  }
   return self;
 }
 
@@ -38,11 +43,12 @@
     number = n;
     [self addChild:howtoLayer_];
     [self scheduleUpdate];
-    swiped_ = NO;
-    KKInput* input = [KKInput sharedInput];
-    input.gestureSwipeEnabled = NO;
   }
   return self;
+}
+
+- (void)onEnter {
+  [super onEnter];
 }
 
 - (void)update:(ccTime)dt {
@@ -50,36 +56,39 @@
   input.gestureSwipeEnabled = YES;
   if (input.gesturesAvailable) {
     KKSwipeGestureDirection dir = input.gestureSwipeDirection;
-    if (dir) {
-      if (dir == KKSwipeGestureDirectionLeft) {
-        swiped_ = YES;
+    if (dir  && input.gestureSwipeRecognizedThisFrame) {
+      if (dir == KKSwipeGestureDirectionRight) {
         if (number == 0) {
           CCTransitionFade* transition = [CCTransitionFade transitionWithDuration:0.5f scene:[SPTitleLayer nodeWithScene]];
           [[CCDirector sharedDirector] replaceScene:transition];
-        
+          [[OALSimpleAudio sharedInstance] stopBg];
         } else {
-          [self pushNextScene:self.number - 1];
+          [self pushNextScene:self.number - 1 transition:NO];
         }
-      } else if (dir == KKSwipeGestureDirectionRight) {
-        swiped_ = YES;
-        if (number <= HOWTO_COUNT - 1) {
-          [self pushNextScene:self.number + 1];
+      } else if (dir == KKSwipeGestureDirectionLeft) {
+        if (number < HOWTO_COUNT - 1) {
+          [self pushNextScene:self.number + 1 transition:YES];
         } else {
           CCTransitionFade* transition = [CCTransitionFade transitionWithDuration:0.5f scene:[SPTitleLayer nodeWithScene]];
           [[CCDirector sharedDirector] replaceScene:transition];
+          [[OALSimpleAudio sharedInstance] stopBg];
         }
       }
     }
   }
 }
 
-- (void)pushNextScene:(NSUInteger)n {
+- (void)pushNextScene:(NSUInteger)n transition:(BOOL)transition {
   swiped_ = NO;
   CCScene* scene = [CCScene node];
-  SPHowtoLayer* next = [[SPHowtoLayer alloc] initWithNumber:self.number + 1];
+  SPHowtoLayer* next = [[SPHowtoLayer alloc] initWithNumber:n];
   [scene addChild:next];
-  CCTransitionPageTurn* transition = [CCTransitionPageTurn transitionWithDuration:0.5f scene:scene];
-  [[CCDirector sharedDirector] replaceScene:transition];
+  if (transition) {
+    CCTransitionPageTurn* transition = [CCTransitionPageTurn transitionWithDuration:0.5f scene:scene];
+    [[CCDirector sharedDirector] replaceScene:transition];
+  } else {
+    [[CCDirector sharedDirector] replaceScene:scene];
+  }
 }
  
 @end
