@@ -14,7 +14,7 @@
 	<array>
 		<string>Icon.png</string>
 		<string>Icon@2x.png</string>
-		<string>Icon-72.png</string>
+		<string>icon_test_3.png</string>
 		<string>Icon-Small-50.png</string>
 		<string>Icon-Small.png</string>
 		<string>Icon-Small@2x.png</string>
@@ -27,7 +27,7 @@
 			<array>
 				<string>Icon.png</string>
 				<string>Icon@2x.png</string>
-				<string>Icon-72.png</string>
+				<string>icon_test_3.png</string>
 				<string>Icon-Small-50.png</string>
 				<string>Icon-Small.png</string>
 				<string>Icon-Small@2x.png</string>

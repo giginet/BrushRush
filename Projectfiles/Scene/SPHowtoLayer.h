@@ -8,6 +8,14 @@
 
 #import "CCLayer.h"
 
-@interface SPHowtoLayer : CCLayer
+@interface SPHowtoLayer : CCLayer {
+  BOOL swiped_;
+  CCLayerColor* howtoLayer_;
+}
+
+@property(readonly) NSUInteger number;
+
+- (id)initWithNumber:(NSUInteger)number;
+- (void)update:(ccTime)dt;
 
 @end

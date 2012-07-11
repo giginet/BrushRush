@@ -328,7 +328,7 @@
   for (SPDrawing* drawing in manager.drawings) {
     [drawing stopCharge];
   }
-  [[OALSimpleAudio sharedInstance] playEffect:@"gameset.caf"];
+  [[OALSimpleAudio sharedInstance] playEffect:@"gameset0.caf"];
   for (SPPlayer* player in self.players) { 
     CCSprite* label = [CCSprite spriteWithFile:@"gameset.png"];
     label.position = ccp(player.center.x, player.center.y + 60);

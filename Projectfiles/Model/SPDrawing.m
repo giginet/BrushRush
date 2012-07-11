@@ -15,6 +15,7 @@
 #import "OALSimpleAudio.h"
 #import "define.h"
 #define CHARGE_EFFECT YES
+#define MAX_CHAIN 7
 
 typedef enum {
   SPRotationStraight,
@@ -264,7 +265,7 @@ typedef enum {
   SPDrawingManager* manager = [SPDrawingManager sharedManager];
   [self expand:pow(2, (float)(self.chain - 1) / 4.0)];
   self.type = SPDrawingTypeArea;
-  int chainCount = MIN(5, self.chain);
+  int chainCount = MIN(MAX_CHAIN - 1, self.chain);
   if ([manager.drawings containsObject:self]) {
     [[OALSimpleAudio sharedInstance] playEffect:[NSString stringWithFormat:@"complete%d.caf", chainCount]];
     [[CCTextureCache sharedTextureCache] removeUnusedTextures];

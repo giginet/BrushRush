@@ -8,6 +8,7 @@
 
 #import "SPTitleLayer.h"
 #import "SPMainLayer.h"
+#import "SPHowtoLayer.h"
 #import "ObjectAL.h"
 
 @interface SPTitleLayer()
@@ -51,6 +52,8 @@
                                                selectedImage:@"howto_selected.png" 
                                                disabledImage:@"howto_selected.png" 
                                                        block:^(id sender){
+                                                         CCTransitionFade* transition = [CCTransitionFade transitionWithDuration:0.5f scene:[SPHowtoLayer nodeWithScene]];
+                                                         [director pushScene:transition];
                                                        }];
     CCMenu* menu = [CCMenu menuWithItems:play, howto, nil];
     [menu alignItemsVerticallyWithPadding:55];

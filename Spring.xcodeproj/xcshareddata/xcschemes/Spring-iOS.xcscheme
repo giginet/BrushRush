@@ -15,8 +15,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "DCC1A0E213A94ED5005BD75D"
-               BuildableName = "Spring-iOS.app"
-               BlueprintName = "Spring-iOS"
+               BuildableName = "BrushRush.app"
+               BlueprintName = "BrushRush"
                ReferencedContainer = "container:Spring.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -45,8 +45,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "DCC1A0E213A94ED5005BD75D"
-            BuildableName = "Spring-iOS.app"
-            BlueprintName = "Spring-iOS"
+            BuildableName = "BrushRush.app"
+            BlueprintName = "BrushRush"
             ReferencedContainer = "container:Spring.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -65,8 +65,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "DCC1A0E213A94ED5005BD75D"
-            BuildableName = "Spring-iOS.app"
-            BlueprintName = "Spring-iOS"
+            BuildableName = "BrushRush.app"
+            BlueprintName = "BrushRush"
             ReferencedContainer = "container:Spring.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
