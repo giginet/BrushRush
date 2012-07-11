@@ -107,6 +107,7 @@
 		0796072715AD46B6006E52BE /* break1_4.png in Resources */ = {isa = PBXBuildFile; fileRef = 0796071915AD46B6006E52BE /* break1_4.png */; };
 		0796072815AD46B6006E52BE /* break1_5.png in Resources */ = {isa = PBXBuildFile; fileRef = 0796071A15AD46B6006E52BE /* break1_5.png */; };
 		0796072915AD46B6006E52BE /* break1_6.png in Resources */ = {isa = PBXBuildFile; fileRef = 0796071B15AD46B6006E52BE /* break1_6.png */; };
+		0796072B15ADEA91006E52BE /* paper.caf in Resources */ = {isa = PBXBuildFile; fileRef = 0796072A15ADEA80006E52BE /* paper.caf */; };
 		07980DF91585B0E8004B230C /* CCTexture2D+DrawInPoly.m in Sources */ = {isa = PBXBuildFile; fileRef = 07980DF81585B0E8004B230C /* CCTexture2D+DrawInPoly.m */; };
 		07A033DE159CB73D00D6A8CB /* accel_0_0.caf in Resources */ = {isa = PBXBuildFile; fileRef = 07A033C6159CB73D00D6A8CB /* accel_0_0.caf */; };
 		07A033DF159CB73D00D6A8CB /* accel_0_1.caf in Resources */ = {isa = PBXBuildFile; fileRef = 07A033C7159CB73D00D6A8CB /* accel_0_1.caf */; };
@@ -378,6 +379,7 @@
 		0796071915AD46B6006E52BE /* break1_4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = break1_4.png; sourceTree = "<group>"; };
 		0796071A15AD46B6006E52BE /* break1_5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = break1_5.png; sourceTree = "<group>"; };
 		0796071B15AD46B6006E52BE /* break1_6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = break1_6.png; sourceTree = "<group>"; };
+		0796072A15ADEA80006E52BE /* paper.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = paper.caf; sourceTree = "<group>"; };
 		07980DF71585B0E8004B230C /* CCTexture2D+DrawInPoly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "CCTexture2D+DrawInPoly.h"; path = "Util/CCTexture2D+DrawInPoly.h"; sourceTree = "<group>"; };
 		07980DF81585B0E8004B230C /* CCTexture2D+DrawInPoly.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "CCTexture2D+DrawInPoly.m"; path = "Util/CCTexture2D+DrawInPoly.m"; sourceTree = "<group>"; };
 		07A033C6159CB73D00D6A8CB /* accel_0_0.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = accel_0_0.caf; sourceTree = "<group>"; };
@@ -895,6 +897,7 @@
 				079606DF15AD341F006E52BE /* gameset.caf */,
 				079606E215AD341F006E52BE /* select.caf */,
 				079606E315AD341F006E52BE /* title.caf */,
+				0796072A15ADEA80006E52BE /* paper.caf */,
 			);
 			path = SE;
 			sourceTree = "<group>";
@@ -1169,6 +1172,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0796072B15ADEA91006E52BE /* paper.caf in Resources */,
 				079606E415AD349F006E52BE /* howto.caf in Resources */,
 				079606E515AD349F006E52BE /* complete0.caf in Resources */,
 				079606E615AD349F006E52BE /* complete1.caf in Resources */,

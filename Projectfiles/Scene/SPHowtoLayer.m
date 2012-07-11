@@ -22,8 +22,7 @@
 - (id)init {
   self = [self initWithNumber:0];
   if (self) {
-    [[OALSimpleAudio sharedInstance] preloadBg:@"howto.caf"];
-    [[OALSimpleAudio sharedInstance] playBg];
+    [[OALSimpleAudio sharedInstance] playBg:@"howto.caf" loop:-1];
   }
   return self;
 }
@@ -86,6 +85,7 @@
   if (transition) {
     CCTransitionPageTurn* transition = [CCTransitionPageTurn transitionWithDuration:0.5f scene:scene];
     [[CCDirector sharedDirector] replaceScene:transition];
+    [[OALSimpleAudio sharedInstance] playEffect:@"paper.caf"];
   } else {
     [[CCDirector sharedDirector] replaceScene:scene];
   }
