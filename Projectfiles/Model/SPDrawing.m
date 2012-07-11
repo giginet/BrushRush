@@ -187,9 +187,11 @@ typedef enum {
     for (int i = 0; i < (int)[chargeEffects_ count]; ++i) {
       SPPlayer* p = [SPPlayer playerById:i];
       CCParticleSystemQuad* effect = [chargeEffects_ objectAtIndex:i];
-      effect.position = self.position;
-      effect.rotation = 180 * i;
-      [p addChild:effect z:SPPlayerLayerEffect];
+      if (![p.children containsObject:effect]) {
+        effect.position = self.position;
+        effect.rotation = 180 * i;
+        [p addChild:effect z:SPPlayerLayerEffect];
+      }
     }
   }
 }
