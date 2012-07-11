@@ -49,6 +49,7 @@ typedef struct {
 }
 
 @property(readonly) BOOL isCharging;
+@property(readwrite) BOOL isPaint;
 @property(readwrite) int chain;
 @property(readonly) float angle;
 @property(readonly) CGRect boundingBox;

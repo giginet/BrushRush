@@ -26,7 +26,7 @@ typedef enum {
 @property(readonly) NSUInteger identifier;
 @property(readonly, strong) NSMutableArray* drawings;
 @property(readwrite, strong) UITouch* lastTouch;
-@property(readonly, strong) SPDrawing* lastDrawing;
+@property(readwrite, strong) SPDrawing* lastDrawing;
 @property(readwrite, strong) CCSprite* frame;
 @property(readwrite, strong) SPItem* item;
 @property(readwrite, weak) SPDrawing* lastArea;

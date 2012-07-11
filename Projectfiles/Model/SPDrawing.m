@@ -32,6 +32,7 @@ typedef enum {
 
 @implementation SPDrawing
 @dynamic isCharging;
+@synthesize isPaint;
 @synthesize chain;
 @synthesize angle;
 @synthesize boundingBox;
@@ -45,6 +46,7 @@ typedef enum {
 - (id)init {
   self = [super init];
   if (self) {
+    isPaint = NO;
     type = SPDrawingTypeWriting;
     self.chain = 1;
     points_ = [NSMutableArray array];
@@ -200,8 +202,14 @@ typedef enum {
 - (void)setPlayer:(SPPlayer *)p {
   //[player.drawings removeObject:self];
   player = p;
-  [p.drawings addObject:self];
-  self.color = p.color;
+  if (!p) {
+    if ([p.drawings containsObject:self]) {
+      [p.drawings removeObject:p];
+    }
+  } else {
+    [p.drawings addObject:self];
+    self.color = p.color;
+  }
 }
 
 - (void)addPoint:(CGPoint)point {
@@ -271,8 +279,10 @@ typedef enum {
 
 - (void)onEndCharge {
   SPDrawingManager* manager = [SPDrawingManager sharedManager];
-  [self expand:pow(2, (float)(self.chain - 1) / 4.0)];
   self.type = SPDrawingTypeArea;
+  
+  // チェイン音を鳴らしたり、エリアを広げたり
+  [self expand:pow(2, (float)(self.chain - 1) / 4.0)];
   int chainCount = MIN(MAX_CHAIN - 1, self.chain);
   if ([manager.drawings containsObject:self]) {
     [[OALSimpleAudio sharedInstance] playEffect:[NSString stringWithFormat:@"complete%d.caf", chainCount]];
@@ -285,17 +295,22 @@ typedef enum {
     self.player.lastArea = self;
   }
   
-  int chargingCount = 0;
+  int chargingCount = 0; // チャージ中のDrawingの数
+  BOOL isAbove = NO; // 自分より上かどうか
   for (SPDrawing* drawing in [NSArray arrayWithArray:manager.drawings]) {
-    if (![self isEqual:drawing] && CGRectContainsRect(self.boundingBox, drawing.boundingBox)) {
+    if([self isEqual:drawing]) isAbove = YES;
+    // 自分より下に全て包括するモノがあったら削除
+    if (!isAbove && CGRectContainsRect(self.boundingBox, drawing.boundingBox)) {
       [drawing removeFromStage];
     }
+    // チャージ中のモノを数える
     if ([drawing.player isEqual:self.player] && drawing.type == SPDrawingTypeCharge) chargingCount += 1;
   }
+  // 他にチャージしていなかったら、チャージ音を止める
   if (CHARGE_SOUND && chargingCount == 0) {
     [self.player.chargeSound stop];
   }
-  
+  // チャージエフェクトの削除
   if (CHARGE_EFFECT) {
     for (CCParticleSystemQuad* effect in chargeEffects_) {
       [effect.parent removeChild:effect cleanup:YES];

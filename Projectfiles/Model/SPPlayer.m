@@ -18,7 +18,7 @@
 @dynamic color;
 @synthesize drawings;
 @synthesize lastTouch;
-@dynamic lastDrawing;
+@synthesize lastDrawing;
 @synthesize frame;
 @synthesize item;
 @synthesize lastArea;
@@ -76,10 +76,6 @@ static NSMutableDictionary* players_;
   for (SPItem* i in manager.items) {
     [i.texture drawAtPoint:i.position];
   }
-}
-
-- (SPDrawing*)lastDrawing {
-  return [self.drawings lastObject];
 }
 
 - (CGPoint)center {

@@ -114,6 +114,7 @@
           [manager addDrawing:drawing];
           drawing.player = player;
           [drawing addPoint:[player convertToNodeSpace:point]];
+          player.lastDrawing = drawing;
         }
       }
     }
@@ -131,7 +132,7 @@
         if (CGRectContainsPoint(enemyRect, point)) {
           [self disableCurrentDrawing:touches];
         }
-        SPDrawing* drawing = [player.drawings lastObject];
+        SPDrawing* drawing = [player lastDrawing];
         if (WRITING_SOUND && drawing && !player.writingSound.playing) {
           [player.writingSound play];
          }
@@ -199,6 +200,7 @@
           [manager removeDrawing:lastDrawing];
         }
         player.lastTouch = nil;
+        player.lastDrawing = nil;
       }
     }
   } else if (self.state == SPGameStateResult) {

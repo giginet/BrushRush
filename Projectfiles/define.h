@@ -16,7 +16,7 @@
 #define GAME_TIME 30
 #define DRAW_TEXTURE YES
 #define BRUSH_TEXTURE NO
-#define BRUSH_RADIUS 4.5
+#define BRUSH_RADIUS 6
 #define WRITING_SOUND NO
 #define CHARGE_SOUND YES
 

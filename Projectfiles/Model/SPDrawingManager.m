@@ -122,6 +122,7 @@
   }
   drawing.player = player;
   drawing.type = SPDrawingTypeArea;
+  drawing.isPaint = YES;
   [self addDrawing:drawing];
 }
 
