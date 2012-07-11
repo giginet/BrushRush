@@ -177,9 +177,9 @@
                 int width = contentSize_.width;
                 float scale = other.boundingBox.size.width / width;
                 for (SPPlayer* p in self.players) {
-                  CCSprite* cutEffect = [CCSprite spriteWithFile:@"break0.png"];
-                  cutEffect.scale = scale * 3;
-                  CCAnimation* animation = [CCAnimation animationWithFiles:@"break" frameCount:12 delay:fps * 3];
+                  CCSprite* cutEffect = [CCSprite spriteWithFile:[NSString stringWithFormat:@"break%d_0.png", other.player.identifier]];
+                  cutEffect.scale = scale * 4;
+                  CCAnimation* animation = [CCAnimation animationWithFiles:[NSString stringWithFormat:@"break%d_", other.player.identifier] frameCount:7 delay:fps * 4];
                   [cutEffect runAction:[CCSequence actions:
                                         [CCAnimate actionWithAnimation:animation],
                                         [CCSuicide action],

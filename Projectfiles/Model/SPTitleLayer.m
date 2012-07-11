@@ -39,11 +39,11 @@
     CCSprite* sign = [CCSprite spriteWithFile:@"titlemenu_background.png"];
     sign.position = ccp(450, 300);
     [self addChild:sign];
-    
     CCMenuItem* play = [CCMenuItemImage itemFromNormalImage:@"play.png" 
                                               selectedImage:@"play_selected.png" 
                                               disabledImage:@"play_selected.png" 
                                                       block:^(id sender){
+                                                        menu_.isTouchEnabled = NO;
                                                         [[OALSimpleAudio sharedInstance] playEffect:@"decide.caf"];
                                                         [self runAction:[CCSequence actions:[CCDelayTime actionWithDuration:0.5f], [CCCallBlock actionWithBlock:^{
                                                           [titleMusic_ fadeTo:0 duration:1.0 target:nil selector:nil];
@@ -55,6 +55,7 @@
                                                selectedImage:@"howto_selected.png" 
                                                disabledImage:@"howto_selected.png" 
                                                        block:^(id sender){
+                                                         menu_.isTouchEnabled = NO;
                                                          [[OALSimpleAudio sharedInstance] playEffect:@"decide.caf"];
                                                          [self runAction:[CCSequence actions:[CCDelayTime actionWithDuration:0.5f], [CCCallBlock actionWithBlock:^{
                                                            [titleMusic_ fadeTo:0 duration:1.0 target:nil selector:nil];
