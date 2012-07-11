@@ -28,6 +28,7 @@ typedef enum {
 - (void)onEndCharge;
 - (SPRotation)rotationDirectionByPoint:(CGPoint)p0 point1:(CGPoint)p1 point2:(CGPoint)p2;
 - (BOOL)intersectsLines:(CGPoint)p0b endPoint:(CGPoint)p0e beginPoint:(CGPoint)p1b endPoint:(CGPoint)p1e;
+- (void)stopChargeSound;
 @end
 
 @implementation SPDrawing
@@ -295,27 +296,21 @@ typedef enum {
     self.player.lastArea = self;
   }
   
-  int chargingCount = 0; // チャージ中のDrawingの数
-  BOOL isAbove = NO; // 自分より上かどうか
+  // 自分より下に重なっているモノがあれば削除
   for (SPDrawing* drawing in [NSArray arrayWithArray:manager.drawings]) {
-    if([self isEqual:drawing]) isAbove = YES;
-    // 自分より下に全て包括するモノがあったら削除
-    if (!isAbove && CGRectContainsRect(self.boundingBox, drawing.boundingBox)) {
+    if([self isEqual:drawing]) break;
+    if (CGRectContainsRect(self.boundingBox, drawing.boundingBox)) {
       [drawing removeFromStage];
     }
-    // チャージ中のモノを数える
-    if ([drawing.player isEqual:self.player] && drawing.type == SPDrawingTypeCharge) chargingCount += 1;
   }
-  // 他にチャージしていなかったら、チャージ音を止める
-  if (CHARGE_SOUND && chargingCount == 0) {
-    [self.player.chargeSound stop];
-  }
+  [self stopChargeSound];
   // チャージエフェクトの削除
   if (CHARGE_EFFECT) {
     for (CCParticleSystemQuad* effect in chargeEffects_) {
       [effect.parent removeChild:effect cleanup:YES];
     }
   }
+  [self stopChargeSound];
   // Add chain label
   if (self.chain > 1) {
     for (int i = 0; i < 2; ++i) {
@@ -443,6 +438,7 @@ typedef enum {
       [effect.parent removeChild:effect cleanup:YES];
     }
   }
+  [self stopChargeSound];
   [manager removeDrawing:self];
 }
 
@@ -472,6 +468,19 @@ typedef enum {
     }
   }
   boundingBox = CGRectMake(minx, miny, maxx - minx, maxy - miny);
+}
+
+- (void)stopChargeSound {
+  if (!CHARGE_SOUND) return;
+  int chargingCount = 0;
+  for (SPDrawing* drawing in self.player.drawings) {
+    if (![self isEqual:drawing] && drawing.type == SPDrawingTypeCharge) {
+      ++chargingCount;
+    }
+  }
+  if (chargingCount == 0) {
+    [self.player.chargeSound stop];
+  }
 }
 
 @end
