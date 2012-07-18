@@ -309,6 +309,7 @@
       if (identifier == 0) {
         [[OALSimpleAudio sharedInstance] playEffect:[NSString stringWithFormat:[NSString stringWithFormat:@"go%d.caf", gameCount_ % 2]]];
         [self.gameTimer play];
+        [self.itemTimer play];
       }
       [node.parent addChild:go z:SPPlayerLayerUI];
       self.state = SPGameStateMatch;

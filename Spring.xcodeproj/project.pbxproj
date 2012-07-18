@@ -1482,6 +1482,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer: Kohki Miki (3YM67K3AKM)";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PROVISIONING_PROFILE = "F3D1DBF0-84D0-4BA8-B156-A2A323049552";
 			};
 			name = Debug;
@@ -1490,6 +1491,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer: Kohki Miki (3YM67K3AKM)";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PROVISIONING_PROFILE = "F3D1DBF0-84D0-4BA8-B156-A2A323049552";
 			};
 			name = Release;
@@ -1506,8 +1508,8 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/../__Kobold2D__/libs/GoogleAdMobAdsSDK\"",
 				);
-				PROVISIONING_PROFILE = "8DE5F19A-2913-4810-A997-A3734A95AC1F";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8DE5F19A-2913-4810-A997-A3734A95AC1F";
+				PROVISIONING_PROFILE = "410C1DB3-48E1-42E6-8473-6FE5DD8A3774";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "410C1DB3-48E1-42E6-8473-6FE5DD8A3774";
 				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Debug;
@@ -1524,8 +1526,8 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/../__Kobold2D__/libs/GoogleAdMobAdsSDK\"",
 				);
-				PROVISIONING_PROFILE = "8DE5F19A-2913-4810-A997-A3734A95AC1F";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8DE5F19A-2913-4810-A997-A3734A95AC1F";
+				PROVISIONING_PROFILE = "410C1DB3-48E1-42E6-8473-6FE5DD8A3774";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "410C1DB3-48E1-42E6-8473-6FE5DD8A3774";
 				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Release;
