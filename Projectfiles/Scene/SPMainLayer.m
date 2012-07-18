@@ -278,7 +278,6 @@
   [[SPDrawingManager sharedManager] removeAllItems];
   [self scheduleOnce:@selector(onReady) delay:0.5];
   self.music.volume = 0.25;
-  [self.itemTimer play];
 }
 
 - (void)onReady {
@@ -309,9 +308,9 @@
                       [CCCallBlockN actionWithBlock:^(CCNode* node){
       if (identifier == 0) {
         [[OALSimpleAudio sharedInstance] playEffect:[NSString stringWithFormat:[NSString stringWithFormat:@"go%d.caf", gameCount_ % 2]]];
+        [self.gameTimer play];
       }
       [node.parent addChild:go z:SPPlayerLayerUI];
-      [self.gameTimer play];
       self.state = SPGameStateMatch;
       self.music.volume = 0.5;
     }],

@@ -13,6 +13,7 @@
 #import "ObjectAL.h"
 
 @implementation SPPlayer
+@synthesize voiceNumber;
 @synthesize win;
 @synthesize identifier;
 @dynamic color;
@@ -43,6 +44,11 @@ static NSMutableDictionary* players_;
     self.rotation = 180 * n;
     win = 0;
     identifier = n;
+    voiceNumber = identifier;
+    if (identifier == 1) {
+      KWRandom* rnd = [KWRandom random];
+      voiceNumber = [rnd nextIntFrom:1 to:2];
+    }
     drawings = [NSMutableArray array];
     [players_ setObject:self forKey:[NSNumber numberWithInt:n]];
     int y = self.identifier == 0 ? FRAME_SIZE : FRAME_SIZE + PLAYER_HEIGHT + STATUSBAR_HEIGHT;
@@ -86,7 +92,7 @@ static NSMutableDictionary* players_;
   [[OALSimpleAudio sharedInstance] playEffect:@"item.caf"];
   KWRandom* rnd = [KWRandom random];
   int k = [rnd nextIntFrom:0 to:1];
-  [[OALSimpleAudio sharedInstance] playEffect:[NSString stringWithFormat:@"%@_%d_%d.caf", i.name, self.identifier, k]];
+  [[OALSimpleAudio sharedInstance] playEffect:[NSString stringWithFormat:@"%@_%d_%d.caf", i.name, self.voiceNumber, k]];
   [i useBy:self];
   self.item = i;
   item.player = self;

@@ -22,6 +22,7 @@ typedef enum {
 @interface SPPlayer : CCLayerColor {
 }
 
+@property(readonly) int voiceNumber;
 @property(readwrite) NSUInteger win;
 @property(readonly) NSUInteger identifier;
 @property(readonly, strong) NSMutableArray* drawings;

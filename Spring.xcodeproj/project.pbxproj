@@ -42,6 +42,16 @@
 		071594651592C0EC003BC47E /* crystal1_enable.png in Resources */ = {isa = PBXBuildFile; fileRef = 0715945B1592C0EC003BC47E /* crystal1_enable.png */; };
 		071594691592C559003BC47E /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 071594671592C559003BC47E /* background.png */; };
 		0715946C1592D1FD003BC47E /* SPItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 0715946B1592D1FD003BC47E /* SPItem.m */; };
+		071917E115B721BF00E33997 /* accel_2_0.caf in Resources */ = {isa = PBXBuildFile; fileRef = 071917D615B721B600E33997 /* accel_2_0.caf */; };
+		071917E215B721BF00E33997 /* accel_2_1.caf in Resources */ = {isa = PBXBuildFile; fileRef = 071917D715B721B600E33997 /* accel_2_1.caf */; };
+		071917E315B721BF00E33997 /* blind_2_0.caf in Resources */ = {isa = PBXBuildFile; fileRef = 071917D815B721B600E33997 /* blind_2_0.caf */; };
+		071917E415B721BF00E33997 /* blind_2_1.caf in Resources */ = {isa = PBXBuildFile; fileRef = 071917D915B721B600E33997 /* blind_2_1.caf */; };
+		071917E515B721BF00E33997 /* brake_2_0.caf in Resources */ = {isa = PBXBuildFile; fileRef = 071917DA15B721B600E33997 /* brake_2_0.caf */; };
+		071917E615B721BF00E33997 /* brake_2_1.caf in Resources */ = {isa = PBXBuildFile; fileRef = 071917DB15B721B600E33997 /* brake_2_1.caf */; };
+		071917E715B721BF00E33997 /* paint_2_0.caf in Resources */ = {isa = PBXBuildFile; fileRef = 071917DC15B721B600E33997 /* paint_2_0.caf */; };
+		071917E815B721BF00E33997 /* paint_2_1.caf in Resources */ = {isa = PBXBuildFile; fileRef = 071917DD15B721B600E33997 /* paint_2_1.caf */; };
+		071917E915B721BF00E33997 /* snatch_2_0.caf in Resources */ = {isa = PBXBuildFile; fileRef = 071917DE15B721B600E33997 /* snatch_2_0.caf */; };
+		071917EA15B721BF00E33997 /* snatch_2_1.caf in Resources */ = {isa = PBXBuildFile; fileRef = 071917DF15B721B600E33997 /* snatch_2_1.caf */; };
 		07473E1B15A1FA5100B27CEF /* charge.plist in Resources */ = {isa = PBXBuildFile; fileRef = 07473E1A15A1FA5100B27CEF /* charge.plist */; };
 		07473E1D15A1FCD900B27CEF /* go0.caf in Resources */ = {isa = PBXBuildFile; fileRef = 07A034AF159EBA8E00D6A8CB /* go0.caf */; };
 		07473E2015A1FE0200B27CEF /* charge0.caf in Resources */ = {isa = PBXBuildFile; fileRef = 07473E1E15A1FCF600B27CEF /* charge0.caf */; };
@@ -292,6 +302,16 @@
 		071594671592C559003BC47E /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
 		0715946A1592D1FD003BC47E /* SPItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SPItem.h; path = Model/SPItem.h; sourceTree = "<group>"; };
 		0715946B1592D1FD003BC47E /* SPItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SPItem.m; path = Model/SPItem.m; sourceTree = "<group>"; };
+		071917D615B721B600E33997 /* accel_2_0.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = accel_2_0.caf; sourceTree = "<group>"; };
+		071917D715B721B600E33997 /* accel_2_1.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = accel_2_1.caf; sourceTree = "<group>"; };
+		071917D815B721B600E33997 /* blind_2_0.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = blind_2_0.caf; sourceTree = "<group>"; };
+		071917D915B721B600E33997 /* blind_2_1.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = blind_2_1.caf; sourceTree = "<group>"; };
+		071917DA15B721B600E33997 /* brake_2_0.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = brake_2_0.caf; sourceTree = "<group>"; };
+		071917DB15B721B600E33997 /* brake_2_1.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = brake_2_1.caf; sourceTree = "<group>"; };
+		071917DC15B721B600E33997 /* paint_2_0.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = paint_2_0.caf; sourceTree = "<group>"; };
+		071917DD15B721B600E33997 /* paint_2_1.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = paint_2_1.caf; sourceTree = "<group>"; };
+		071917DE15B721B600E33997 /* snatch_2_0.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = snatch_2_0.caf; sourceTree = "<group>"; };
+		071917DF15B721B600E33997 /* snatch_2_1.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = snatch_2_1.caf; sourceTree = "<group>"; };
 		07473E1A15A1FA5100B27CEF /* charge.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = charge.plist; sourceTree = "<group>"; };
 		07473E1E15A1FCF600B27CEF /* charge0.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = charge0.caf; sourceTree = "<group>"; };
 		07473E1F15A1FCF600B27CEF /* charge1.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = charge1.caf; sourceTree = "<group>"; };
@@ -878,6 +898,16 @@
 				07A033DB159CB73D00D6A8CB /* snatch_0_1.caf */,
 				07A033DC159CB73D00D6A8CB /* snatch_1_0.caf */,
 				07A033DD159CB73D00D6A8CB /* snatch_1_1.caf */,
+				071917D615B721B600E33997 /* accel_2_0.caf */,
+				071917D715B721B600E33997 /* accel_2_1.caf */,
+				071917D815B721B600E33997 /* blind_2_0.caf */,
+				071917D915B721B600E33997 /* blind_2_1.caf */,
+				071917DA15B721B600E33997 /* brake_2_0.caf */,
+				071917DB15B721B600E33997 /* brake_2_1.caf */,
+				071917DC15B721B600E33997 /* paint_2_0.caf */,
+				071917DD15B721B600E33997 /* paint_2_1.caf */,
+				071917DE15B721B600E33997 /* snatch_2_0.caf */,
+				071917DF15B721B600E33997 /* snatch_2_1.caf */,
 			);
 			path = Voice;
 			sourceTree = "<group>";
@@ -1184,6 +1214,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				071917E115B721BF00E33997 /* accel_2_0.caf in Resources */,
+				071917E215B721BF00E33997 /* accel_2_1.caf in Resources */,
+				071917E315B721BF00E33997 /* blind_2_0.caf in Resources */,
+				071917E415B721BF00E33997 /* blind_2_1.caf in Resources */,
+				071917E515B721BF00E33997 /* brake_2_0.caf in Resources */,
+				071917E615B721BF00E33997 /* brake_2_1.caf in Resources */,
+				071917E715B721BF00E33997 /* paint_2_0.caf in Resources */,
+				071917E815B721BF00E33997 /* paint_2_1.caf in Resources */,
+				071917E915B721BF00E33997 /* snatch_2_0.caf in Resources */,
+				071917EA15B721BF00E33997 /* snatch_2_1.caf in Resources */,
 				0796072B15ADEA91006E52BE /* paper.caf in Resources */,
 				079606E415AD349F006E52BE /* howto.caf in Resources */,
 				079606E515AD349F006E52BE /* complete0.caf in Resources */,
