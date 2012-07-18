@@ -11,6 +11,8 @@
 #import "OALSimpleAudio.h"
 
 @interface SPHowtoLayer()
+- (void)pressPrev:(id)sender;
+- (void)pressNext:(id)sender;
 - (void)pushNextScene:(NSUInteger)n transition:(BOOL)transition;
 @end
 
@@ -41,7 +43,18 @@
     [howtoLayer_ addChild:sprite];
     number = n;
     [self addChild:howtoLayer_];
-    [self scheduleUpdate];
+    CCMenuItem* left = [CCMenuItemImage itemFromNormalImage:@"left.png" 
+                                              selectedImage:@"left_selected.png" 
+                                              disabledImage:@"left_selected.png" target:self selector:@selector(pressPrev:)];
+    CCMenuItem* right = [CCMenuItemImage itemFromNormalImage:@"right.png" 
+                                               selectedImage:@"right_selected.png" 
+                                               disabledImage:@"right_selected.png" target:self selector:@selector(pressNext:)];
+    left.scale = 1.5;
+    right.scale = 1.5;
+    CCMenu* menu = [CCMenu menuWithItems:left, right, nil];
+    menu.position = ccpAdd(director.screenCenter, ccp(0, -440));
+    [menu alignItemsHorizontallyWithPadding:640];
+    [self addChild:menu];
   }
   return self;
 }
@@ -50,44 +63,37 @@
   [super onEnter];
 }
 
-- (void)update:(ccTime)dt {
-  KKInput* input = [KKInput sharedInput];
-  input.gestureSwipeEnabled = YES;
-  if (input.gesturesAvailable) {
-    KKSwipeGestureDirection dir = input.gestureSwipeDirection;
-    if (dir  && input.gestureSwipeRecognizedThisFrame) {
-      if (dir == KKSwipeGestureDirectionRight) {
-        if (number == 0) {
-          CCTransitionFade* transition = [CCTransitionFade transitionWithDuration:0.5f scene:[SPTitleLayer nodeWithScene]];
-          [[CCDirector sharedDirector] replaceScene:transition];
-          [[OALSimpleAudio sharedInstance] stopBg];
-        } else {
-          [self pushNextScene:self.number - 1 transition:NO];
-        }
-      } else if (dir == KKSwipeGestureDirectionLeft) {
-        if (number < HOWTO_COUNT - 1) {
-          [self pushNextScene:self.number + 1 transition:YES];
-        } else {
-          CCTransitionFade* transition = [CCTransitionFade transitionWithDuration:0.5f scene:[SPTitleLayer nodeWithScene]];
-          [[CCDirector sharedDirector] replaceScene:transition];
-          [[OALSimpleAudio sharedInstance] stopBg];
-        }
-      }
-    }
-  }
-}
-
 - (void)pushNextScene:(NSUInteger)n transition:(BOOL)transition {
   swiped_ = NO;
   CCScene* scene = [CCScene node];
   SPHowtoLayer* next = [[SPHowtoLayer alloc] initWithNumber:n];
   [scene addChild:next];
+  [[OALSimpleAudio sharedInstance] playEffect:@"paper.caf"];
   if (transition) {
     CCTransitionPageTurn* transition = [CCTransitionPageTurn transitionWithDuration:0.5f scene:scene];
     [[CCDirector sharedDirector] replaceScene:transition];
-    [[OALSimpleAudio sharedInstance] playEffect:@"paper.caf"];
   } else {
     [[CCDirector sharedDirector] replaceScene:scene];
+  }
+}
+
+- (void)pressNext:(id)sender {
+  if (number < HOWTO_COUNT - 1) {
+    [self pushNextScene:self.number + 1 transition:YES];
+  } else {
+    CCTransitionFade* transition = [CCTransitionFade transitionWithDuration:0.5f scene:[SPTitleLayer nodeWithScene]];
+    [[CCDirector sharedDirector] replaceScene:transition];
+    [[OALSimpleAudio sharedInstance] stopBg];
+  }
+}
+
+- (void)pressPrev:(id)sender {
+  if (number == 0) {
+    CCTransitionFade* transition = [CCTransitionFade transitionWithDuration:0.5f scene:[SPTitleLayer nodeWithScene]];
+    [[CCDirector sharedDirector] replaceScene:transition];
+    [[OALSimpleAudio sharedInstance] stopBg];
+  } else {
+    [self pushNextScene:self.number - 1 transition:NO];
   }
 }
  

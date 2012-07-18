@@ -16,6 +16,5 @@
 @property(readonly) NSUInteger number;
 
 - (id)initWithNumber:(NSUInteger)number;
-- (void)update:(ccTime)dt;
 
 @end
