@@ -242,7 +242,7 @@ typedef enum {
   float distance = ccpDistance(begin, end);
   float length = [self length];
   float diagonal = hypotf(self.boundingBox.size.width, self.boundingBox.size.height);
-  if (length > 150 && (distance < 50 || distance <= length * 0.3) && distance <= 100) {
+  if (length > 150 && (distance < 100 || distance <= length * 0.25) && distance <= 300) {
     return SPDrawingTypeCharge;
   } else if (length < diagonal * 1.5){
     return SPDrawingTypeSlash;
@@ -296,13 +296,6 @@ typedef enum {
     self.player.lastArea = self;
   }
   
-  // 自分より下に重なっているモノがあれば削除
-  for (SPDrawing* drawing in [NSArray arrayWithArray:manager.drawings]) {
-    if([self isEqual:drawing]) break;
-    if (CGRectContainsRect(self.boundingBox, drawing.boundingBox)) {
-      [drawing removeFromStage];
-    }
-  }
   [self stopChargeSound];
   // チャージエフェクトの削除
   if (CHARGE_EFFECT) {

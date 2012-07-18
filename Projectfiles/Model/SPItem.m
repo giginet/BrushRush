@@ -112,6 +112,9 @@
 - (void)useBy:(SPPlayer *)user {
   int times[] = {7, 7, 5, 1, 1}; 
   if (self.kind == SPItemKindBlind) {
+    if ([user getChildByTag:BLIND_TAG]) {
+      [user removeChildByTag:BLIND_TAG cleanup:YES];
+    }
     blindSound_ = [OALAudioTrack track];
     [blindSound_ preloadFile:@"blind.caf"];
     SPPlayer* enemy = [SPPlayer playerById:(user.identifier + 1) % 2];
