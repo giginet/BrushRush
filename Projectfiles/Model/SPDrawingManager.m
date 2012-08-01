@@ -34,12 +34,16 @@
 }
 
 - (void)addDrawing:(SPDrawing *)drawing {
-  [drawings_ addObject:drawing];
+  if (drawing) {
+    [drawings_ addObject:drawing];
+  }
 }
 
 - (void)removeDrawing:(SPDrawing *)drawing {
-  [drawings_ removeObject:drawing];
-  [drawing.player.drawings removeObject:drawing];
+  if ([drawings_ containsObject:drawing]) {
+    [drawings_ removeObject:drawing];
+    [drawing.player.drawings removeObject:drawing];
+  }
 }
 
 - (void)removeAllDrawings {

@@ -154,10 +154,12 @@
     case SPItemKindSnatch:
       if (enemy.lastArea && [manager.drawings containsObject:enemy.lastArea]) {
         [[OALSimpleAudio sharedInstance] playEffect:@"snatch.caf"];
+        SPDrawing* snatchDrawing = enemy.lastArea;
         [manager removeDrawing:enemy.lastArea];
-        enemy.lastArea.player = self.player;
-        [manager addDrawing:enemy.lastArea];
-        player.lastArea = enemy.lastArea;
+        snatchDrawing.player = self.player;
+        [manager addDrawing:snatchDrawing];
+        player.lastArea = snatchDrawing;
+        enemy.lastArea = nil;
       } else {
         [[OALSimpleAudio sharedInstance] playEffect:@"item_out.caf"];
       }

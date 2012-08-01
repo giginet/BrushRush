@@ -44,7 +44,7 @@ local config =
 		-- Orientation & Autorotation
 		DeviceOrientation = DeviceOrientation.Portrait,
 		AutorotationType = Autorotation.UIViewController,
-		ShouldAutorotateToLandscapeOrientations = YES,
+		ShouldAutorotateToLandscapeOrientations = NO,
 		ShouldAutorotateToPortraitOrientations = YES,
 		AllowAutorotateOnFirstAndSecondGenerationDevices = NO,
 	
