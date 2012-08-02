@@ -1517,15 +1517,16 @@
 			baseConfigurationReference = DCFA90EF13B4F6F7009DD35A /* BuildSettings-Debug-iOS.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Kohki Miki (3YM67K3AKM)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Kohki Miki";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Kohki Miki";
 				GCC_THUMB_SUPPORT = NO;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../__Kobold2D__/libs/GoogleAdMobAdsSDK\"",
 				);
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "855C1859-AFFF-44B6-A9A0-796AD412C1A9";
+				PROVISIONING_PROFILE = "B3DF5CC2-6A4F-4C61-B513-F12F5DC10135";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "B3DF5CC2-6A4F-4C61-B513-F12F5DC10135";
 				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Debug;
@@ -1535,15 +1536,16 @@
 			baseConfigurationReference = DCFA90F013B4F811009DD35A /* BuildSettings-Release-iOS.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Kohki Miki (3YM67K3AKM)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Kohki Miki";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Kohki Miki";
 				GCC_THUMB_SUPPORT = NO;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../__Kobold2D__/libs/GoogleAdMobAdsSDK\"",
 				);
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "855C1859-AFFF-44B6-A9A0-796AD412C1A9";
+				PROVISIONING_PROFILE = "B3DF5CC2-6A4F-4C61-B513-F12F5DC10135";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "B3DF5CC2-6A4F-4C61-B513-F12F5DC10135";
 				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Release;
